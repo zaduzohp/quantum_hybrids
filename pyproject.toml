@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qsocket"
+version = "0.1.0"
+description = "Trainability of a quantum socket in a hybrid classifier — paired A/B experiment on IQM Spark (ODRA 5)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "torch",
+    "scipy",
+    "qiskit>=2.0,<3.0",
+    "qiskit-machine-learning>=0.9,<0.10",
+    "qiskit-algorithms",
+    "iqm-client[qiskit]>=33.0,<34.0",
+    "statsmodels",
+    "pennylane",
+    "pennylane-lightning",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "qiskit-aer>=0.15.0",
+    "matplotlib",
+    # Needed by the ansatz-drawing notebook: qiskit's matplotlib drawer refuses to
+    # render without pylatexenc, and the notebook needs a kernel to run in.
+    "pylatexenc",
+    "ipykernel",
+    "nbclient",
+]
+# The `data = ["qml-benchmarks"]` extra was REMOVED (decision D-11, 2026-08-14): it was
+# never installable and never installed, so it only misled readers into thinking the
+# generators come from the package.
+#
+# qml-benchmarks does not exist on PyPI, and the GitHub version pulls
+# jax/jaxlib/flax/optax/pennylane; on top of that qml_benchmarks/data/__init__.py
+# imports ising.py, which requires jax and numpyro — so the two_curves and
+# hidden_manifold generators are unreachable without that whole stack. Project
+# decision (2026-08-12): both generators vendored into src/qsocket/vendored/,
+# equivalence with upstream verified bit-for-bit (tests/test_vendored_generators.py).
+# The dataset manifest therefore records the vendoring commit, not a package version.
+
+[tool.setuptools.packages.find]
+where = ["src"]
