@@ -1,0 +1,252 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\title{Raport Projektowy}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\renewcommand{\abstractname}{Streszczenie}
+\begin{abstract}
+% Miejsce na streszczenie
+\end{abstract}
+
+\section{Mapowanie deliverables do konkretnych rzeczy}
+\subsection{Co zostało dostarczone}
+
+\section{Wstęp}
+\subsection{Krótki przegląd literatury}
+
+\subsubsection{QELM}
+% Opis QELM
+
+\subsubsection{Porównywanie i benchmarkowanie modeli w kwantach}
+% Opis
+
+\section{Protokół (Metodologia)}
+\subsection{Dane}
+
+\subsubsection{Zbiór danych}
+Pierwszy wybrany zbiór danych pochodzi z generatora hyperplanes, z qml-benchmarks (\url{https://pennylane.ai/datasets/collection/qml-benchmarks})
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+pokrętła & n\_features=20, n\_hyperplanes=3, dim\_hyperplanes=5 \\
+dataset\_seed & 11 (reguła zadeklarowana z góry: najmniejsze ziarno z siatki \{11,22,33,44,55\}) \\
+liczebność i podział & 6000: 4200 / 600 / 1200, tasowanie przed podziałem, balans dokładnie 3000/3000 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Manifest datasetu w pliku \texttt{hyperplanes\_n\_features20\_n\_hyperplanes3\_dim\_hyperplanes5\_seed11.manifest.json}
+\subsubsection{Ustalenie jakości zbioru}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{bramka} & \textbf{kryterium} & \textbf{status} \\
+\midrule
+G1a & acc(silny SVM na PCA-5) $\in [0{,}65; 0{,}90]$ & 0,860 \\
+G1b & acc(silny SVM) $-$ acc(E liniowe) $\geq 0{,}05$ & zapas +0,096, \texttt{g1\_margin} +0,038 \\
+G2 & żadna składowa PCA nie wyjaśnia $> 80\%$ wariancji & $evr_1 = 0{,}7585$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Redukcja wymiarowości}
+PCA do \textbf{5 składowych}, whiten=False, fit \textbf{wyłącznie na 4200 treningowych}, potem MinMaxScaler per cecha do FEATURE\_RANGE = $[-\pi/4, \pi/4]$, też fit tylko na treningu.
+
+\textbf{total\_variance\_explained = 1,000000 dokładnie.} Etykieta zależy od z z przestrzeni dim\_hyperplanes = 5, a wstrzyknięcie w 20 cech jest \textbf{liniowe}, więc dane leżą dokładnie w 5-wymiarowej podprzestrzeni $\mathbb{R}^{20}$. \textbf{PCA-5 nie jest tu kompresją z utratą} — nie wolno napisać „mierzymy nośność reprezentacji po kompresji".
+
+\subsubsection{Encoding danych}
+Zastosowano angle encoding z użyciem $R_Y(x_i)$ oraz reuploading danych wstrzykiwane R razy (w serii głównej $R=2$, 2 x 5 PCA). Zakres $[-\pi/4, \pi/4]$.
+
+\subsubsection{Obserwable}
+Mierzymy na każdym z qubitów Z.
+
+\subsection{Modele i komponenty}
+
+\subsubsection{Schemat modelu}
+dane $\rightarrow$ PCA-5 (ZAMROŻONE) $\rightarrow$ MinMax do $[-\pi/4, \pi/4]$ $\rightarrow$ [KOMPONENT $5\rightarrow5$ ] $\rightarrow$ głowa $\rightarrow$ logit \\
+\textbf{Wymienia się wyłącznie zawartość gniazda.} Wszystko przed i po jest bit w bit identyczne.
+
+\subsubsection{Testowane konfiguracje}
+\textbf{Warunek poprawności:} dla danego ziarna \textbf{A i B startują z bit w bit identycznej $\theta$}: klucz \texttt{derive(seed, ansatz\_level, R)}. Ten sam klucz inicjalizacji głowy i ta sama kolejność batchy we wszystkich ramionach.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{llcX}
+\toprule
+\textbf{ramię} & \textbf{gniazdo} & \textbf{par. trenowane} & \textbf{rola} \\
+\midrule
+\textbf{A} & obwód kwantowy \textbf{trenowany} & 35 & model badany \\
+\textbf{B} & \textbf{ten sam} obwód, zamrożony na inicjalizacji & 0 & konwencja QELM/QRC \\
+\textbf{E} & przejście tożsamościowe & 0 & kontrola „brak gniazda" \\
+\textbf{F} & obwód produktowy (0 CZ), trenowany & 35 & kontrola: czy splątanie do czegoś służy \textbf{po treningu} \\
+\textbf{D} & $h = \cos(\Omega x + b)$, $\Omega$ z widma obwodu, zamrożone & 0 & klasyczne losowe cechy Fouriera o \textbf{tym samym nośniku} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Testowane ansatze}
+(Do każdego: schemat, opis, rząd jakobianu, rząd nominalny)
+
+\subsubsection{Ansatz L1}
+
+\subsubsection{Ansatz L2}
+
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llc}
+\toprule
+\textbf{punkt} & \textbf{par. głowy} & \textbf{udział kwantowy przy R=2} \\
+\midrule
+linear ($5\rightarrow1$) & 6 & 85,4 \% \\
+h2 & 15 & 70,0 \% \\
+h4 & 29 & 54,7 \% \\
+h42 & 295 & 10,6 \% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Protokół treningu}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{element} & \textbf{wartość} \\
+\midrule
+strata & BCEWithLogitsLoss, bez regularyzacji, \textbf{ta sama we wszystkich ramionach} \\
+optymalizator & Adam, weight\_decay = 0 \\
+batch & 64 \\
+budżet epok & 300, early stopping na \textbf{accuracy walidacyjnej} (remisy: niższa strata), przywracanie najlepszych wag \\
+patience & \textbf{30} \\
+lr & jeden wspólny (gniazdo + głowa), siatka \{1e-3, 3e-3, 1e-2, 3e-2\}, wybór \textbf{raz na (zbiór $\times$ rozcieńczenie)} jako najlepsza średnia accuracy walidacyjna po ramionach \textbf{A i B}, na ziarnach 1–3 \\
+lr ramienia E & siatka rozszerzona o jeden punkt: \{1e-3, 3e-3, 1e-2, 3e-2, 1e-1\}\\
+trening & \textbf{łączny}: gniazdo i głowa w jednym kroku, jeden optymalizator \\
+backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision = 0.0 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Protokół ewaluacji}
+
+\subsubsection{Siatka}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{oś} & \textbf{poziomy} \\
+\midrule
+rozcieńczenie & linear $\cdot$ h2 $\cdot$ h4 $\cdot$ h42 \\
+ramiona & A, B, D, E, F \\
+ziarna treningowe & 1--10 \\
+ziarna generatora & 11 $\cdot$ 22 $\cdot$ 33 \\
+R & 2 \\
+ansatz & L1, L2 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Metryki}
+\begin{itemize}
+    \item \textbf{główna:} accuracy na 1200 próbkach testowych
+    \item \textbf{diagnostyczne:} AUC, macro-F$_1$
+    \item \textbf{diagnostyka ruchu parametrów:} $\theta_{\text{displacement}} = \|\theta_{\text{final}} - \theta_{\text{init}}\| / \sqrt{P}$, \texttt{grad\_rms\_start/end}, \texttt{best\_epoch}, \texttt{epochs\_run}
+    \item \textbf{niepewność} $\Delta$ na tym samym zbiorze testowym: test McNemara na parach niezgodnych
+\end{itemize}
+
+\subsubsection{Reprodukowalność}
+Wszystko zaseedowane; każde mrożenie zbioru niesie własny hash weryfikowany przy wczytaniu.
+
+\subsection{Osie odniesienia}
+
+\subsubsection{Estymandy}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{\#} & \textbf{estymand} & \textbf{znaczenie} \\
+\midrule
+$\Delta_{AB}$ & acc(A) $-$ acc(B) & trenowalność --- pytanie badawcze \\
+$\Delta_{AE}$ & acc(A) $-$ acc(E); $\Delta_{AE} = \Delta_{AB} + (\text{acc(B)} - \text{acc(E)})$ & wkład komponentu \\
+$\Delta_{AF}$ & acc(A) $-$ acc(F) & czy splątanie służy czemuś \textbf{po treningu} \\
+$\Delta_{BD}$ & acc(B) $-$ acc(D) & kwantowe vs klasyczne gniazdo zamrożone \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Skale odniesienia}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{skala} & \textbf{co mierzy} & \textbf{wartość} \\
+\midrule
+$\sigma_{\text{seed}}$ & rozrzut po inicjalizacjach & A 0,0063 $\cdot$ B 0,0478 $\cdot$ E 0,0031 \\
+$\sigma_{\Delta}$ & rozrzut różnicy parowanej & A$-$B 0,0489 $\cdot$ A$-$E 0,0075 $\cdot$ B$-$E 0,0471 \\
+sufit & ile jest miejsca nad głową liniową; $\max\{\text{acc(SVM)}, \text{acc(MLP)}\} - \text{acc(E liniowe)}$ & wobec SVM +0,096 $\cdot$ wobec MLP +0,213 \\
+$\sigma_{\text{hw}}$ & rozrzut między sesjami sprzętowymi & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Osie rozcieńczenia}
+linear (6) $\cdot$ h2 (15) $\cdot$ h4 (29) $\cdot$ h42 (295)
+
+\subsection{Analiza statystyczna}
+
+
+\textbf{Kontrast parowany} na 10 różnicach per ziarno + dokładny test znaków / Wilcoxona (\texttt{wilcoxon\_signed\_rank\_exact}, \texttt{sign\_test\_exact}). Dla $n=10$ testy dokładne są właściwsze niż $t$, bo nie zakładają normalności.
+
+\paragraph{Równoważność (TOST)} TOST zostaje dla $\Delta_{AE}$ przy $\delta = 0{,}02$, dla $\Delta_{AB}$ jest wycofany (raportowany sam 90\% CI). Powód: moc przy $\delta = 0{,}02$ wynosi \textbf{1,000} dla A$\leftrightarrow$E i \textbf{0,000} dla A$\leftrightarrow$B, bo $\sigma_{\Delta}$ zależy od kontrastu.
+
+\paragraph{Złożenie niepewności.}
+$\Delta$ raportujemy z trzema rachunkami niepewności obok siebie, bez składania ich w jedną liczbę:
+\begin{enumerate}
+    \item CI z 10 różnic parowanych po ziarnie --- analiza główna, uogólniająca na inicjalizacje przy ustalonym podziale;
+    \item binomialne SE $= 0{,}0144$, uogólniające na losowanie zbioru testowego przy ustalonym ziarnie;
+    \item test McNemara na parach niezgodnych, ta sama populacja co (2), ale parowany, więc mniejszy.
+\end{enumerate}
+Dla $\Delta_{AB}$ dominuje (1); dla $\Delta_{AE}$ $\sigma_{\Delta} = 0{,}0075$ jest mniejsze niż binomialne SE, więc tam (3) jest obowiązkowe, nie tylko uzupełniające.
+
+\section{Wyniki}
+% podpunkty dla kazdej osi
+
+\subsection{Figures}
+\subsection{Interpretacja i status wyników}
+
+\section{Ograniczenia}
+
+\section{Future work}
+
+\section{Reprodukowalność}
+
+\end{document}
