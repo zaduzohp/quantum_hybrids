@@ -29,18 +29,59 @@
 \subsection{Krótki przegląd literatury}
 
 \subsubsection{QELM}
-% Opis QELM
 
-\subsubsection{Porównywanie i benchmarkowanie modeli w kwantach}
-% Opis
+Punktem wyjścia jest pytanie, czy trening obwodu kwantowego w modelu hybrydowym w ogóle coś zmienia. Zanim odpowiemy na nie eksperymentalnie, warto zapytać, czego uczciwie można się spodziewać od strony teorii.
 
+\paragraph{Definicja i pochodzenie.}
+Quantum Extreme Learning Machines (QELM) to modele, w których obwód kwantowy pełni funkcję ustalonego rezerwuaru przekształcającego dane w wysokowymiarową reprezentację, a trenowana jest wyłącznie klasyczna warstwa odczytu na jego wyjściu. Xiong i inni (2023) opisują to jako połączenie \emph{,,rich feature map induced by the dynamics of a quantum substrate --- the quantum reservoir and efficient post-measurement training via linear regression''}. Sakurai i inni (2026) formułują to samo rozróżnienie wprost, przeciwstawiając QELM podejściom wariacyjnym: \emph{,,QCL involves optimizing the quantum circuit for a specific task, while QELM uses a fixed quantum circuit followed by a classical learning step''}. Architektura ta odpowiada dokładnie wariantowi B w naszym badaniu. Różnica polega jedynie na perspektywie: w literaturze QELM funkcjonuje jako docelowy model, a u nas jako punkt odniesienia.
+
+% tutaj wstawić założenia QELM z własnego researchu.
+
+
+\paragraph{QELM a QRC: rozróżnienie.}
+
+Idea wywodzi się z reservoir computing i extreme learning machines (Mujal et al). W tym przeglądzie quantum reservoir computing (QRC) i QELM traktowane są jako \emph{,,two emerging approaches''}, czyli dwa osobne podejścia. Różnica, która ma znaczenie praktyczne: QRC zakłada zadania z pamięcią. Fujii i Nakajima mówią o emulowaniu \emph{,,nonlinear dynamics including classical chaos''}, a w implementacjach pojawia się jawna rekurencja, jak u Pandeya(\emph{,,a recurrent variant carries memory across timesteps by partial-tracing the input qubits between encodings''}). QELM w definicji Xionga:  \emph{,,the rich feature map induced by the dynamics of a quantum substrate – the quantum reservoir – and the efficient post-measurement training via linear regression’’}. Nie zakłada ona pamięci. Jest po prostu ustaloną mapą cech plus regresja na wyjściu.
+
+Nasz projekt wpisuje się w nurt QELM. Zadanie jest statyczną klasyfikacją binarną, nie ma pamięci między próbkami, a odczyt to pięć wartości oczekiwanych podanych dalej do głowy. Ma to bezpośrednią konsekwencję dla tego, z czym wolno nas porównywać. Prace, które mierzą przewagę QRC na szeregach czasowych, odpowiadają na inne pytanie i na innych zadaniach, nawet jeśli mechanizm zamrożonego rezerwuaru jest ten sam.
+
+\paragraph{Możliwości } Aby ocenić, co taka statyczna mapa cech potrafi wyliczyć, należy spojrzeć na jej matematyczną strukturę. Schuld, Sweke i Meyer (2021) opisują strukturę tego, co taki obwód może wyliczyć. Model kwantowy z kodowaniem danych, po zmierzeniu, jest szeregiem Fouriera, w którym kodowanie ustala dostępny nośnik częstotliwości, a trenowalne parametry wpływają wyłącznie na współczynniki przy tych częstotliwościach, nie na same częstotliwości. Jeśli re-uploading powtarza to kodowanie $R$ razy, nośnik rośnie do $|\omega| \le R$ na cechę, ale wciąż jest to kodowanie, nie trening, które o tym decyduje. 
+
+Fakt, że wyjście obwodu jest w istocie zredukowanym szeregiem Fouriera, rodzi natychmiastowe pytanie o sens stosowania takich modeli, skoro teoretycznie łatwo je odtworzyć klasycznie. Schreiber, Eisert i Meyer (2023) pokazują, że duże klasy modeli z re-uploadingiem mają klasyczny surogat, który odtwarza tę samą relację wejście-wyjście, i że w badanych przez nich problemach żadnej przewagi kwantowej nie widać. Landman i inni (2022) oraz później Sweke i inni (2025) rozwijają to w kierunku praktycznym, konstruując klasyczne przybliżenie przez próbkowanie kilku częstotliwości z widma obwodu, metodą losowych cech Fouriera (RFF), i pokazując, że liczba potrzebnych próbek rośnie korzystnie z rozmiarem tego widma. Jeśli obwód kwantowy jest surogatowalny z definicji, to porównanie z klasycznym odpowiednikiem musi to testować empirycznie, a nie zakładać z góry, w którą stronę wynik pójdzie.
+
+
+%  doprecyzować, na ile te cztery wątki (rezerwuary QRC, spektrum Fouriera, surogatowalność, kara generalizacyjna) mają się złożyć w jedno zdanie tezowe tej podsekcji, zamiast czterech osobnych.
+
+\subsubsection{Porównywanie i benchmarkowanie modeli kwantowych}
+
+Praktyka pomiarowa w QML jest czasem problemem, a literatura ostrzega, że w tej dziedzinie łatwo o wynik, który wygląda przekonująco, a jest artefaktem projektu eksperymentu, nie własnością modelu.
+
+Najbardziej wpływowe ostrzeżenie daje szeroki benchmark Bowlesa, Ahmeda i Schulda (2024), obejmujący 12 modeli kwantowych, sześć zadań klasyfikacji binarnej i 160 zbiorów danych. Ich główny wynik wskazuje na niedopracowania w dziedzinie. Z pracy wynika, że standardowe, gotowe modele klasyczne systematycznie wygrywają z modelami kwantowymi, a usunięcie splątania z modelu kwantowego często nie szkodzi (bywa że pomaga). Ważniejsze od samego wyniku jest diagnoza tego, czemu takie mylące wnioski powstają. Pierwsza to systematyczna asymetria w strojeniu hiperparametrów, gdzie model kwantowy wypada gorzej nie z powodu architektury, tylko dlatego, że nikt nie dał mu tyle samo uwagi przy doborze ustawień, co modelowi klasycznemu. Druga to dopasowywanie liczby parametrów jako sposobu na dobór klasycznego baseline'u. U nas przy porównaniu obwodu trenowanego z zamrożonym problem ten nie występuje. Operujemy na tej samej architekturze, więc liczba parametrów jest z definicji identyczna. Także, przy zestawieniu obwodu kwantowego z klasycznym surogatem, gdzie architektury fundamentalnie się różnią, nie zrównujemy ich po nominalnej liczbie parametrów. Zamiast tego dopasowujemy wielkość klasycznego modelu na podstawie wymiaru efektywnego, wyznaczonego przez rząd jakobianu.
+
+Są prace, które same podają przykłady wcześniejszych błędów. Kakavand, Strohmeyer i Schlotter (2026) w pierwszej fazie eksperymentu, przy pięciu foldach walidacji krzyżowej, żadne z 29 porównań jądra kwantowego z klasycznym nie wyszło istotne statystycznie, co można odczytać jako brak różnicy. W czwartej fazie, po zwiększeniu liczby powtórzeń do szesnastu, ten sam kontrast wyszedł istotny na wszystkich siedmiu badanych zbiorach danych.
+
+\subsubsection{Najbliższe prace}
+
+Z tej analizy wyniknęła luka. Prac, które mierzą różnicę między tym samym obwodem kwantowym trenowanym i zamrożonym, jest niewiele, i żadna nie robi tego jako głównego pytania badawczego.
+
+Choć podobne zestawienia pojawiają się w literaturze, mają one charakter poboczny lub badają inne mechanizmy. Przykładowo, Raj i inni (2026) w suplemencie do swojej pracy przedstawiają ablację strukturalnie odpowiadającą naszemu kontrastowi (ramię A vs B). Opiera się ona jednak na pojedynczej konfiguracji i zaledwie pięciu ziarnach losowości, bez rygoru statystycznego czy ewaluacji na sprzęcie. Z kolei Kodama i inni (2025) analizują zysk z odblokowania treningu losowych parametrów, lecz ich badanie dotyczy warstwy kodowania danych, a nie samego obwodu
+
+Najbliżej metodologicznie stoi seria prac Pandeya, i wymaga ona osobnego komentarza, bo jest to systematyczny program jednego autora, a nie rozproszone pojedyncze wyniki. Pierwsza z nich (arXiv:2604.23743) demonstruje, na czterokubitowym obwodzie o ustalonym kodowaniu, że niemożność dopasowania do atraktora Lorenza wynika z sufitu pojemności architektury, a nie z barren plateau, i rozstrzyga to porównując zmierzoną wariancję gradientu z teoretyczną podłogą, sprawdzając nasycenie rzędu jakobianu wyjścia, i licząc dostępną liczbę częstotliwości Fouriera wobec potrzebnej. To jest bliski odpowiednik naszego rozróżnienia między sufitem nieliniowości a barren plateaus jako dwoma osobnymi, mierzonymi wielkościami.
+
+Druga praca (arXiv:2607.09905) dopasowuje nakład strojenia hiperparametrów między kwantowym rezerwuarem i klasycznym baseline'em i pokazuje, że przy równym nakładzie dwa często przywoływane mechanizmy przewagi QRC nie utrzymują się. Jest to zoperacjonalizowana wersja zarzutu Bowlesa o asymetryczne strojenie, z zestawem kontroli, który obejmuje przyczynowy podział bez przecieku, strojenie tylko na walidacji stosowane jednakowo do wszystkich modeli, dopasowany wymiar cech, bramki poprawności i deterministyczną odtwarzalność bit w bit.
+
+Jednak jak ta praca odnosi się do naszej? Pozorne podobieństwo jest mylące, bo Pandey nie odpowiada na nasze pytanie tylko je zakłada. We wstępie pisze, że \emph{,,a fixed quantum reservoir avoids the trainability pathologies of variational circuits while supplying a high-dimensional nonlinear feature map''}, i przyjmuje to jako uzasadnienie, dlaczego zamrożenie jest sensownym wyborem, powołując się na literaturę o barren plateaus. Nigdy nie mierzy, ile ta decyzja kosztuje w trafności. Jego estymandem jest zamrożony rezerwuar kwantowy wobec uczciwie dobranego klasycznego baseline'u, czyli w naszej pracy kontrast między ramieniem B i ramionami klasycznymi, a nie kontrast A wobec B. W skrócie, przesłanka, którą Pandey przyjmuje, jest dokładnie tym, co my mierzymy.
+
+Żadna z dotychczasowych prac nie mierzy różnicy między trenowanym i zamrożonym obwodem jako głównej wielkości do estymacji. Nasz wkład nie polega na tym, że jako pierwsi zauważamy to rozróżnienie, ale na rygorze jego weryfikacji: wprowadzamy sparowaną inicjalizację, z góry zadeklarowane skale odniesienia (rozrzut i sufit zadania) oraz jawną metodologię na wypadek, gdyby empiryczna różnica między reżimami okazała się bliska zeru.
+
+
+% jakies ladne zdanie tezy
 \section{Protokół (Metodologia)}
 \subsection{Dane}
 
 \subsubsection{Zbiór danych}
 Pierwszy wybrany zbiór danych pochodzi z generatora hyperplanes, z qml-benchmarks (\url{https://pennylane.ai/datasets/collection/qml-benchmarks})
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{lX}
@@ -53,9 +94,13 @@ liczebność i podział & 6000: 4200 / 600 / 1200, tasowanie przed podziałem, b
 \end{table}
 
 Manifest datasetu w pliku \texttt{hyperplanes\_n\_features20\_n\_hyperplanes3\_dim\_hyperplanes5\_seed11.manifest.json}
+
+Generator jest \textbf{dosłowną kopią} z \texttt{qml-benchmarks}, commit \texttt{95e5a07e}, a nie importem z pakietu: \texttt{data/\_\_init\_\_.py} ciągnie \texttt{jax} i \texttt{numpyro}.
+
+\textbf{Podział nie jest odwrócony} (4200 treningowych, nie 1200): błąd generalizacji skaluje się jak $\sqrt{T/N}$ (Caro i in.), więc mały $N$ karałby ramię $A$ za większą liczbę parametrów i ściskał $\Delta$ do zera --- confound dla głównego estymandu. \textbf{Brak cross-validation}, podział stały: estymandem jest różnica parowana w obrębie jednego podziału, a replikację dają ziarna.
 \subsubsection{Ustalenie jakości zbioru}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{lXX}
@@ -69,13 +114,17 @@ G2 & żadna składowa PCA nie wyjaśnia $> 80\%$ wariancji & $evr_1 = 0{,}7585$ 
 \end{tabularx}
 \end{table}
 
+„Silny model klasyczny" występuje w \textbf{dwóch przeciwstawnych rolach} i są rozdzielone: dla \textbf{bramki} to RBF-SVM i jest \textbf{proxy trudności} (wysokie acc $\Rightarrow$ zadanie za łatwe, odrzuć), dla \textbf{sufitu} (\S\ref{sec:skale}) to $\max\{$SVM, MLP$\}$ i \textbf{nie bramkuje niczego} (wysokie acc $\Rightarrow$ jest miejsce nad podłogą).
+
 \subsubsection{Redukcja wymiarowości}
 PCA do \textbf{5 składowych}, whiten=False, fit \textbf{wyłącznie na 4200 treningowych}, potem MinMaxScaler per cecha do FEATURE\_RANGE = $[-\pi/4, \pi/4]$, też fit tylko na treningu.
 
 \textbf{total\_variance\_explained = 1,000000 dokładnie.} Etykieta zależy od z z przestrzeni dim\_hyperplanes = 5, a wstrzyknięcie w 20 cech jest \textbf{liniowe}, więc dane leżą dokładnie w 5-wymiarowej podprzestrzeni $\mathbb{R}^{20}$. \textbf{PCA-5 nie jest tu kompresją z utratą} — nie wolno napisać „mierzymy nośność reprezentacji po kompresji".
 
 \subsubsection{Encoding danych}
-Zastosowano angle encoding z użyciem $R_Y(x_i)$ oraz reuploading danych wstrzykiwane R razy (w serii głównej $R=2$, 2 x 5 PCA). Zakres $[-\pi/4, \pi/4]$.
+Zastosowano angle encoding $R_Y(x_i) = e^{-i x_i Y/2}$, jedna cecha na kubit, re-uploading: pięć cech PCA wstrzykiwanych $R$ razy (alokacja $5\times R$; w serii głównej $R=2$). Zakres $[-\pi/4, \pi/4]$.
+
+Generator $Y$ jest operatorem Pauliego, więc widmo Fouriera modelu jest \textbf{całkowite}, z nośnikiem $|\omega| \leq R$ na współrzędną. Nośnik ustala kodowanie, nie ansatz --- to on czyni ramię $D$ (o tym samym nośniku) porównywalnym z $A$ i $B$.
 
 \subsubsection{Obserwable}
 Mierzymy na każdym z qubitów Z.
@@ -87,9 +136,9 @@ dane $\rightarrow$ PCA-5 (ZAMROŻONE) $\rightarrow$ MinMax do $[-\pi/4, \pi/4]$ 
 \textbf{Wymienia się wyłącznie zawartość gniazda.} Wszystko przed i po jest bit w bit identyczne.
 
 \subsubsection{Testowane konfiguracje}
-\textbf{Warunek poprawności:} dla danego ziarna \textbf{A i B startują z bit w bit identycznej $\theta$}: klucz \texttt{derive(seed, ansatz\_level, R)}. Ten sam klucz inicjalizacji głowy i ta sama kolejność batchy we wszystkich ramionach.
+\textbf{Warunek poprawności:} dla danego ziarna \textbf{A i B startują z bit w bit identycznej $\theta$}: klucz \texttt{derive(seed, ansatz\_level, R)}, \textbf{bez \texttt{arm}}. Ten sam klucz inicjalizacji głowy i ta sama kolejność batchy we wszystkich ramionach.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{llcX}
@@ -113,7 +162,9 @@ dane $\rightarrow$ PCA-5 (ZAMROŻONE) $\rightarrow$ MinMax do $[-\pi/4, \pi/4]$ 
 \subsubsection{Ansatz L2}
 
 
-\begin{table}[h]
+\subsection{Rozcieńczenie klasyczne (głowa)}
+
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{llc}
@@ -130,7 +181,7 @@ h42 & 295 & 10,6 \% \\
 
 \subsection{Protokół treningu}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{lX}
@@ -142,9 +193,10 @@ optymalizator & Adam, weight\_decay = 0 \\
 batch & 64 \\
 budżet epok & 300, early stopping na \textbf{accuracy walidacyjnej} (remisy: niższa strata), przywracanie najlepszych wag \\
 patience & \textbf{30} \\
-lr & jeden wspólny (gniazdo + głowa), siatka \{1e-3, 3e-3, 1e-2, 3e-2\}, wybór \textbf{raz na (zbiór $\times$ rozcieńczenie)} jako najlepsza średnia accuracy walidacyjna po ramionach \textbf{A i B}, na ziarnach 1–3 \\
+lr & jeden wspólny (gniazdo + głowa), siatka \{1e-3, 3e-3, 1e-2, 3e-2\}, wybór \textbf{raz na (zbiór $\times$ rozcieńczenie $\times$ ansatz)} jako najlepsza średnia accuracy walidacyjna po ramionach \textbf{A i B}, na ziarnach 1–3 \\
 lr ramienia E & siatka rozszerzona o jeden punkt: \{1e-3, 3e-3, 1e-2, 3e-2, 1e-1\}\\
 trening & \textbf{łączny}: gniazdo i głowa w jednym kroku, jeden optymalizator \\
+kontrola odczytu & dodatkowo ridge w formie zamkniętej, \texttt{alpha} $\in \{$1e-6, 1e-4, 1e-2, 1$\}$, wybór na walidacji --- odpowiedź na „literatura QELM liczy odczyt inaczej" \\
 backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision = 0.0 \\
 \bottomrule
 \end{tabularx}
@@ -154,7 +206,7 @@ backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision =
 
 \subsubsection{Siatka}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{lX}
@@ -164,12 +216,14 @@ backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision =
 rozcieńczenie & linear $\cdot$ h2 $\cdot$ h4 $\cdot$ h42 \\
 ramiona & A, B, D, E, F \\
 ziarna treningowe & 1--10 \\
-ziarna generatora & 11 $\cdot$ 22 $\cdot$ 33 \\
+ziarna generatora & 11 $\cdot$ 22 $\cdot$ 33 --- \textbf{tylko te trzy zdają bramki wiążące}; 44 i 55 oblewają G2 ($evr_1 = 0{,}811$; $0{,}812$) i G1b (zapas $+0{,}043$; $+0{,}014$), więc nie ma czym ich zastąpić \\
 R & 2 \\
 ansatz & L1, L2 \\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+Ramiona \textbf{E} (tożsamość), \textbf{D} (gniazdo klasyczne) i \textbf{F} (obwód produktowy) \textbf{nie mają wymiaru ansatzu} --- liczone raz na (ziarno generatora $\times$ rozcieńczenie $\times$ ziarno), nie dwa razy.
 
 \subsubsection{Metryki}
 \begin{itemize}
@@ -186,7 +240,7 @@ Wszystko zaseedowane; każde mrożenie zbioru niesie własny hash weryfikowany p
 
 \subsubsection{Estymandy}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{lXX}
@@ -201,9 +255,9 @@ $\Delta_{BD}$ & acc(B) $-$ acc(D) & kwantowe vs klasyczne gniazdo zamrożone \\
 \end{tabularx}
 \end{table}
 
-\subsubsection{Skale odniesienia}
+\subsubsection{Skale odniesienia}\label{sec:skale}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{lXX}
@@ -224,7 +278,21 @@ linear (6) $\cdot$ h2 (15) $\cdot$ h4 (29) $\cdot$ h42 (295)
 \subsection{Analiza statystyczna}
 
 
-\textbf{Kontrast parowany} na 10 różnicach per ziarno + dokładny test znaków / Wilcoxona (\texttt{wilcoxon\_signed\_rank\_exact}, \texttt{sign\_test\_exact}). Dla $n=10$ testy dokładne są właściwsze niż $t$, bo nie zakładają normalności.
+\paragraph{Model.} $\Delta \sim \text{rozcieńczenie} + (1 \mid \text{seed})$; \texttt{MixedLM}, \texttt{groups = seed}. W części A model mieszany jest \textbf{formalnie nadmiarowy}: projekt jest zbalansowany (te same ziarna 1--10 w każdej komórce), a losowy składnik to pojedynczy wyraz wolny. Raportujemy \textbf{oba} --- kontrast parowany jako analizę główną, MixedLM jako sprawdzenie --- i stwierdzamy wprost, że w części A są równoważne.
+
+\paragraph{Estymand główny i pytania opisowe.} Praca jest \textbf{estymacyjna}, nie testowa: $\Delta$ jest wielkością do oszacowania, nie znakiem do wykazania.
+
+\textbf{H1 (estymand główny):} \emph{ile kosztuje zamrażanie gniazda przy odczycie liniowym} --- $\Delta_{AB}$ przy głowie liniowej, podane z 95\% CI \textbf{w jednostkach $\sigma_\Delta$ kontrastu i sufitu}.
+
+\textbf{Dlaczego $\sigma_\Delta$, a nie $\sigma_{\text{seed}}$.} Estymand jest różnicą parowaną, więc jego własny rozrzut jest naturalną skalą. $\sigma_{\text{seed}}$ jest natomiast wielkością \textbf{per ramię}, a ramiona $A$ i $B$ różnią się nią \textbf{7,6-krotnie} (0,0063 wobec 0,0478) --- wybór ramienia zmieniałby wynik o rząd wielkości ($\Delta/\sigma_{\text{seed}}(A) \approx 14{,}6$ wobec $\Delta/\sigma_{\text{seed}}(B) \approx 1{,}9$), a wybór ramienia $A$ byłby pochlebny bez żadnego uzasadnienia. $\sigma_\Delta(A-B) = 0{,}0489$ wypada praktycznie równe $\sigma_{\text{seed}}(B)$, czyli jest wyborem zachowawczym. Pozostałe trzy mianowniki --- $\sigma_{\text{seed}}$ obu ramion oraz sufit --- raportujemy jako kontekst. Mianownik zadeklarowano \textbf{przed} serią główną. Test przeciw zeru (dokładny test znaków) raportujemy jako formalność, bo nic nie kosztuje. \textbf{Rodzina konfirmacyjna ma jeden element, więc korekta Holma nie jest stosowana} --- zapisane wprost, żeby nie wyglądało na pominięcie.
+
+Dwa pytania \textbf{opisowe}, zadeklarowane z góry, raportowane z CI i \textbf{nietestowane}: \textbf{P1} --- jak rozcieńczenie wpływa na $\Delta$ (krzywa wzdłuż osi, z CI na każdym punkcie); \textbf{P2} --- czym różnią się ramiona ($\Delta_{AE}$, $\Delta_{AF}$, $\Delta_{BD}$). Wszystko dotyczące ramienia $D$ jest dodatkowo \textbf{eksploracyjne}.
+
+\textbf{Dlaczego oś rozcieńczenia nie jest testowana jako interakcja.} Przy \texttt{h42} ramię $E$ samo osiąga 0,976, czyli bije silny model klasyczny --- $\Delta \to 0$ następuje wtedy \textbf{z powodu głowy, nie gniazda}. Potwierdzenie interakcji byłoby więc nieinterpretowalne jako twierdzenie o komponencie kwantowym, i dlatego oś raportujemy jako zmierzoną krzywą, a nie jako test. Oś nie zostaje przez to okrojona: jest w całości w P1.
+
+\paragraph{Minimalny wykrywalny efekt.} MDE $= 0{,}995\,\sigma_\Delta$ (test dwustronny, moc 80\%, $n=10$): \textbf{0,0486} dla $\Delta_{AB}$, \textbf{0,0075} dla $\Delta_{AE}$. Bez tej liczby nie da się odróżnić „efektu nie ma" od „nie mieliśmy mocy".
+
+\paragraph{Test.} \textbf{Kontrast parowany} na 10 różnicach per ziarno + dokładny test znaków / Wilcoxona (\texttt{wilcoxon\_signed\_rank\_exact}, \texttt{sign\_test\_exact}). Dla $n=10$ testy dokładne są właściwsze niż $t$, bo nie zakładają normalności.
 
 \paragraph{Równoważność (TOST)} TOST zostaje dla $\Delta_{AE}$ przy $\delta = 0{,}02$, dla $\Delta_{AB}$ jest wycofany (raportowany sam 90\% CI). Powód: moc przy $\delta = 0{,}02$ wynosi \textbf{1,000} dla A$\leftrightarrow$E i \textbf{0,000} dla A$\leftrightarrow$B, bo $\sigma_{\Delta}$ zależy od kontrastu.
 
