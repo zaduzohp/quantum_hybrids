@@ -224,7 +224,6 @@ backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision =
 \end{table}.
 
 \paragraph{Wspólne lr dla gniazda i głowy.} Gniazdo i głowa dzielą jeden współczynnik uczenia. Uzasadnienie takiej decyzji, że Adam normalizuje krok per parametr, dotyczy skali gradientu, nie naturalnej skali samego parametru: kąty gniazda żyją na $[0,2\pi)$, a wagi głowy startują z $U[\pm 1/\sqrt{5}]$. Przy $\mathrm{lr} = 0{,}03$ krok Adama odpowiada więc 0,48,\% skali kąta, ale 3,35,\% skali wagi. Dlatego wybór jednego \texttt{lr} dla obu części mógł postawić pytanie: czy zmiana wyniku pochodzi od dostrojenia gniazda, czy od dostrojenia głowy. 
-\paragraph{Czy siatka lr nie jest obcięta za nisko.} Wybrane $\mathrm{lr}$ leżało na górnej krawędzi siatki w 12 z 24 komórek, więc sprawdziliśmy jeden punkt powyżej niej ($\mathrm{lr} = 0{,}1$) na wszystkich 24 komórkach ramienia $A$. Reguła zadeklarowan przed pomiarem, która potencjalnie mogłaby wpłynąć na rozszerzenie siatki brzmiała: siatkę wolno rozszerzyć, jeśli argmax ramienia $A$ trafi na $0{,}1$ w co najmniej 12 z 24 komórek \textbf{i} mediana zysku przekroczy szum walidacyjny 0,020. Zmierzone: argmax na $0{,}1$ w \textbf{1 z 24} komórek, mediana zysku +0,0006, zero komórek z zyskiem powyżej szumu, średni zysk $-$0,0433.
 
 \subsection{Protokół ewaluacji}
 
@@ -303,6 +302,7 @@ $\sigma_{\text{hw}}$ & rozrzut między sesjami sprzętowymi \\
 \end{tabularx}
 \end{table}
 
+
 \textbf{Dekompozycja rozrzutu.} Trzydzieści różnic $\Delta_{AB}$ (dziesięć ziaren na każdym z trzech zbiorów) różni się od siebie z dwóch niezależnych powodów: losowości inicjalizacji oraz tego, że same zbiory różnią się trudnością (sufit 0,0964 / 0,0994 / 0,1197 dla ds11 / ds22 / ds33). Spulowanie wszystkich trzydziestu różnic w jedną liczbę rozrzutu miesza te dwa źródła, a interesuje nas wyłącznie pierwsze: to ono jest mianownikiem MDE, TOST i przedziału ufności, i to ono mierzył pilot, który operował na jednym zbiorze i z definicji nie mógł zobaczyć drugiego źródła. Rozdzielamy więc rozrzut na trzy wielkości. ,,Wewnątrz'' to reszta po odjęciu od każdej różnicy średniej jej własnego zbioru (RMS z trzech bloków), oczyszczona z różnicy trudności i porównywalna z pilotem --- to ona jest naszym mianownikiem. ,,Między'' to rozrzut trzech średnich blokowych względem siebie, osobne ustalenie o stabilności efektu między zadaniami, nie składnik mianownika. ,,Połączony'' rozrzut wszystkich trzydziestu różnic podajemy dla kompletności, ale nie da się go porównać z pilotem, bo zawiera różnicę trudności zbiorów, której pilot nigdy nie mógł zmierzyć.
 
 \begin{table}[htbp]
@@ -337,14 +337,22 @@ sufit wobec $\max\{$SVM, MLP$\}$ & +0,2128 & +0,1806 & +0,1678 \\
 \end{tabular}
 \end{table}
 
-\subsubsection{Osie rozcieńczenia}
-linear (6) $\cdot$ h2 (15) $\cdot$ h4 (29) $\cdot$ h42 (295)
+\subsection{Sprawdzenie siatki \texttt{lr}}
+\paragraph{Czy siatka lr nie jest obcięta za nisko.} Wybrane $\mathrm{lr}$ leżało na górnej krawędzi siatki w 12 z 24 komórek, więc sprawdziliśmy jeden punkt powyżej niej ($\mathrm{lr} = 0{,}1$) na wszystkich 24 komórkach ramienia $A$. Reguła zadeklarowan przed pomiarem, która potencjalnie mogłaby wpłynąć na rozszerzenie siatki brzmiała: siatkę wolno rozszerzyć, jeśli argmax ramienia $A$ trafi na $0{,}1$ w co najmniej 12 z 24 komórek \textbf{i} mediana zysku przekroczy szum walidacyjny 0,020. Zmierzone: argmax na $0{,}1$ w \textbf{1 z 24} komórek, mediana zysku +0,0006, zero komórek z zyskiem powyżej szumu, średni zysk $-$0,0433.
 
-\subsection{Analiza statystyczna}
+\subsection{Zastosowanie reguły pulowania}
+Na tej serii reguła \textbf{nie odpala dla $\Delta_{AB}$ w żadnej z ośmiu komórek}, więc estymand główny raportujemy jako jedną liczbę na komórkę. Odpala dla $\Delta_{AE}$ przy głowie liniowej (L1: wszystkie trzy zbiory; L2: dwa) i przy \texttt{h4}/L2 (ds11) --- tam podajemy \textbf{trzy liczby, nie jedną}. Warto podkreślić, że rozbieżność wykryto \textbf{dzięki precyzji, nie z jej braku}: gdyby pomiary były szumne, przedziały byłyby szerokie, zachodziłyby na spulowany i reguła by milczała. Odpaliła dlatego, że każdy zbiór osobno daje przedział o połowie szerokości $\pm 0{,}004$--$0{,}007$, czyli potrafimy odróżnić $+0{,}015$ od $+0{,}054$. Pulowanie iid dawało tu jedną liczbę wyglądającą na czystą odpowiedź, mimo że \textbf{żaden ze zbiorów nie leżał w jej przedziale}.
 
+\subsection{Estymand główny --- zmierzone wartości}
 
-\section{Wyniki}
-% podpunkty dla kazdej osi
+\subsubsection{Minimalny wykrywalny efekt}
+Dla głowy liniowej MDE wynosi \textbf{0,0241} (L1) i \textbf{0,0343} (L2) dla $\Delta_{AB}$, \textbf{0,0043} (L1) i \textbf{0,0048} (L2) dla $\Delta_{AE}$.
+
+\subsubsection{Równoważność (TOST)}
+Przy głowie liniowej moc dla $A\leftrightarrow E$ wynosi \textbf{1,000}, i orzeczenie o braku równoważności jest tam wynikiem \textbf{pozytywnym}: test \emph{mógł} orzec równoważność i tego nie zrobił. Przy \texttt{h2} moc spada do \textbf{0,000}, przy \texttt{h4}/L2 do \textbf{0,727}. Dla $A\leftrightarrow B$ moc sięga \textbf{0,490} i nie jest już zerowa jak w pilocie, ale pozostaje za niska, by TOST raportować tam jako test --- podajemy sam 90\,\% CI.
+
+\subsubsection{Złożenie niepewności}
+Dla $\Delta_{AB}$ dominuje (1); dla $\Delta_{AE}$ $\sigma_{\Delta} = 0{,}0081$ (L1) i $0{,}0090$ (L2) jest mniejsze niż binomialne SE $= 0{,}0144$, więc tam (3) jest obowiązkowe, nie tylko uzupełniające.
 
 \subsection{Figures}
 \subsection{Interpretacja i status wyników}
