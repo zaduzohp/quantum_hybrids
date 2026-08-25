@@ -1,6 +1,7 @@
 .venv/
 __pycache__/
-data/smoke/
+data/*
+!data/a7_generator_seeds/
 outputs/
 *.pt
 *.egg-info/

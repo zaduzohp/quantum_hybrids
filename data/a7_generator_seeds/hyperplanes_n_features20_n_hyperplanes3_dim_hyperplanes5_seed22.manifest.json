@@ -1,0 +1,93 @@
+{
+  "frozen_name": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed22",
+  "generator": "hyperplanes",
+  "generator_commit": "95e5a07e8e9e75ba7e24e67fb32b030112a1309a",
+  "generator_kwargs": {
+    "n_features": 20,
+    "n_hyperplanes": 3,
+    "dim_hyperplanes": 5
+  },
+  "n_samples": 6000,
+  "dataset_seed": 22,
+  "shuffle_key": "derive(22, \"shuffle\")",
+  "shuffle_seed": 18438398594705185379,
+  "split_sizes": {
+    "train": 4200,
+    "val": 600,
+    "test": 1200
+  },
+  "class_balance": {
+    "train": {
+      "n": 4200,
+      "fraction_positive": 0.5009523809523809,
+      "counts": {
+        "-1": 2096,
+        "+1": 2104
+      }
+    },
+    "val": {
+      "n": 600,
+      "fraction_positive": 0.5133333333333333,
+      "counts": {
+        "-1": 292,
+        "+1": 308
+      }
+    },
+    "test": {
+      "n": 1200,
+      "fraction_positive": 0.49,
+      "counts": {
+        "-1": 612,
+        "+1": 588
+      }
+    }
+  },
+  "pca": {
+    "n_components": 5,
+    "whiten": false,
+    "random_state": 1450229347,
+    "fitted_on": "train split only (4200 rows)",
+    "explained_variance_ratio_": [
+      0.7610455770220236,
+      0.09110253818516677,
+      0.06577447879885535,
+      0.044172864127092724,
+      0.03790454186685985
+    ],
+    "explained_variance_ratio_of_retained": [
+      0.7610455770220248,
+      0.09110253818516692,
+      0.06577447879885547,
+      0.0441728641270928,
+      0.03790454186685991
+    ],
+    "total_variance_explained": 0.9999999999999983
+  },
+  "scaling": {
+    "feature_range": [
+      -0.7853981633974483,
+      0.7853981633974483
+    ],
+    "fitted_on": "train split only (4200 rows), after PCA",
+    "clipped_fraction": {
+      "train": 0.0,
+      "val": 0.0003333333333333333,
+      "test": 0.0005
+    },
+    "max_overshoot_before_clipping": {
+      "train": 1.1102230246251565e-16,
+      "val": 0.045337984475512405,
+      "test": 0.18697344291728557
+    },
+    "clipping_note": "val/test values outside FEATURE_RANGE are clipped; refitting the scaler on them would be a leak"
+  },
+  "dataset_hash": "daf152204bbd72927ebe009bee77245588374523bc0144bb5e7d3d282686d97e",
+  "pca_hash": "f087808ca635cff7ff23816ed69bcf872092e3ee826c2b73a96b833594ccb0d5",
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.5.2",
+    "scikit-learn": "1.9.0"
+  },
+  "created_utc": "2026-08-21T12:10:38+00:00",
+  "file_sha256": "3dc8d3e1e30004f1ab48143906696502e86edc5357c638f7046ec3c86bf57ac5"
+}

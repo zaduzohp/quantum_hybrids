@@ -1,0 +1,93 @@
+{
+  "frozen_name": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed33",
+  "generator": "hyperplanes",
+  "generator_commit": "95e5a07e8e9e75ba7e24e67fb32b030112a1309a",
+  "generator_kwargs": {
+    "n_features": 20,
+    "n_hyperplanes": 3,
+    "dim_hyperplanes": 5
+  },
+  "n_samples": 6000,
+  "dataset_seed": 33,
+  "shuffle_key": "derive(33, \"shuffle\")",
+  "shuffle_seed": 13038632614021857882,
+  "split_sizes": {
+    "train": 4200,
+    "val": 600,
+    "test": 1200
+  },
+  "class_balance": {
+    "train": {
+      "n": 4200,
+      "fraction_positive": 0.49333333333333335,
+      "counts": {
+        "-1": 2128,
+        "+1": 2072
+      }
+    },
+    "val": {
+      "n": 600,
+      "fraction_positive": 0.47833333333333333,
+      "counts": {
+        "-1": 313,
+        "+1": 287
+      }
+    },
+    "test": {
+      "n": 1200,
+      "fraction_positive": 0.5341666666666667,
+      "counts": {
+        "-1": 559,
+        "+1": 641
+      }
+    }
+  },
+  "pca": {
+    "n_components": 5,
+    "whiten": false,
+    "random_state": 1128634142,
+    "fitted_on": "train split only (4200 rows)",
+    "explained_variance_ratio_": [
+      0.797296341577523,
+      0.08510544667574339,
+      0.06376717297584816,
+      0.03420785203960708,
+      0.019623186731276342
+    ],
+    "explained_variance_ratio_of_retained": [
+      0.7972963415775246,
+      0.08510544667574356,
+      0.06376717297584829,
+      0.03420785203960714,
+      0.01962318673127638
+    ],
+    "total_variance_explained": 0.9999999999999981
+  },
+  "scaling": {
+    "feature_range": [
+      -0.7853981633974483,
+      0.7853981633974483
+    ],
+    "fitted_on": "train split only (4200 rows), after PCA",
+    "clipped_fraction": {
+      "train": 0.0,
+      "val": 0.0006666666666666666,
+      "test": 0.0003333333333333333
+    },
+    "max_overshoot_before_clipping": {
+      "train": 1.1102230246251565e-16,
+      "val": 0.11624903703365375,
+      "test": 0.12846121406394717
+    },
+    "clipping_note": "val/test values outside FEATURE_RANGE are clipped; refitting the scaler on them would be a leak"
+  },
+  "dataset_hash": "5d05157a8a23e9156d9012fe5bfc8926359e808f10eae8c6681f7702f3b4462c",
+  "pca_hash": "536dc33fc72f70f24b5e4a66498bcb9f9e3efe2f2c171de6faeab9c91f3265a1",
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.5.2",
+    "scikit-learn": "1.9.0"
+  },
+  "created_utc": "2026-08-21T12:10:38+00:00",
+  "file_sha256": "648ab550df5c4fc929646ed72d82399a25853cba9ccd789f99a5e9c6c5c7711f"
+}
