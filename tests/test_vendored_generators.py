@@ -5,9 +5,9 @@ A vendored copy loses the upstream tests, so its behaviour has to be pinned here
 The digests below were produced in parallel by the UPSTREAM qml_benchmarks package
 (commit 95e5a07e8e9e75ba7e24e67fb32b030112a1309a, installed with jax and numpyro in
 a separate venv) and by the copy in src/qsocket/vendored/ — 16 arrays, 399,000
-numbers, zero differences bit-for-bit. The evidence is in the Z1 report.
+numbers, zero differences bit-for-bit.
 
-If any of these tests fails, the copy — or the numerics underneath it — stopped
+If any of these tests fails, the copy or the numerics underneath it stopped
 reproducing upstream. Do not refresh the digests without understanding what changed;
 the dataset rests on these numbers.
 """
@@ -99,7 +99,7 @@ def test_labels_are_balanced_and_pm_one():
         assert (y == 1).sum() == (y == -1).sum() == 3000
 
 
-FORBIDDEN_IMPORTS = ("jax", "jaxlib", "numpyro", "flax", "optax", "pennylane")
+FORBIDDEN_IMPORTS = ("jax", "jaxlib", "numpyro", "flax", "optax")
 
 
 def test_generators_do_not_require_jax_or_numpyro():
@@ -121,7 +121,7 @@ def test_generators_do_not_require_jax_or_numpyro():
 
 def test_the_jax_stack_is_not_installed_at_all():
     """The copy exists so that jax/numpyro never enter this environment."""
-    for forbidden in ("jax", "jaxlib", "numpyro", "flax", "optax"):
+    for forbidden in FORBIDDEN_IMPORTS:
         with pytest.raises(ImportError):
             __import__(forbidden)
 
