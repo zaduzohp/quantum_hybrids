@@ -1,0 +1,93 @@
+{
+  "frozen_name": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+  "generator": "hyperplanes",
+  "generator_commit": "95e5a07e8e9e75ba7e24e67fb32b030112a1309a",
+  "generator_kwargs": {
+    "n_features": 20,
+    "n_hyperplanes": 3,
+    "dim_hyperplanes": 5
+  },
+  "n_samples": 6000,
+  "dataset_seed": 11,
+  "shuffle_key": "derive(11, \"shuffle\")",
+  "shuffle_seed": 8885680935643492528,
+  "split_sizes": {
+    "train": 4200,
+    "val": 600,
+    "test": 1200
+  },
+  "class_balance": {
+    "train": {
+      "n": 4200,
+      "fraction_positive": 0.5011904761904762,
+      "counts": {
+        "-1": 2095,
+        "+1": 2105
+      }
+    },
+    "val": {
+      "n": 600,
+      "fraction_positive": 0.46166666666666667,
+      "counts": {
+        "-1": 323,
+        "+1": 277
+      }
+    },
+    "test": {
+      "n": 1200,
+      "fraction_positive": 0.515,
+      "counts": {
+        "-1": 582,
+        "+1": 618
+      }
+    }
+  },
+  "pca": {
+    "n_components": 5,
+    "whiten": false,
+    "random_state": 837798617,
+    "fitted_on": "train split only (4200 rows)",
+    "explained_variance_ratio_": [
+      0.758533458906081,
+      0.10285335860479522,
+      0.07087924743202306,
+      0.046187092168261924,
+      0.021546842888836952
+    ],
+    "explained_variance_ratio_of_retained": [
+      0.7585334589060825,
+      0.10285335860479541,
+      0.0708792474320232,
+      0.046187092168262014,
+      0.021546842888836994
+    ],
+    "total_variance_explained": 0.9999999999999981
+  },
+  "scaling": {
+    "feature_range": [
+      -0.7853981633974483,
+      0.7853981633974483
+    ],
+    "fitted_on": "train split only (4200 rows), after PCA",
+    "clipped_fraction": {
+      "train": 0.0,
+      "val": 0.0,
+      "test": 0.0003333333333333333
+    },
+    "max_overshoot_before_clipping": {
+      "train": 1.1102230246251565e-16,
+      "val": 0.0,
+      "test": 0.15092388050320604
+    },
+    "clipping_note": "val/test values outside FEATURE_RANGE are clipped; refitting the scaler on them would be a leak"
+  },
+  "dataset_hash": "4360508611e0e8963c01cd3994e98f0e069bb3b004ae6b18c71eecbf920853d1",
+  "pca_hash": "2bf856a6c49a9c38010e4b719cd3d58e50f10d0c5c7048ed32accf1d9872633f",
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.5.2",
+    "scikit-learn": "1.9.0"
+  },
+  "created_utc": "2026-08-21T12:10:38+00:00",
+  "file_sha256": "5e519b749c22b488b0e69b423155c0b95cb2dcfaebf569f3ac6d6421ec333bfb"
+}
