@@ -1,0 +1,22 @@
+{
+ "gates:11:4360508611e0e896": {
+  "arm_e_linear_contract_grid": 0.763611111111111,
+  "arm_e_linear_d30_grid": 0.7719444444444444,
+  "ceiling": 0.21277777777777784,
+  "ceiling_strong_accuracy": 0.9763888888888889,
+  "ceiling_vs_mlp_only": 0.21277777777777784,
+  "ceiling_vs_svm_only": 0.09638888888888897,
+  "ceiling_which": "mlp",
+  "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+  "dataset_seed": 11,
+  "from_cache": false,
+  "g1_margin_contract_grid": 0.046388888888888966,
+  "g1_margin_d30_grid": 0.03805555555555555,
+  "g1_min_headroom": 0.05,
+  "gates_passed": true,
+  "headroom_contract_grid": 0.09638888888888897,
+  "headroom_d30_grid": 0.08805555555555555,
+  "mlp_accuracy": 0.9763888888888889,
+  "strong_svm_accuracy": 0.86
+ }
+}

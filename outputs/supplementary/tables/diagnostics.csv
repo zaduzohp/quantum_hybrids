@@ -1,0 +1,89 @@
+quantity,dilution,arm,value,n,note
+adam_minus_ridge,linear,B,0.003361111111111112,60,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,linear,D_best,0.008324074074074072,180,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,linear,D_matched,0.0006388888888888814,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,linear,E,0.014638888888888845,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h2,B,-0.037374999999999985,60,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h2,D_matched,0.004466666666666659,50,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h2,E,-0.005416666666666703,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h3,B,-0.003958333333333326,60,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h3,D_matched,0.02003333333333332,50,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h3,E,0.04149999999999996,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h4,B,0.017125000000000012,60,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h4,D_matched,0.03413888888888887,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h4,E,0.08849999999999997,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h42,B,0.06291666666666668,60,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h42,D_matched,0.06594444444444443,30,frozen sockets only; arms A and F have no closed-form readout
+adam_minus_ridge,h42,E,0.1978055555555555,30,frozen sockets only; arms A and F have no closed-form readout
+best_epoch_mean,linear,A,42.7,60,
+best_epoch_mean,linear,B,63.06666666666667,60,
+best_epoch_mean,linear,D_best,50.0,180,
+best_epoch_mean,linear,D_matched,22.5,30,
+best_epoch_mean,linear,E,16.333333333333332,30,
+best_epoch_mean,linear,F,27.033333333333335,30,
+best_epoch_mean,h2,A,51.25,60,
+best_epoch_mean,h2,B,43.03333333333333,60,
+best_epoch_mean,h2,D_matched,42.34,50,
+best_epoch_mean,h2,E,37.733333333333334,30,
+best_epoch_mean,h2,F,53.3,50,
+best_epoch_mean,h3,A,109.41666666666667,60,
+best_epoch_mean,h3,B,73.38333333333334,60,
+best_epoch_mean,h3,D_matched,59.02,50,
+best_epoch_mean,h3,E,34.1,30,
+best_epoch_mean,h3,F,87.24,50,
+best_epoch_mean,h4,A,99.15,60,
+best_epoch_mean,h4,B,60.266666666666666,60,
+best_epoch_mean,h4,D_matched,52.03333333333333,30,
+best_epoch_mean,h4,E,49.233333333333334,30,
+best_epoch_mean,h4,F,75.53333333333333,30,
+best_epoch_mean,h42,A,119.81666666666666,60,
+best_epoch_mean,h42,B,90.05,60,
+best_epoch_mean,h42,D_matched,67.6,30,
+best_epoch_mean,h42,E,94.3,30,
+best_epoch_mean,h42,F,88.5,30,
+epoch_budget_hits,linear,A,0.0,60,
+epoch_budget_hits,linear,B,1.0,60,
+epoch_budget_hits,linear,D_best,0.0,180,
+epoch_budget_hits,linear,D_matched,0.0,30,
+epoch_budget_hits,linear,E,0.0,30,
+epoch_budget_hits,linear,F,0.0,30,
+epoch_budget_hits,h2,A,0.0,60,
+epoch_budget_hits,h2,B,0.0,60,
+epoch_budget_hits,h2,D_matched,0.0,50,
+epoch_budget_hits,h2,E,0.0,30,
+epoch_budget_hits,h2,F,1.0,50,
+epoch_budget_hits,h3,A,0.0,60,
+epoch_budget_hits,h3,B,2.0,60,
+epoch_budget_hits,h3,D_matched,0.0,50,
+epoch_budget_hits,h3,E,0.0,30,
+epoch_budget_hits,h3,F,0.0,50,
+epoch_budget_hits,h4,A,1.0,60,
+epoch_budget_hits,h4,B,0.0,60,
+epoch_budget_hits,h4,D_matched,0.0,30,
+epoch_budget_hits,h4,E,0.0,30,
+epoch_budget_hits,h4,F,0.0,30,
+epoch_budget_hits,h42,A,0.0,60,
+epoch_budget_hits,h42,B,0.0,60,
+epoch_budget_hits,h42,D_matched,0.0,30,
+epoch_budget_hits,h42,E,0.0,30,
+epoch_budget_hits,h42,F,0.0,30,
+theta_displacement_mean,linear,A,1.0175556381543478,60,
+theta_displacement_mean,linear,F,0.8402231077353159,30,
+theta_displacement_mean,h2,A,0.7461844593907396,60,
+theta_displacement_mean,h2,F,0.5663675738126039,50,
+theta_displacement_mean,h3,A,0.7929184759656588,60,
+theta_displacement_mean,h3,F,0.6127057275176049,50,
+theta_displacement_mean,h4,A,0.9086666345596314,60,
+theta_displacement_mean,h4,F,0.7516412913799286,30,
+theta_displacement_mean,h42,A,0.8042774011691411,60,
+theta_displacement_mean,h42,F,0.692638690272967,30,
+theta_displacement_min,linear,A,0.6238473653793335,60,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,linear,F,0.5904524326324463,30,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h2,A,0.0,60,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h2,F,0.0,50,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h3,A,0.17730006575584412,60,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h3,F,0.13501442968845367,50,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h4,A,0.644707441329956,60,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h4,F,0.441019207239151,30,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h42,A,0.5964375138282776,60,0 means the optimiser never moved the socket — verdict row (i)
+theta_displacement_min,h42,F,0.4821780025959015,30,0 means the optimiser never moved the socket — verdict row (i)

@@ -1,0 +1,11 @@
+field,value
+results_csv,outputs/a8/main/a7_results_combined.csv
+n_rows,1940
+present,"{""ansatz_levels"": [""L1"", ""L2""], ""arms"": [""A"", ""B"", ""D_best"", ""D_matched"", ""E"", ""F""], ""dataset_seeds"": [11, 22, 33], ""dilutions"": [""h2"", ""h4"", ""h42"", ""linear""], ""seeds"": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}"
+missing,"{""ansatz_levels"": [], ""dataset_seeds"": [], ""dilutions"": [], ""seeds"": []}"
+complete_contract_grid,True
+status,complete contract grid
+n_training_seeds,10
+n_test_rows_seen,[1200]
+arm_D_present,True
+note,every number below is a RESULT

@@ -1,0 +1,23 @@
+{
+  "11": {
+    "dataset_seed": 11,
+    "evaluated": false,
+    "passed": null,
+    "g1_margin": null,
+    "reason": "no linear dilution in this run; G1's floor is arm E at the linear head. NOT evaluated, and NOT to be read as passed."
+  },
+  "22": {
+    "dataset_seed": 22,
+    "evaluated": false,
+    "passed": null,
+    "g1_margin": null,
+    "reason": "no linear dilution in this run; G1's floor is arm E at the linear head. NOT evaluated, and NOT to be read as passed."
+  },
+  "33": {
+    "dataset_seed": 33,
+    "evaluated": false,
+    "passed": null,
+    "g1_margin": null,
+    "reason": "no linear dilution in this run; G1's floor is arm E at the linear head. NOT evaluated, and NOT to be read as passed."
+  }
+}

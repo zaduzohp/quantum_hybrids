@@ -1,0 +1,6 @@
+PROVISIONAL — NOT A RESULT
+
+PROVISIONAL: the input is not the complete contract grid. The schema is real, the numbers are not results and may not be reported as such (brief A8 section 1, owner's instruction 2026-08-21). Missing rows are reported here and NOT filled in.
+
+missing: {"ansatz_levels": [], "dataset_seeds": [22, 33], "dilutions": ["h2", "h4", "h42"], "seeds": [3, 4, 5, 6, 7, 8, 9, 10]}
+training seeds present: [1, 2]
