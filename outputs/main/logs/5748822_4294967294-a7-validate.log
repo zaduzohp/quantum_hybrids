@@ -1,0 +1,56 @@
+[Fri Aug 21 10:29:02 PM CEST 2026] job 5748822 array-task none on r11ch03b04.lem.kdm.wcss.pl
+modules   initialised from /etc/profile.d/modules.sh
+Loading Python/3.12.3-GCCcore-13.3.0
+  Loading requirement: GCCcore/13.3.0 zlib/1.3.1-GCCcore-13.3.0
+    binutils/2.42-GCCcore-13.3.0 bzip2/1.0.8-GCCcore-13.3.0
+    ncurses/6.5-GCCcore-13.3.0 libreadline/8.2-GCCcore-13.3.0
+    Tcl/8.6.14-GCCcore-13.3.0 SQLite/3.45.3-GCCcore-13.3.0
+    XZ/5.4.5-GCCcore-13.3.0 libffi/3.4.5-GCCcore-13.3.0 OpenSSL/3
+module    Python/3.12.3-GCCcore-13.3.0
+WORKDIR   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A
+OUTROOT   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7
+PYTHON    /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python
+commit    unknown
+cpus      2
+cmd       /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python scripts/wcss/validate_environment.py             --check reference/local_reference.json --out /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/wcss_environment.json --allow-env-drift
+python    Python 3.12.3
+-----------------------------------------------------------------------
+====================================================================================================
+the main series environment validation
+====================================================================================================
+
+1. <Z_i>, tolerance 1e-10, 45 cells x 5 observables x 3 implementations
+   this machine, three implementations pairwise: worst |delta| = 8.882e-16  PASS
+   against the reference machine:                worst |delta| = 9.437e-16  PASS   (L1|R2|draw3/pennylane)
+
+2. initialisation (head weights, socket theta_init, arm-D draw), bit for bit
+   head        identical (8 entries)  PASS
+   theta_init  identical (3 entries)  PASS
+   rff         identical (2 entries)  PASS
+
+3. dataset hashes
+   ds11: 4360508611e0e896  PASS
+   ds22: daf152204bbd7292  PASS
+   ds33: 5d05157a8a23e915  PASS
+
+4. training fingerprint (arm A, adjoint gradient + Adam), accuracy tolerance 1e-06
+   best_epoch          3 vs 3  PASS
+   epochs_run          3 vs 3  PASS
+   val_accuracy        0.554687500000 vs 0.554687500000  |delta| 0.000e+00  PASS
+   train_accuracy      0.605468750000 vs 0.605468750000  |delta| 0.000e+00  PASS
+   theta_displacement  0.080070815980 vs 0.080070823431  |delta| 7.451e-09  PASS
+   grad_rms_start      0.019050232049 vs 0.019050231974  |delta| 7.452e-11  PASS
+
+5. environment
+   reference  8f5e61236010  macOS-26.5.2-arm64-arm-64bit
+   this one   56488e26fdba  Linux-5.14.0-687.26.1.el9_8.x86_64-x86_64-with-glibc2.34
+   env_hash DIFFERS — versions that moved:
+       python         3.12.13 -> 3.12.3
+       torch          2.13.0 -> 2.13.0+cpu
+   accepted via --allow-env-drift: the numbers above are the claim, the hash is the record. It travels in every results row.
+
+====================================================================================================
+VALIDATION PASSED — this machine computes the same numbers. Series may start.
+====================================================================================================
+-----------------------------------------------------------------------
+[Fri Aug 21 10:29:23 PM CEST 2026] exit status 0

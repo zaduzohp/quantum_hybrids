@@ -1,0 +1,820 @@
+{
+ "context": {
+  "datasets": {
+   "11": {
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+    "dataset_hash": "4360508611e0e8963c01cd3994e98f0e069bb3b004ae6b18c71eecbf920853d1",
+    "dataset_seed": 11,
+    "evr": [
+     0.758533458906081,
+     0.10285335860479522,
+     0.07087924743202306,
+     0.046187092168261924,
+     0.021546842888836952
+    ],
+    "evr1": 0.758533458906081,
+    "file_sha256": "5e519b749c22b488b0e69b423155c0b95cb2dcfaebf569f3ac6d6421ec333bfb",
+    "n_train_rows_used": 4200,
+    "pca_hash": "2bf856a6c49a9c38010e4b719cd3d58e50f10d0c5c7048ed32accf1d9872633f",
+    "retained_shares": [
+     0.7585334589060825,
+     0.10285335860479541,
+     0.0708792474320232,
+     0.046187092168262014,
+     0.021546842888836994
+    ],
+    "total_variance_explained": 1.0
+   },
+   "22": {
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed22",
+    "dataset_hash": "daf152204bbd72927ebe009bee77245588374523bc0144bb5e7d3d282686d97e",
+    "dataset_seed": 22,
+    "evr": [
+     0.7610455770220236,
+     0.09110253818516677,
+     0.06577447879885535,
+     0.044172864127092724,
+     0.03790454186685985
+    ],
+    "evr1": 0.7610455770220236,
+    "file_sha256": "3dc8d3e1e30004f1ab48143906696502e86edc5357c638f7046ec3c86bf57ac5",
+    "n_train_rows_used": 4200,
+    "pca_hash": "f087808ca635cff7ff23816ed69bcf872092e3ee826c2b73a96b833594ccb0d5",
+    "retained_shares": [
+     0.7610455770220248,
+     0.09110253818516692,
+     0.06577447879885547,
+     0.0441728641270928,
+     0.03790454186685991
+    ],
+    "total_variance_explained": 0.9999999999999998
+   },
+   "33": {
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed33",
+    "dataset_hash": "5d05157a8a23e9156d9012fe5bfc8926359e808f10eae8c6681f7702f3b4462c",
+    "dataset_seed": 33,
+    "evr": [
+     0.797296341577523,
+     0.08510544667574339,
+     0.06376717297584816,
+     0.03420785203960708,
+     0.019623186731276342
+    ],
+    "evr1": 0.797296341577523,
+    "file_sha256": "648ab550df5c4fc929646ed72d82399a25853cba9ccd789f99a5e9c6c5c7711f",
+    "n_train_rows_used": 4200,
+    "pca_hash": "536dc33fc72f70f24b5e4a66498bcb9f9e3efe2f2c171de6faeab9c91f3265a1",
+    "retained_shares": [
+     0.7972963415775246,
+     0.08510544667574356,
+     0.06376717297584829,
+     0.03420785203960714,
+     0.01962318673127638
+    ],
+    "total_variance_explained": 1.0
+   }
+  },
+  "gates": {
+   "11": {
+    "arm_e_linear_contract_grid": 0.763611111111111,
+    "arm_e_linear_d30_grid": 0.7719444444444444,
+    "ceiling": 0.21277777777777784,
+    "ceiling_strong_accuracy": 0.9763888888888889,
+    "ceiling_vs_mlp_only": 0.21277777777777784,
+    "ceiling_vs_svm_only": 0.09638888888888897,
+    "ceiling_which": "mlp",
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+    "dataset_seed": 11,
+    "from_cache": true,
+    "g1_margin_contract_grid": 0.046388888888888966,
+    "g1_margin_d30_grid": 0.03805555555555555,
+    "g1_min_headroom": 0.05,
+    "gates_passed": true,
+    "headroom_contract_grid": 0.09638888888888897,
+    "headroom_d30_grid": 0.08805555555555555,
+    "mlp_accuracy": 0.9763888888888889,
+    "strong_svm_accuracy": 0.86
+   },
+   "22": {
+    "arm_e_linear_contract_grid": 0.8005555555555555,
+    "arm_e_linear_d30_grid": 0.8041666666666667,
+    "ceiling": 0.1805555555555557,
+    "ceiling_strong_accuracy": 0.9811111111111112,
+    "ceiling_vs_mlp_only": 0.1805555555555557,
+    "ceiling_vs_svm_only": 0.09944444444444456,
+    "ceiling_which": "mlp",
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed22",
+    "dataset_seed": 22,
+    "from_cache": true,
+    "g1_margin_contract_grid": 0.049444444444444555,
+    "g1_margin_d30_grid": 0.04583333333333332,
+    "g1_min_headroom": 0.05,
+    "gates_passed": true,
+    "headroom_contract_grid": 0.09944444444444456,
+    "headroom_d30_grid": 0.09583333333333333,
+    "mlp_accuracy": 0.9811111111111112,
+    "strong_svm_accuracy": 0.9
+   },
+   "33": {
+    "arm_e_linear_contract_grid": 0.7736111111111111,
+    "arm_e_linear_d30_grid": 0.7716666666666666,
+    "ceiling": 0.1677777777777778,
+    "ceiling_strong_accuracy": 0.9413888888888889,
+    "ceiling_vs_mlp_only": 0.1677777777777778,
+    "ceiling_vs_svm_only": 0.11972222222222217,
+    "ceiling_which": "mlp",
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed33",
+    "dataset_seed": 33,
+    "from_cache": true,
+    "g1_margin_contract_grid": 0.06972222222222217,
+    "g1_margin_d30_grid": 0.0716666666666667,
+    "g1_min_headroom": 0.05,
+    "gates_passed": true,
+    "headroom_contract_grid": 0.11972222222222217,
+    "headroom_d30_grid": 0.1216666666666667,
+    "mlp_accuracy": 0.9413888888888889,
+    "strong_svm_accuracy": 0.8933333333333333
+   }
+  },
+  "structural": {
+   "head_params": {
+    "h2": 15,
+    "h4": 29,
+    "h42": 295,
+    "linear": 6
+   },
+   "jacobian_rank": {
+    "L1": 35,
+    "L2": 35,
+    "product": 20
+   },
+   "quantum_share_percent": {
+    "h2": 70.0,
+    "h4": 54.6875,
+    "h42": 10.606060606060606,
+    "linear": 85.36585365853658
+   },
+   "socket_params_nominal_R2": 35
+  }
+ },
+ "holm": "the confirmatory family has ONE element (H1 = Delta_AB at the linear head), so the Holm correction is not applied. P1 and P2 are descriptive and do not enter the family. Stated explicitly so it does not read as an omission.",
+ "mixedlm": {
+  "L1": {
+   "computable": true,
+   "converged": true,
+   "equivalent_to_paired_contrast": null,
+   "fit_warnings": [
+    "ConvergenceWarning: The MLE may be on the boundary of the parameter space."
+   ],
+   "formula": "d ~ C(dilution), groups = seed",
+   "group_variance": 0.0008871880625103078,
+   "intercept": 0.08833333333333339,
+   "intercept_se": 0.01678427500560057,
+   "n": 120,
+   "note": "reported as a CHECK. In part A the mixed model is formally redundant: the design is balanced and the random part is one intercept, so the fixed effect equals the within-subject contrast (SPEC 7.3).",
+   "paired_contrast_mean_for_comparison": 0.0979375,
+   "params": {
+    "C(dilution)[T.h2]": -0.05555555555555554,
+    "C(dilution)[T.h42]": 0.06405555555555553,
+    "C(dilution)[T.h4]": 0.029916666666666654,
+    "Group Var": 0.15323313784722334,
+    "Intercept": 0.08833333333333339
+   },
+   "reference_level": "linear",
+   "scale": 0.005789792436377913
+  },
+  "L2": {
+   "computable": true,
+   "converged": true,
+   "equivalent_to_paired_contrast": null,
+   "fit_warnings": [
+    "ConvergenceWarning: The MLE may be on the boundary of the parameter space."
+   ],
+   "formula": "d ~ C(dilution), groups = seed",
+   "group_variance": 0.0031875010346220332,
+   "intercept": 0.11219444444444422,
+   "intercept_se": 0.02110910716180731,
+   "n": 120,
+   "note": "reported as a CHECK. In part A the mixed model is formally redundant: the design is balanced and the random part is one intercept, so the fixed effect equals the within-subject contrast (SPEC 7.3).",
+   "paired_contrast_mean_for_comparison": 0.12610416666666668,
+   "params": {
+    "C(dilution)[T.h2]": -0.020166666666666666,
+    "C(dilution)[T.h42]": 0.059472222222222246,
+    "C(dilution)[T.h4]": 0.016333333333333325,
+    "Group Var": 0.8376413686543096,
+    "Intercept": 0.11219444444444422
+   },
+   "reference_level": "linear",
+   "scale": 0.0038053290511938635
+  }
+ },
+ "pilot_power_audit": [
+  {
+   "agrees_at_3dp": true,
+   "changes_a_decision": false,
+   "label": "TOST power A<->E, delta=0.02",
+   "n": 10,
+   "recomputed": 0.9999999983943173,
+   "reported": 1.0,
+   "sigma": 0.0075,
+   "source": "raport.tex 3.7 / D-4"
+  },
+  {
+   "agrees_at_3dp": false,
+   "changes_a_decision": false,
+   "label": "TOST power A<->B, delta=0.02",
+   "n": 10,
+   "recomputed": 0.01713360621137526,
+   "reported": 0.0,
+   "sigma": 0.0489,
+   "source": "raport.tex 3.7 / D-4"
+  },
+  {
+   "agrees_at_3dp": true,
+   "changes_a_decision": false,
+   "label": "TOST power, allocation-contrast sigma_Delta",
+   "n": 10,
+   "recomputed": 0.003036004225254333,
+   "reported": 0.003,
+   "sigma": 0.0612,
+   "source": "SPEC 7.5 table"
+  },
+  {
+   "agrees_at_3dp": false,
+   "changes_a_decision": false,
+   "label": "TOST power, sigma_Delta(A-B) smoke n=3",
+   "n": 10,
+   "recomputed": 0.28929249606129215,
+   "reported": 0.044,
+   "sigma": 0.0298,
+   "source": "SPEC 7.5 / 7.6 remark"
+  }
+ ],
+ "provenance": {
+  "arm_D_present": true,
+  "complete_contract_grid": true,
+  "missing": {
+   "ansatz_levels": [],
+   "dataset_seeds": [],
+   "dilutions": [],
+   "seeds": []
+  },
+  "n_rows": 1940,
+  "n_test_rows_seen": [
+   1200
+  ],
+  "n_training_seeds": 10,
+  "note": "every number below is a RESULT",
+  "present": {
+   "ansatz_levels": [
+    "L1",
+    "L2"
+   ],
+   "arms": [
+    "A",
+    "B",
+    "D_best",
+    "D_matched",
+    "E",
+    "F"
+   ],
+   "dataset_seeds": [
+    11,
+    22,
+    33
+   ],
+   "dilutions": [
+    "h2",
+    "h4",
+    "h42",
+    "linear"
+   ],
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  "results_csv": "outputs/a8/main/a7_results_combined.csv",
+  "status": "complete contract grid"
+ },
+ "series_numbers_vs_pilot": {
+  "_decomposition": {
+   "ansatz_level": "L1",
+   "pilot_generator_seed": 11,
+   "sigma_delta_AB": {
+    "between_spread": 0.018635204139835267,
+    "blocked_headline": 0.04535598789421394,
+    "like_for_like": 0.048863708793306274,
+    "pooled_iid": 0.04641970779777325,
+    "within_rms": 0.04535598789421394
+   },
+   "sigma_delta_AE": {
+    "between_spread": 0.021713144593728206,
+    "blocked_headline": 0.008134827073923188,
+    "like_for_like": 0.008805599368976161,
+    "pooled_iid": 0.01966613496910982,
+    "within_rms": 0.008134827073923188
+   },
+   "sigma_seed_A": {
+    "between_spread": 0.0037978429550353456,
+    "like_for_like": 0.006276179737608346,
+    "pooled_iid": 0.0071398187297895,
+    "within_rms": 0.006638443344727163
+   },
+   "sigma_seed_B": {
+    "between_spread": 0.015433549314543412,
+    "like_for_like": 0.04779198755099095,
+    "pooled_iid": 0.04457676662349303,
+    "within_rms": 0.044247480223995106
+   },
+   "sigma_seed_E": {
+    "between_spread": 0.018019729413843798,
+    "like_for_like": 0.006113635842105447,
+    "pooled_iid": 0.015721296494685764,
+    "within_rms": 0.0049940808585163254
+   }
+  },
+  "delta_AB": 0.08833333333333333,
+  "delta_AE": 0.03969444444444445,
+  "mde_AB": 0.02407211317902977,
+  "mde_AE": 0.004317455910607464,
+  "sigma_delta_AB": 0.04535598789421394,
+  "sigma_delta_AE": 0.008134827073923188,
+  "sigma_seed_A": 0.0071398187297895,
+  "sigma_seed_B": 0.04457676662349303,
+  "sigma_seed_E": 0.015721296494685764,
+  "tost_power_AB_delta002": 0.5244506827720232,
+  "tost_power_AE_delta002": 0.9999999999999989
+ },
+ "uncertainty_accounts": {
+  "1_ci_over_paired_differences": "MAIN. Generalises over initialisations at a fixed split.",
+  "2_binomial_se": 0.014433756729740645,
+  "3_mcnemar": "same population as (2) but paired, therefore smaller",
+  "rule": "\u26d4 THREE numbers, three labels, one marked main. Never summed, no 'total uncertainty' is computed."
+ },
+ "verdicts": [
+  {
+   "detail": "no mismatch",
+   "row": "section 1.6(a) deterministic numbers",
+   "stop": false,
+   "verdict": "\u2705 all reproduce"
+  },
+  {
+   "detail": "|+0.0328| < MDE 0.0645 (n = 30). \u26d4 Do NOT write 'there is no effect'. Seeds needed to decide: ~110.",
+   "row": "h2|L1: |Delta_AB| below MDE",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 undecidable at this n"
+  },
+  {
+   "detail": "'the socket adds nothing, training only undoes the damage of a random initialisation' (SPEC 9) \u2014 a result about ARCHITECTURE. Judged against MDE(A-E) = 0.0640, not MDE(A-B).",
+   "row": "h2|L1: acc(A) ~ acc(E) while acc(B) < acc(E)",
+   "stop": true,
+   "verdict": "\u26d4 STOP"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "h2|L1: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "h2|L1: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "'the socket adds nothing, training only undoes the damage of a random initialisation' (SPEC 9) \u2014 a result about ARCHITECTURE. Judged against MDE(A-E) = 0.0991, not MDE(A-B).",
+   "row": "h2|L2: acc(A) ~ acc(E) while acc(B) < acc(E)",
+   "stop": true,
+   "verdict": "\u26d4 STOP"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "h2|L2: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "h2|L2: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "'the socket adds nothing, training only undoes the damage of a random initialisation' (SPEC 9) \u2014 a result about ARCHITECTURE. Judged against MDE(A-E) = 0.0186, not MDE(A-B).",
+   "row": "h4|L1: acc(A) ~ acc(E) while acc(B) < acc(E)",
+   "stop": true,
+   "verdict": "\u26d4 STOP"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "h4|L1: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "h4|L1: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "'the socket adds nothing, training only undoes the damage of a random initialisation' (SPEC 9) \u2014 a result about ARCHITECTURE. Judged against MDE(A-E) = 0.0207, not MDE(A-B).",
+   "row": "h4|L2: acc(A) ~ acc(E) while acc(B) < acc(E)",
+   "stop": true,
+   "verdict": "\u26d4 STOP"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "h4|L2: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "h4|L2: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "h42|L1: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "h42|L1: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "h42|L2: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "h42|L2: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "Delta_AB = +0.0883, 95% CI [+0.0713; +0.1053], = 12.37 sigma_seed(A); of the ceiling PER GENERATOR SEED: ds11 0.432, ds22 0.378, ds33 0.625. Report WITH both denominators.",
+   "row": "linear|L1: Delta_AB > 0 at the linear head, CI excludes 0",
+   "stop": false,
+   "verdict": "\u2705 H1 estimated"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "linear|L1: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "Delta_AB = +0.1122, 95% CI [+0.0880; +0.1364], = 14.59 sigma_seed(A); of the ceiling PER GENERATOR SEED: ds11 0.425, ds22 0.678, ds33 0.738. Report WITH both denominators.",
+   "row": "linear|L2: Delta_AB > 0 at the linear head, CI excludes 0",
+   "stop": false,
+   "verdict": "\u2705 H1 estimated"
+  },
+  {
+   "detail": "permitted sentence: 'this quantum socket is a trigonometric feature map with support |omega| <= R, and a classical map of the same support and the same size does the same thing'. \u26d4 NOT 'quantumness is useless'.",
+   "row": "linear|L2: Delta_BD_matched ~ 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory"
+  },
+  {
+   "detail": "permitted: 'a correctly sized classical random-feature model beats the frozen quantum socket'. A strong result about BASELINES, not about quantumness \u2014 D_best has a different feature count, so the comparison is not matched and that must be written.",
+   "row": "linear|L2: Delta_BD_best < 0",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 exploratory, expected"
+  },
+  {
+   "detail": "\u26d4 does NOT 'confirm H1'. At h42 arm E beats the strong model, so Delta -> 0 happens BECAUSE OF THE HEAD (SPEC 7.9). Not decreasing is an honest, publishable result: 'freezing costs this much, independently of dilution'.",
+   "row": "P1 curve, ansatz L1",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 descriptive (not decreasing)"
+  },
+  {
+   "detail": "\u26d4 does NOT 'confirm H1'. At h42 arm E beats the strong model, so Delta -> 0 happens BECAUSE OF THE HEAD (SPEC 7.9). Not decreasing is an honest, publishable result: 'freezing costs this much, independently of dilution'.",
+   "row": "P1 curve, ansatz L2",
+   "stop": false,
+   "verdict": "\ud83d\udfe1 descriptive (not decreasing)"
+  },
+  {
+   "detail": "intercept +0.088333",
+   "row": "MixedLM vs paired contrast, ansatz L1",
+   "stop": false,
+   "verdict": "\u2705 equivalent, as predicted"
+  },
+  {
+   "detail": "intercept +0.112194",
+   "row": "MixedLM vs paired contrast, ansatz L2",
+   "stop": false,
+   "verdict": "\u2705 equivalent, as predicted"
+  },
+  {
+   "detail": "D-4 ('TOST stays for Delta_AE') stands on power 1.000. Below ~0.8 that decision has to be reopened \u2014 and that is NOT A8's decision.",
+   "row": "h2|L1: TOST power for A<->E dropped to 0.000",
+   "stop": true,
+   "verdict": "\u26d4 STOP and report"
+  },
+  {
+   "detail": "D-4 ('TOST stays for Delta_AE') stands on power 1.000. Below ~0.8 that decision has to be reopened \u2014 and that is NOT A8's decision.",
+   "row": "h2|L2: TOST power for A<->E dropped to 0.000",
+   "stop": true,
+   "verdict": "\u26d4 STOP and report"
+  },
+  {
+   "detail": "D-4 ('TOST stays for Delta_AE') stands on power 1.000. Below ~0.8 that decision has to be reopened \u2014 and that is NOT A8's decision.",
+   "row": "h4|L2: TOST power for A<->E dropped to 0.727",
+   "stop": true,
+   "verdict": "\u26d4 STOP and report"
+  }
+ ],
+ "verification": [
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": "4360508611e0e896",
+   "quantity": "dataset_hash_ds11",
+   "recipe": "manifest of the frozen production dataset, digest recomputed from the arrays by datasets.load_frozen at load time",
+   "recomputed": "4360508611e0e896"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": "2bf856a6c49a9c38",
+   "quantity": "pca_hash_ds11",
+   "recipe": "digest of (pca_components, pca_mean), recomputed at load time",
+   "recomputed": "2bf856a6c49a9c38"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": "5e519b749c22b488",
+   "quantity": "file_sha256_ds11",
+   "recipe": "sha256 of the frozen .npz, recomputed from the bytes on disk",
+   "recomputed": "5e519b749c22b488"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.7585,
+   "quantity": "evr1_ds11",
+   "recipe": "PCA(5, whiten=False, random_state=derive(11,'pca')%2**31) refitted on the 4200 RAW training rows; explained_variance_ratio_[0]",
+   "recomputed": "0.7585335"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 1.0,
+   "quantity": "total_variance_explained_ds11",
+   "recipe": "sum of the retained shares evr/evr.sum() from the same refit",
+   "recomputed": "1.000000000"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.86,
+   "quantity": "g1a_strong_svm_ds11",
+   "recipe": "gates.make_svc_strong_model() over G1_SVC_GRID, selected on the 600 val rows, evaluated on the 1200 test rows",
+   "recomputed": "0.860000"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.096,
+   "quantity": "g1b_headroom_ds11",
+   "recipe": "acc(strong SVM) - acc(arm E linear) with arm E on the CONTRACT lr grid, training seeds 1-3 (runs/DS2 4.1)",
+   "recomputed": "0.096389"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.038,
+   "quantity": "g1_margin_ds11",
+   "recipe": "headroom - G1_MIN_HEADROOM with arm E on the D-30 grid (contract + 0.1), training seeds 1-3 (runs/D30 8)",
+   "recomputed": "0.038056"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.096,
+   "quantity": "ceiling_vs_svm_ds11",
+   "recipe": "acc(strong SVM) - acc(arm E linear, contract grid, seeds 1-3)",
+   "recomputed": "0.096389"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.213,
+   "quantity": "ceiling_vs_mlp_ds11",
+   "recipe": "acc(best of mlp42/mlp4285 on the same features) - acc(arm E linear); gates.ceiling(), D-28",
+   "recomputed": "0.212778"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 35,
+   "quantity": "socket_params_R2",
+   "recipe": "ansatzes.socket_param_count(5, 2)",
+   "recomputed": 35
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 35,
+   "quantity": "jacobian_rank_L1_R2",
+   "recipe": "rank.effective_dimension on the L1 socket circuit at R=2",
+   "recomputed": 35
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 6,
+   "quantity": "head_params_linear",
+   "recipe": "5+1, counted on the built model",
+   "recomputed": 6
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 15,
+   "quantity": "head_params_h2",
+   "recipe": "7h+1 at h=2, counted on the built model",
+   "recomputed": 15
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 29,
+   "quantity": "head_params_h4",
+   "recipe": "7h+1 at h=4, counted on the built model",
+   "recomputed": 29
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 295,
+   "quantity": "head_params_h42",
+   "recipe": "7h+1 at h=42, counted on the built model",
+   "recomputed": 295
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 85.4,
+   "quantity": "quantum_share_linear",
+   "recipe": "100*35/(35+6)",
+   "recomputed": "85.3659"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 70.0,
+   "quantity": "quantum_share_h2",
+   "recipe": "100*35/(35+15)",
+   "recomputed": "70.0000"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 54.7,
+   "quantity": "quantum_share_h4",
+   "recipe": "100*35/(35+29)",
+   "recomputed": "54.6875"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 10.6,
+   "quantity": "quantum_share_h42",
+   "recipe": "100*35/(35+295)",
+   "recomputed": "10.6061"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.0144,
+   "quantity": "binomial_se_1200",
+   "recipe": "sqrt(0.25/1200)",
+   "recomputed": "0.0144338"
+  },
+  {
+   "agrees": "YES",
+   "category": "a (deterministic)",
+   "in_raport": 0.995,
+   "quantity": "mde_constant_n10",
+   "recipe": "(t.ppf(.975,9)+t.ppf(.80,9))/sqrt(10) from scipy, never hard-coded",
+   "recomputed": "0.994714"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0063,
+   "quantity": "sigma_seed_A",
+   "recipe": "DS3, 10 seeds, linear, L1, ds11",
+   "recomputed": "0.0071"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0478,
+   "quantity": "sigma_seed_B",
+   "recipe": "DS3",
+   "recomputed": "0.0446"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0031,
+   "quantity": "sigma_seed_E",
+   "recipe": "DS3",
+   "recomputed": "0.0157"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0489,
+   "quantity": "sigma_delta_AB",
+   "recipe": "DS3 5.2",
+   "recomputed": "0.0454"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0075,
+   "quantity": "sigma_delta_AE",
+   "recipe": "DS3 5.2",
+   "recomputed": "0.0081"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0471,
+   "quantity": "sigma_delta_BE",
+   "recipe": "DS3 5.2",
+   "recomputed": ""
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0486,
+   "quantity": "mde_AB",
+   "recipe": "0.995 * sigma_delta_AB (pilot)",
+   "recomputed": "0.0241"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0075,
+   "quantity": "mde_AE",
+   "recipe": "0.995 * sigma_delta_AE (pilot)",
+   "recomputed": "0.0043"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 1.0,
+   "quantity": "tost_power_AE_delta002",
+   "recipe": "D-4, closed on this number",
+   "recomputed": "1.0000"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0,
+   "quantity": "tost_power_AB_delta002",
+   "recipe": "D-4",
+   "recomputed": "0.5245"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.0919,
+   "quantity": "delta_AB",
+   "recipe": "DS3 \u2014 a RESULT of the pilot, not a reference",
+   "recomputed": "0.0883"
+  },
+  {
+   "agrees": "n/a \u2014 a pilot estimate is REPLACED by the main series, never confirmed against it",
+   "category": "b (pilot \u2014 REPLACED, not confirmed)",
+   "in_raport": 0.06,
+   "quantity": "delta_AE",
+   "recipe": "DS3 \u2014 a RESULT of the pilot",
+   "recomputed": "0.0397"
+  }
+ ],
+ "verification_mismatches": []
+}

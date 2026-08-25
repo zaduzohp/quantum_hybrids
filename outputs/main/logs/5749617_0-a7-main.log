@@ -1,0 +1,411 @@
+[Sat Aug 22 10:14:14 AM CEST 2026] job 5749618 array-task 0 on r11ch04b02.lem.kdm.wcss.pl
+modules   initialised from /etc/profile.d/modules.sh
+Loading Python/3.12.3-GCCcore-13.3.0
+  Loading requirement: GCCcore/13.3.0 zlib/1.3.1-GCCcore-13.3.0
+    binutils/2.42-GCCcore-13.3.0 bzip2/1.0.8-GCCcore-13.3.0
+    ncurses/6.5-GCCcore-13.3.0 libreadline/8.2-GCCcore-13.3.0
+    Tcl/8.6.14-GCCcore-13.3.0 SQLite/3.45.3-GCCcore-13.3.0
+    XZ/5.4.5-GCCcore-13.3.0 libffi/3.4.5-GCCcore-13.3.0 OpenSSL/3
+module    Python/3.12.3-GCCcore-13.3.0
+WORKDIR   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A
+OUTROOT   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7
+PYTHON    /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python
+commit    unknown
+cpus      64
+cmd       SEEDS=(11 22 33); SEED=${SEEDS[$SLURM_ARRAY_TASK_ID]}; /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python scripts/run_main_series.py             --no-generate --dataset-seeds $SEED --workers ${SLURM_CPUS_PER_TASK:-64}             --out-dir /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds$SEED
+python    Python 3.12.3
+-----------------------------------------------------------------------
+# A7 main series  run_id a7_20260822T081428Z  commit unknown  env 56488e26fdba
+#   generator seeds [11]  dilutions ['linear', 'h2', 'h4', 'h42']  ansatze ['L1', 'L2']  seeds [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  widths [32, 128, 512]
+#   workers 64  patience 30  budget 300  backend pennylane
+#   ds11: hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11 dataset_hash 4360508611e0e896 pca_hash 2bf856a6c49a9c38
+#   Jacobian rank of the socket per ansatz: {'L1': 35, 'L2': 35, 'product': 20} (nominal 35)
+#   resuming: 288 lr rows already on disk
+
+## stage 1 — lr selection: 0 tasks
+
+## stage 2 — G1/G2 per generator seed at the final lr
+  ds11: G1 PASS margin +0.038056 | G2 PASS evr1 0.7585
+
+## stage 3 — main grid: 190 tasks
+  [main    1/190] ds11 D_best     -       seed 1 2 rows  26.2 s/cell
+  [main    2/190] ds11 D_best     -       seed 1 2 rows  26.3 s/cell
+  [main    3/190] ds11 D_best     -       seed 2 2 rows  26.2 s/cell
+  [main    4/190] ds11 D_best     -       seed 3 2 rows  26.2 s/cell
+  [main    5/190] ds11 D_best     -       seed 3 2 rows  26.4 s/cell
+  [main    6/190] ds11 D_best     -       seed 2 2 rows  26.7 s/cell
+  [main    7/190] ds11 D_best     -       seed 2 2 rows  27.2 s/cell
+  [main    8/190] ds11 D_best     -       seed 3 2 rows  27.1 s/cell
+  [main    9/190] ds11 D_best     -       seed 1 2 rows  28.0 s/cell
+  [main   10/190] ds11 D_matched  -       seed 1 8 rows  26.3 s/cell
+  [main   11/190] ds11 D_matched  -       seed 3 8 rows  26.4 s/cell
+  [main   12/190] ds11 D_best     -       seed 4 2 rows  1.4 s/cell
+  [main   13/190] ds11 D_best     -       seed 4 2 rows  0.9 s/cell
+  [main   14/190] ds11 E          -       seed 1 8 rows  25.9 s/cell
+  [main   15/190] ds11 E          -       seed 3 8 rows  26.3 s/cell
+  [main   16/190] ds11 E          -       seed 2 8 rows  26.0 s/cell
+  [main   17/190] ds11 D_best     -       seed 4 2 rows  1.6 s/cell
+  [main   18/190] ds11 B          L1      seed 4 8 rows  15.6 s/cell
+  [main   19/190] ds11 B          L2      seed 2 8 rows  14.7 s/cell
+  [main   20/190] ds11 B          L2      seed 3 8 rows  15.0 s/cell
+  [main   21/190] ds11 D_matched  -       seed 2 8 rows  26.6 s/cell
+  [main   22/190] ds11 B          L2      seed 1 8 rows  15.3 s/cell
+  [main   23/190] ds11 E          -       seed 4 8 rows  0.7 s/cell
+  [main   24/190] ds11 D_matched  -       seed 4 8 rows  0.6 s/cell
+  [main   25/190] ds11 B          L1      seed 1 8 rows  15.9 s/cell
+  [main   26/190] ds11 B          L1      seed 3 8 rows  16.4 s/cell
+  [main   27/190] ds11 B          L1      seed 2 8 rows  15.5 s/cell
+  [main   28/190] ds11 B          L2      seed 4 8 rows  0.6 s/cell
+  [main   29/190] ds11 E          -       seed 5 8 rows  0.6 s/cell
+  [main   30/190] ds11 D_best     -       seed 5 2 rows  2.6 s/cell
+  [main   31/190] ds11 D_best     -       seed 5 2 rows  1.5 s/cell
+  [main   32/190] ds11 D_matched  -       seed 5 8 rows  0.9 s/cell
+  [main   33/190] ds11 D_best     -       seed 5 2 rows  1.9 s/cell
+  [main   34/190] ds11 B          L2      seed 5 8 rows  0.8 s/cell
+  [main   35/190] ds11 B          L1      seed 5 8 rows  1.2 s/cell
+  [main   36/190] ds11 F          product seed 4 2 rows  639.3 s/cell
+  [main   37/190] ds11 F          product seed 5 2 rows  629.6 s/cell
+  [main   38/190] ds11 F          product seed 1 2 rows  677.9 s/cell
+  [main   39/190] ds11 F          product seed 5 2 rows  642.3 s/cell
+  [main   40/190] ds11 B          L1      seed 6 8 rows  0.9 s/cell
+  [main   41/190] ds11 A          L2      seed 1 2 rows  730.9 s/cell
+  [main   42/190] ds11 A          L2      seed 1 2 rows  745.3 s/cell
+  [main   43/190] ds11 F          product seed 3 2 rows  746.4 s/cell
+  [main   44/190] ds11 A          L2      seed 5 2 rows  713.0 s/cell
+  [main   45/190] ds11 F          product seed 5 2 rows  714.5 s/cell
+  [main   46/190] ds11 A          L1      seed 5 2 rows  719.7 s/cell
+  [main   47/190] ds11 B          L2      seed 6 8 rows  1.2 s/cell
+  [main   48/190] ds11 F          product seed 4 2 rows  727.7 s/cell
+  [main   49/190] ds11 D_best     -       seed 6 2 rows  2.2 s/cell
+  [main   50/190] ds11 D_best     -       seed 6 2 rows  0.9 s/cell
+  [main   51/190] ds11 D_best     -       seed 6 2 rows  1.7 s/cell
+  [main   52/190] ds11 E          -       seed 6 8 rows  1.1 s/cell
+  [main   53/190] ds11 D_matched  -       seed 6 8 rows  1.1 s/cell
+  [main   54/190] ds11 A          L1      seed 3 2 rows  786.7 s/cell
+  [main   55/190] ds11 A          L1      seed 3 2 rows  818.3 s/cell
+  [main   56/190] ds11 A          L1      seed 4 2 rows  824.0 s/cell
+  [main   57/190] ds11 A          L1      seed 4 2 rows  826.0 s/cell
+  [main   58/190] ds11 A          L1      seed 4 2 rows  827.8 s/cell
+  [main   59/190] ds11 B          L1      seed 7 8 rows  0.7 s/cell
+  [main   60/190] ds11 F          product seed 3 2 rows  851.2 s/cell
+  [main   61/190] ds11 B          L2      seed 7 8 rows  1.6 s/cell
+  [main   62/190] ds11 F          product seed 1 2 rows  880.2 s/cell
+  [main   63/190] ds11 F          product seed 3 2 rows  894.5 s/cell
+  [main   64/190] ds11 F          product seed 1 2 rows  919.8 s/cell
+  [main   65/190] ds11 A          L1      seed 5 2 rows  903.9 s/cell
+  [main   66/190] ds11 A          L2      seed 4 2 rows  935.7 s/cell
+  [main   67/190] ds11 A          L2      seed 5 2 rows  906.4 s/cell
+  [main   68/190] ds11 D_best     -       seed 7 2 rows  0.9 s/cell
+  [main   69/190] ds11 D_matched  -       seed 7 8 rows  0.7 s/cell
+  [main   70/190] ds11 E          -       seed 7 8 rows  1.1 s/cell
+  [main   71/190] ds11 D_best     -       seed 7 2 rows  1.4 s/cell
+  [main   72/190] ds11 D_best     -       seed 7 2 rows  2.1 s/cell
+  [main   73/190] ds11 A          L2      seed 3 2 rows  951.4 s/cell
+  [main   74/190] ds11 A          L1      seed 6 2 rows  906.6 s/cell
+  [main   75/190] ds11 A          L1      seed 3 2 rows  979.7 s/cell
+  [main   76/190] ds11 B          L1      seed 8 8 rows  2.1 s/cell
+  [main   77/190] ds11 A          L2      seed 3 2 rows  987.5 s/cell
+  [main   78/190] ds11 F          product seed 1 2 rows  1036.6 s/cell
+  [main   79/190] ds11 A          L2      seed 1 2 rows  1037.4 s/cell
+  [main   80/190] ds11 A          L1      seed 1 2 rows  1053.6 s/cell
+  [main   81/190] ds11 B          L2      seed 8 8 rows  0.8 s/cell
+  [main   82/190] ds11 A          L2      seed 3 2 rows  1058.8 s/cell
+  [main   83/190] ds11 A          L2      seed 4 2 rows  1077.8 s/cell
+  [main   84/190] ds11 A          L2      seed 5 2 rows  1075.6 s/cell
+  [main   85/190] ds11 A          L2      seed 4 2 rows  1110.0 s/cell
+  [main   86/190] ds11 D_matched  -       seed 8 8 rows  0.6 s/cell
+  [main   87/190] ds11 E          -       seed 8 8 rows  0.8 s/cell
+  [main   88/190] ds11 D_best     -       seed 8 2 rows  0.8 s/cell
+  [main   89/190] ds11 D_best     -       seed 8 2 rows  1.1 s/cell
+  [main   90/190] ds11 D_best     -       seed 8 2 rows  2.4 s/cell
+  [main   91/190] ds11 F          product seed 2 2 rows  1194.9 s/cell
+  [main   92/190] ds11 F          product seed 4 2 rows  1174.5 s/cell
+  [main   93/190] ds11 A          L1      seed 2 2 rows  1230.5 s/cell
+  [main   94/190] ds11 A          L1      seed 2 2 rows  1232.5 s/cell
+  [main   95/190] ds11 B          L1      seed 9 8 rows  1.0 s/cell
+  [main   96/190] ds11 A          L2      seed 2 2 rows  1352.2 s/cell
+  [main   97/190] ds11 F          product seed 2 2 rows  1364.2 s/cell
+  [main   98/190] ds11 A          L1      seed 2 2 rows  1370.4 s/cell
+  [main   99/190] ds11 F          product seed 2 2 rows  1389.8 s/cell
+  [main  100/190] ds11 B          L2      seed 9 8 rows  1.3 s/cell
+  [main  101/190] ds11 F          product seed 6 2 rows  649.5 s/cell
+  [main  102/190] ds11 A          L2      seed 6 2 rows  722.8 s/cell
+  [main  103/190] ds11 A          L2      seed 6 2 rows  730.8 s/cell
+  [main  104/190] ds11 E          -       seed 9 8 rows  0.6 s/cell
+  [main  105/190] ds11 A          L1      seed 1 2 rows  1421.1 s/cell
+  [main  106/190] ds11 D_best     -       seed 9 2 rows  1.1 s/cell
+  [main  107/190] ds11 D_best     -       seed 9 2 rows  1.1 s/cell
+  [main  108/190] ds11 D_matched  -       seed 9 8 rows  1.4 s/cell
+  [main  109/190] ds11 D_best     -       seed 9 2 rows  1.0 s/cell
+  [main  110/190] ds11 A          L2      seed 2 2 rows  1423.9 s/cell
+  [main  111/190] ds11 A          L2      seed 7 2 rows  668.9 s/cell
+  [main  112/190] ds11 A          L2      seed 2 2 rows  1503.4 s/cell
+  [main  113/190] ds11 A          L1      seed 7 2 rows  770.1 s/cell
+  [main  114/190] ds11 B          L1      seed 10 8 rows  5.5 s/cell
+  [main  115/190] ds11 F          product seed 7 2 rows  681.7 s/cell
+  [main  116/190] ds11 A          L1      seed 8 2 rows  616.8 s/cell
+  [main  117/190] ds11 A          L1      seed 7 2 rows  812.6 s/cell
+  [main  118/190] ds11 A          L2      seed 7 2 rows  761.2 s/cell
+  [main  119/190] ds11 B          L2      seed 10 8 rows  1.6 s/cell
+  [main  120/190] ds11 F          product seed 8 2 rows  555.2 s/cell
+  [main  121/190] ds11 F          product seed 5 2 rows  1579.2 s/cell
+  [main  122/190] ds11 F          product seed 8 2 rows  566.1 s/cell
+  [main  123/190] ds11 E          -       seed 10 8 rows  0.6 s/cell
+  [main  124/190] ds11 D_matched  -       seed 10 8 rows  0.7 s/cell
+  [main  125/190] ds11 D_best     -       seed 10 2 rows  1.1 s/cell
+  [main  126/190] ds11 D_best     -       seed 10 2 rows  1.2 s/cell
+  [main  127/190] ds11 D_best     -       seed 10 2 rows  1.0 s/cell
+  [main  128/190] ds11 F          product seed 7 2 rows  768.0 s/cell
+  [main  129/190] ds11 A          L1      seed 9 2 rows  542.3 s/cell
+  [main  130/190] ds11 A          L2      seed 6 2 rows  1000.2 s/cell
+  [main  131/190] ds11 A          L2      seed 8 2 rows  715.9 s/cell
+  [main  132/190] ds11 F          product seed 8 2 rows  646.6 s/cell
+  [main  133/190] ds11 A          L1      seed 4 2 rows  1738.6 s/cell
+  [main  134/190] ds11 F          product seed 6 2 rows  1028.4 s/cell
+  [main  135/190] ds11 A          L2      seed 9 2 rows  565.8 s/cell
+  [main  136/190] ds11 F          product seed 9 2 rows  476.2 s/cell
+  [main  137/190] ds11 A          L1      seed 7 2 rows  1139.5 s/cell
+  [main  138/190] ds11 A          L1      seed 1 2 rows  1960.9 s/cell
+  [main  139/190] ds11 A          L1      seed 3 2 rows  2017.3 s/cell
+  [main  140/190] ds11 F          product seed 4 2 rows  2000.0 s/cell
+  [main  141/190] ds11 A          L1      seed 9 2 rows  910.5 s/cell
+  [main  142/190] ds11 A          L2      seed 1 2 rows  2078.1 s/cell
+  [main  143/190] ds11 F          product seed 3 2 rows  2104.0 s/cell
+  [main  144/190] ds11 A          L2      seed 5 2 rows  2105.5 s/cell
+  [main  145/190] ds11 A          L1      seed 6 2 rows  2104.4 s/cell
+  [main  146/190] ds11 A          L1      seed 8 2 rows  1233.7 s/cell
+  [main  147/190] ds11 F          product seed 9 2 rows  787.2 s/cell
+  [main  148/190] ds11 F          product seed 2 2 rows  2200.8 s/cell
+  [main  149/190] ds11 A          L2      seed 8 2 rows  1229.6 s/cell
+  [main  150/190] ds11 F          product seed 10 2 rows  601.5 s/cell
+  [main  151/190] ds11 A          L2      seed 9 2 rows  971.6 s/cell
+  [main  152/190] ds11 F          product seed 6 2 rows  1518.6 s/cell
+  [main  153/190] ds11 A          L2      seed 10 2 rows  746.1 s/cell
+  [main  154/190] ds11 A          L1      seed 6 2 rows  2222.9 s/cell
+  [main  155/190] ds11 F          product seed 8 2 rows  1214.7 s/cell
+  [main  156/190] ds11 A          L1      seed 2 2 rows  2373.8 s/cell
+  [main  157/190] ds11 A          L2      seed 9 2 rows  1045.2 s/cell
+  [main  158/190] ds11 A          L2      seed 7 2 rows  1641.8 s/cell
+  [main  159/190] ds11 A          L1      seed 6 2 rows  2424.8 s/cell
+  [main  160/190] ds11 A          L2      seed 2 2 rows  2565.5 s/cell
+  [main  161/190] ds11 A          L2      seed 4 2 rows  2547.3 s/cell
+  [main  162/190] ds11 F          product seed 6 2 rows  1864.1 s/cell
+  [main  163/190] ds11 F          product seed 10 2 rows  1089.2 s/cell
+  [main  164/190] ds11 F          product seed 10 2 rows  1105.0 s/cell
+  [main  165/190] ds11 A          L1      seed 5 2 rows  2686.6 s/cell
+  [main  166/190] ds11 A          L2      seed 10 2 rows  1214.3 s/cell
+  [main  167/190] ds11 A          L2      seed 10 2 rows  1215.3 s/cell
+  [main  168/190] ds11 A          L1      seed 10 2 rows  1378.3 s/cell
+  [main  169/190] ds11 F          product seed 9 2 rows  1416.8 s/cell
+  [main  170/190] ds11 A          L1      seed 10 2 rows  1402.5 s/cell
+  [main  171/190] ds11 A          L2      seed 6 2 rows  2164.6 s/cell
+  [main  172/190] ds11 F          product seed 9 2 rows  1546.4 s/cell
+  [main  173/190] ds11 A          L1      seed 9 2 rows  1768.5 s/cell
+  [main  174/190] ds11 A          L1      seed 10 2 rows  1474.8 s/cell
+  [main  175/190] ds11 A          L2      seed 8 2 rows  1949.7 s/cell
+  [main  176/190] ds11 F          product seed 7 2 rows  2201.7 s/cell
+  [main  177/190] ds11 A          L2      seed 9 2 rows  1795.1 s/cell
+  [main  178/190] ds11 A          L1      seed 10 2 rows  1815.6 s/cell
+  [main  179/190] ds11 A          L2      seed 3 2 rows  3266.4 s/cell
+  [main  180/190] ds11 A          L1      seed 9 2 rows  2070.3 s/cell
+  [main  181/190] ds11 A          L1      seed 7 2 rows  2657.1 s/cell
+  [main  182/190] ds11 A          L1      seed 5 2 rows  3465.0 s/cell
+  [main  183/190] ds11 A          L2      seed 7 2 rows  2748.9 s/cell
+  [main  184/190] ds11 A          L2      seed 8 2 rows  2674.7 s/cell
+  [main  185/190] ds11 F          product seed 10 2 rows  2098.2 s/cell
+  [main  186/190] ds11 A          L1      seed 1 2 rows  3758.1 s/cell
+  [main  187/190] ds11 A          L2      seed 10 2 rows  2287.7 s/cell
+  [main  188/190] ds11 F          product seed 7 2 rows  3242.1 s/cell
+  [main  189/190] ds11 A          L1      seed 8 2 rows  3361.5 s/cell
+  [main  190/190] ds11 A          L1      seed 8 2 rows  3475.2 s/cell
+====================================================================================================
+A7 — main series: descriptive statistics. Tests, CI, TOST and figures are A8.
+====================================================================================================
+
+SELECTED lr (cell = dataset seed x dilution x ansatz; arms A and B, seeds 1-3)
+  ds11  h2      L1  -> 0.03   | 0.001:0.7481 0.003:0.7611 0.01:0.7661 0.03:0.7714
+  ds11  h2      L2  -> 0.03   | 0.001:0.7581 0.003:0.7692 0.01:0.7769 0.03:0.7831
+  ds11  h4      L1  -> 0.03   | 0.001:0.7350 0.003:0.7600 0.01:0.7683 0.03:0.7967
+  ds11  h4      L2  -> 0.03   | 0.001:0.7614 0.003:0.7772 0.01:0.7878 0.03:0.7931
+  ds11  h42     L1  -> 0.01   | 0.001:0.8456 0.003:0.8686 0.01:0.8922 0.03:0.8828
+  ds11  h42     L2  -> 0.01   | 0.001:0.8442 0.003:0.8736 0.01:0.8833 0.03:0.8792
+  ds11  linear  L1  -> 0.03   | 0.001:0.7125 0.003:0.7300 0.01:0.7481 0.03:0.7611
+  ds11  linear  L2  -> 0.03   | 0.001:0.7358 0.003:0.7558 0.01:0.7697 0.03:0.7719
+
+SELECTED lr, arm E (own grid, one point wider — D-30)
+  ds11  h2      -> 0.1
+  ds11  h4      -> 0.1
+  ds11  h42     -> 0.03
+  ds11  linear  -> 0.1
+
+SELECTED lr, arm D_best (own grid, per width)
+  ds11  M=32   -> 0.03
+  ds11  M=128  -> 0.03
+  ds11  M=512  -> 0.01
+
+GATES at the final lr
+  ds11: G1 PASS margin +0.038056 strong 0.8600 floor 0.7719 | G2 PASS evr1 0.7585
+
+PER-ARM means and sigma on the 1200 test rows — EVERY ARM SEPARATELY
+  cell                   arm          n     mean       sd  theta_disp  epochs
+  ds11|h2|L1             A           10   0.7230   0.1644    7.52e-01    63.9
+  ds11|h2|L1             B           10   0.6912   0.1167    0.00e+00    63.2
+  ds11|h2|L1             E           10   0.7386   0.1338    0.00e+00    60.5
+  ds11|h2|L1             F           10   0.7532   0.1416    6.39e-01    56.2
+  ds11|h2|L1             D_matched   10   0.6863   0.0858    0.00e+00    63.5
+  ds11|h2|L2             A           10   0.7597   0.1449    7.22e-01    61.8
+  ds11|h2|L2             B           10   0.6835   0.1117    0.00e+00    66.3
+  ds11|h2|L2             E           10   0.7386   0.1338    0.00e+00    60.5
+  ds11|h2|L2             F           10   0.7532   0.1416    6.39e-01    56.2
+  ds11|h2|L2             D_matched   10   0.6863   0.0858    0.00e+00    63.5
+  ds11|h42|L1            A           10   0.9581   0.0122    8.04e-01   147.9
+  ds11|h42|L1            B           10   0.7883   0.0608    0.00e+00   129.8
+  ds11|h42|L1            E           10   0.9779   0.0045    0.00e+00   106.2
+  ds11|h42|L1            F           10   0.9663   0.0049    6.61e-01   127.7
+  ds11|h42|L1            D_matched   10   0.7587   0.0577    0.00e+00    99.3
+  ds11|h42|L2            A           10   0.9606   0.0092    8.10e-01   151.6
+  ds11|h42|L2            B           10   0.7843   0.0281    0.00e+00    87.5
+  ds11|h42|L2            E           10   0.9779   0.0045    0.00e+00   106.2
+  ds11|h42|L2            F           10   0.9663   0.0049    6.61e-01   127.7
+  ds11|h42|L2            D_matched   10   0.7587   0.0577    0.00e+00    99.3
+  ds11|h4|L1             A           10   0.8625   0.0537    1.05e+00   128.7
+  ds11|h4|L1             B           10   0.7279   0.0964    0.00e+00    84.8
+  ds11|h4|L1             E           10   0.8983   0.0516    0.00e+00    84.4
+  ds11|h4|L1             F           10   0.8408   0.0444    7.93e-01    80.2
+  ds11|h4|L1             D_matched   10   0.7243   0.0388    0.00e+00    72.5
+  ds11|h4|L2             A           10   0.8377   0.0359    8.20e-01    80.0
+  ds11|h4|L2             B           10   0.7561   0.0338    0.00e+00    77.8
+  ds11|h4|L2             E           10   0.8983   0.0516    0.00e+00    84.4
+  ds11|h4|L2             F           10   0.8408   0.0444    7.93e-01    80.2
+  ds11|h4|L2             D_matched   10   0.7243   0.0388    0.00e+00    72.5
+  ds11|linear|L1         A           10   0.8246   0.0063    9.29e-01    67.9
+  ds11|linear|L1         B           10   0.7327   0.0478    0.00e+00   100.6
+  ds11|linear|L1         E           10   0.7737   0.0061    0.00e+00    44.0
+  ds11|linear|L1         F           10   0.8181   0.0045    8.67e-01    62.3
+  ds11|linear|L1         D_matched   10   0.6950   0.0490    0.00e+00    52.7
+  ds11|linear|L2         A           10   0.8205   0.0064    9.86e-01    53.6
+  ds11|linear|L2         B           10   0.7300   0.0425    0.00e+00    58.9
+  ds11|linear|L2         E           10   0.7737   0.0061    0.00e+00    44.0
+  ds11|linear|L2         F           10   0.8181   0.0045    8.67e-01    62.3
+  ds11|linear|L2         D_matched   10   0.6950   0.0490    0.00e+00    52.7
+
+ESTIMANDS, paired by seed. MDE recomputed from the sigma of THIS series.
+  cell                   estimand            n      mean       sd      MDE  >=MDE
+  ds11|h2|L1             delta_AB           10   +0.0318   0.1225   0.1219     no
+  ds11|h2|L1             delta_AE           10   -0.0156   0.1110   0.1105     no
+  ds11|h2|L1             delta_AF           10   -0.0302   0.1896   0.1886     no
+  ds11|h2|L1             delta_BD_matched   10   +0.0049   0.1014   0.1009     no
+  ds11|h2|L2             delta_AB           10   +0.0762   0.0563   0.0560    yes
+  ds11|h2|L2             delta_AE           10   +0.0212   0.1591   0.1582     no
+  ds11|h2|L2             delta_AF           10   +0.0065   0.2247   0.2235     no
+  ds11|h2|L2             delta_BD_matched   10   -0.0028   0.1100   0.1094     no
+  ds11|h42|L1            delta_AB           10   +0.1698   0.0669   0.0666    yes
+  ds11|h42|L1            delta_AE           10   -0.0198   0.0152   0.0151    yes
+  ds11|h42|L1            delta_AF           10   -0.0083   0.0111   0.0111     no
+  ds11|h42|L1            delta_BD_matched   10   +0.0297   0.0795   0.0790     no
+  ds11|h42|L2            delta_AB           10   +0.1763   0.0223   0.0222    yes
+  ds11|h42|L2            delta_AE           10   -0.0173   0.0092   0.0092    yes
+  ds11|h42|L2            delta_AF           10   -0.0058   0.0117   0.0116     no
+  ds11|h42|L2            delta_BD_matched   10   +0.0257   0.0699   0.0695     no
+  ds11|h4|L1             delta_AB           10   +0.1346   0.1215   0.1208    yes
+  ds11|h4|L1             delta_AE           10   -0.0358   0.0477   0.0474     no
+  ds11|h4|L1             delta_AF           10   +0.0217   0.0794   0.0790     no
+  ds11|h4|L1             delta_BD_matched   10   +0.0036   0.0801   0.0796     no
+  ds11|h4|L2             delta_AB           10   +0.0816   0.0449   0.0447    yes
+  ds11|h4|L2             delta_AE           10   -0.0606   0.0566   0.0563    yes
+  ds11|h4|L2             delta_AF           10   -0.0032   0.0557   0.0554     no
+  ds11|h4|L2             delta_BD_matched   10   +0.0318   0.0631   0.0628     no
+  ds11|linear|L1         delta_AB           10   +0.0919   0.0489   0.0486    yes
+  ds11|linear|L1         delta_AE           10   +0.0509   0.0088   0.0088    yes
+  ds11|linear|L1         delta_AF           10   +0.0065   0.0066   0.0066     no
+  ds11|linear|L1         delta_BD_matched   10   +0.0377   0.0633   0.0629     no
+  ds11|linear|L2         delta_AB           10   +0.0905   0.0397   0.0395    yes
+  ds11|linear|L2         delta_AE           10   +0.0468   0.0085   0.0085    yes
+  ds11|linear|L2         delta_AF           10   +0.0024   0.0068   0.0068     no
+  ds11|linear|L2         delta_BD_matched   10   +0.0350   0.0748   0.0744     no
+
+DECOMPOSITION Delta_AE = Delta_AB + (acc(B) - acc(E)) — mandatory in every cell
+  ds11|h2|L1             +0.0318 + -0.0474 = -0.0156  (Delta_AE -0.0156, residual -5.20e-18)
+  ds11|h2|L2             +0.0762 + -0.0551 = +0.0212  (Delta_AE +0.0212, residual -3.47e-18)
+  ds11|h42|L1            +0.1698 + -0.1896 = -0.0198  (Delta_AE -0.0198, residual +1.73e-17)
+  ds11|h42|L2            +0.1763 + -0.1936 = -0.0173  (Delta_AE -0.0173, residual -2.78e-17)
+  ds11|h4|L1             +0.1346 + -0.1703 = -0.0357  (Delta_AE -0.0358, residual -4.16e-17)
+  ds11|h4|L2             +0.0816 + -0.1422 = -0.0606  (Delta_AE -0.0606, residual +2.78e-17)
+  ds11|linear|L1         +0.0919 + -0.0410 = +0.0509  (Delta_AE +0.0509, residual +6.94e-18)
+  ds11|linear|L2         +0.0905 + -0.0437 = +0.0468  (Delta_AE +0.0468, residual +6.94e-18)
+
+ARM D_best — off the dilution axis, one point per (dataset seed x M)
+  ds11: selected M = 128
+    M=32   val 0.8048 test 0.8124 (sd 0.0072, lr 0.03)
+    M=128  val 0.8265 test 0.8254 (sd 0.0033, lr 0.03)
+    M=512  val 0.8255 test 0.8203 (sd 0.0069, lr 0.01)
+
+RIDGE readout control — REPORTED BESIDE the Adam head, not a consistency condition (D-19)
+  B          n   80 adam 0.7368 ridge 0.7315 gap +0.0053 alpha {'1e-06': 48, '0.0001': 0, '0.01': 0, '1.0': 32}
+  D_best     n   30 adam 0.8194 ridge 0.8075 gap +0.0119 alpha {'1e-06': 20, '0.0001': 3, '0.01': 4, '1.0': 3}
+  D_matched  n   40 adam 0.7161 ridge 0.6904 gap +0.0256 alpha {'1e-06': 40, '0.0001': 0, '0.01': 0, '1.0': 0}
+  E          n   40 adam 0.8471 ridge 0.7517 gap +0.0954 alpha {'1e-06': 40, '0.0001': 0, '0.01': 0, '1.0': 0}
+
+EPOCH BUDGET — how many runs hit 300 epochs
+  A             0 / 80   = 0.0 %
+  B             1 / 80   = 1.2 %
+  E             0 / 40   = 0.0 %
+  F             0 / 40   = 0.0 %
+  D_matched     0 / 40   = 0.0 %
+  D_best        0 / 30   = 0.0 %
+  ALL           1 / 310  = 0.3 %
+
+THREE UNCERTAINTY ACCOUNTS side by side, never combined (raport.tex 3.7)
+  (2) binomial SE on 1200 test rows: 0.0144
+  (1) sigma_Delta per cell: the 'sd' column of the estimand table above
+  (3) discordant pairs b/c — the input of McNemar; the test itself is A8
+      ds11|h2|L1             delta_AB: b 1209 c 827 delta_AE: b 569 c 756 delta_AF: b 766 c 1129 delta_BD_matched: b 1584 c 1525
+      ds11|h2|L2             delta_AB: b 1389 c 474 delta_AE: b 1037 c 783 delta_AF: b 1254 c 1176 delta_BD_matched: b 1517 c 1550
+      ds11|h42|L1            delta_AB: b 2282 c 245 delta_AE: b 143 c 381 delta_AF: b 212 c 311 delta_BD_matched: b 1665 c 1309
+      ds11|h42|L2            delta_AB: b 2359 c 244 delta_AE: b 149 c 357 delta_AF: b 236 c 305 delta_BD_matched: b 1718 c 1410
+      ds11|h4|L1             delta_AB: b 2091 c 476 delta_AE: b 526 c 955 delta_AF: b 721 c 461 delta_BD_matched: b 1741 c 1698
+      ds11|h4|L2             delta_AB: b 1640 c 661 delta_AE: b 460 c 1187 delta_AF: b 497 c 535 delta_BD_matched: b 1773 c 1392
+      ds11|linear|L1         delta_AB: b 1733 c 630 delta_AE: b 771 c 160 delta_AF: b 273 c 195 delta_BD_matched: b 1929 c 1477
+      ds11|linear|L2         delta_AB: b 1742 c 656 delta_AE: b 733 c 171 delta_AF: b 253 c 224 delta_BD_matched: b 1950 c 1530
+
+DETERMINISM (T-I, pipeline): 48 overlapping cells compared, 1 mismatches -> FAIL
+
+VERDICTS from the table declared before the run
+  [baseline scenario] ds11|linear|L1: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.09191666666666663, 'theta_displacement': 0.9292927503585815, 'mde_this_series': 0.048605402280214705}
+  [baseline scenario] ds11|linear|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.09050000000000001, 'theta_displacement': 0.9864329636096955, 'mde_this_series': 0.03946912770535573}
+  [STOP] ds11|h2|L1: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.7230000000000001, 'acc_B': 0.6911666666666667, 'acc_E': 0.7385833333333334, 'mde_AE_this_series': 0.11045053664184315}
+  [UNDECIDABLE at n=10] ds11|h2|L1: |Delta| below the MDE of this series
+      report the CI; do NOT write 'there is no effect' (raport.tex 3.7)
+      {'delta_AB': 0.03183333333333334, 'mde_this_series': 0.12186264490607862}
+  [STOP] ds11|h2|L2: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.7597499999999999, 'acc_B': 0.6835, 'acc_E': 0.7385833333333334, 'mde_AE_this_series': 0.15824167951012627}
+  [baseline scenario] ds11|h2|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.07625, 'theta_displacement': 0.7224636465311051, 'mde_this_series': 0.05602372652584972}
+  [STOP] ds11|h4|L1: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.8625, 'acc_B': 0.7279166666666665, 'acc_E': 0.8982500000000002, 'mde_AE_this_series': 0.047442327018827384}
+  [baseline scenario] ds11|h4|L1: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.13458333333333333, 'theta_displacement': 1.045150053501129, 'mde_this_series': 0.12082983828435023}
+  [baseline scenario] ds11|h4|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.08158333333333333, 'theta_displacement': 0.8197876214981079, 'mde_this_series': 0.04469631831644148}
+  [baseline scenario] ds11|h42|L1: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.16975, 'theta_displacement': 0.8044284999370575, 'mde_this_series': 0.06657169557893848}
+  [baseline scenario] ds11|h42|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.17625000000000002, 'theta_displacement': 0.8099806904792786, 'mde_this_series': 0.02220210701489321}
+
+wall 4477.9 s   outputs in /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds11
+====================================================================================================
+-----------------------------------------------------------------------
+[Sat Aug 22 11:29:07 AM CEST 2026] exit status 0

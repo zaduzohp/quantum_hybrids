@@ -1,0 +1,11 @@
+field,value
+results_csv,outputs/a7/dry_run/a7_results.csv
+n_rows,48
+present,"{""ansatz_levels"": [""L1"", ""L2""], ""arms"": [""A"", ""B"", ""D_best"", ""D_matched"", ""E"", ""F""], ""dataset_seeds"": [11], ""dilutions"": [""linear""], ""seeds"": [1, 2]}"
+missing,"{""ansatz_levels"": [], ""dataset_seeds"": [22, 33], ""dilutions"": [""h2"", ""h4"", ""h42""], ""seeds"": [3, 4, 5, 6, 7, 8, 9, 10]}"
+complete_contract_grid,False
+status,PROVISIONAL — NOT A RESULT
+n_training_seeds,2
+n_test_rows_seen,[1200]
+arm_D_present,True
+note,"PROVISIONAL: the input is not the complete contract grid. The schema is real, the numbers are not results and may not be reported as such (brief A8 section 1, owner's instruction 2026-08-21). Missing rows are reported here and NOT filled in."

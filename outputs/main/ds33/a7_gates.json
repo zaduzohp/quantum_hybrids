@@ -1,0 +1,233 @@
+{
+  "33": {
+    "dataset_seed": 33,
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed33",
+    "arm_e_lr_used": 0.1,
+    "g1": {
+      "gate": "G1",
+      "binding": true,
+      "binding_note": "binding: the floor is contract arm E (identity socket + linear head)",
+      "min_headroom": 0.05,
+      "strong_accuracy_band": [
+        0.65,
+        0.9
+      ],
+      "strong": {
+        "accuracy": 0.8933333333333333,
+        "label": "SVC(rbf) selected on val, evaluated on test",
+        "selected": {
+          "C": 10.0,
+          "gamma": "scale"
+        },
+        "selection_split": "val",
+        "selection_accuracy": 0.8983333333333333,
+        "grid": {
+          "C": [
+            0.1,
+            1.0,
+            10.0
+          ],
+          "gamma": [
+            "scale",
+            0.1,
+            1.0
+          ]
+        },
+        "cells": [
+          {
+            "C": 0.1,
+            "gamma": "scale",
+            "selection_accuracy": 0.835,
+            "test_accuracy": 0.83,
+            "train_accuracy": 0.8588095238095238,
+            "n_support": [
+              1141,
+              1129
+            ],
+            "fit_seconds": 0.1858681799999431
+          },
+          {
+            "C": 0.1,
+            "gamma": 0.1,
+            "selection_accuracy": 0.7633333333333333,
+            "test_accuracy": 0.7666666666666667,
+            "train_accuracy": 0.7873809523809524,
+            "n_support": [
+              1655,
+              1654
+            ],
+            "fit_seconds": 0.2424293700000817
+          },
+          {
+            "C": 0.1,
+            "gamma": 1.0,
+            "selection_accuracy": 0.7916666666666666,
+            "test_accuracy": 0.8025,
+            "train_accuracy": 0.8252380952380952,
+            "n_support": [
+              1244,
+              1245
+            ],
+            "fit_seconds": 0.18835338600001705
+          },
+          {
+            "C": 1.0,
+            "gamma": "scale",
+            "selection_accuracy": 0.8566666666666667,
+            "test_accuracy": 0.8575,
+            "train_accuracy": 0.8904761904761904,
+            "n_support": [
+              871,
+              851
+            ],
+            "fit_seconds": 0.13721697699975266
+          },
+          {
+            "C": 1.0,
+            "gamma": 0.1,
+            "selection_accuracy": 0.765,
+            "test_accuracy": 0.7783333333333333,
+            "train_accuracy": 0.8026190476190476,
+            "n_support": [
+              1248,
+              1247
+            ],
+            "fit_seconds": 0.19055689299966616
+          },
+          {
+            "C": 1.0,
+            "gamma": 1.0,
+            "selection_accuracy": 0.83,
+            "test_accuracy": 0.8325,
+            "train_accuracy": 0.8583333333333333,
+            "n_support": [
+              1010,
+              1004
+            ],
+            "fit_seconds": 0.1638431680003123
+          },
+          {
+            "C": 10.0,
+            "gamma": "scale",
+            "selection_accuracy": 0.8983333333333333,
+            "test_accuracy": 0.8933333333333333,
+            "train_accuracy": 0.9266666666666666,
+            "n_support": [
+              674,
+              627
+            ],
+            "fit_seconds": 0.13960093900004722
+          },
+          {
+            "C": 10.0,
+            "gamma": 0.1,
+            "selection_accuracy": 0.8,
+            "test_accuracy": 0.8075,
+            "train_accuracy": 0.8283333333333334,
+            "n_support": [
+              1116,
+              1113
+            ],
+            "fit_seconds": 0.17730669299999136
+          },
+          {
+            "C": 10.0,
+            "gamma": 1.0,
+            "selection_accuracy": 0.85,
+            "test_accuracy": 0.8491666666666666,
+            "train_accuracy": 0.8757142857142857,
+            "n_support": [
+              862,
+              849
+            ],
+            "fit_seconds": 0.15595235000000685
+          }
+        ],
+        "slowest_cell_seconds": 0.2424293700000817,
+        "total_fit_seconds": 1.5811279559998184
+      },
+      "floor": {
+        "accuracy": 0.7716666666666666,
+        "label": "arm E: identity socket + linear head, training.train_model",
+        "dilution": "linear",
+        "lr_selected": 0.1,
+        "lr_grid": [
+          0.1
+        ],
+        "lr_selection": "per cell, on the validation split; NOT the frozen select_lr",
+        "val_accuracy": 0.7694444259007772,
+        "mean_val_accuracy_per_lr": {
+          "0.1": 0.7694444259007772
+        },
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "runs": [
+          {
+            "lr": 0.1,
+            "seed": 1,
+            "val_accuracy": 0.7699999809265137,
+            "test_accuracy": 0.7725,
+            "train_accuracy": 0.7871428728103638,
+            "best_epoch": 5,
+            "epochs_run": 35
+          },
+          {
+            "lr": 0.1,
+            "seed": 2,
+            "val_accuracy": 0.7699999809265137,
+            "test_accuracy": 0.7691666666666667,
+            "train_accuracy": 0.7900000214576721,
+            "best_epoch": 21,
+            "epochs_run": 51
+          },
+          {
+            "lr": 0.1,
+            "seed": 3,
+            "val_accuracy": 0.7683333158493042,
+            "test_accuracy": 0.7733333333333333,
+            "train_accuracy": 0.7871428728103638,
+            "best_epoch": 8,
+            "epochs_run": 38
+          }
+        ],
+        "wall_seconds": 4.236280363999867,
+        "is_contract_arm_e": true
+      },
+      "headroom": 0.1216666666666667,
+      "g1_margin": 0.0716666666666667,
+      "strong_in_band": true,
+      "failures": [],
+      "passed": true
+    },
+    "g2": {
+      "gate": "G2",
+      "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed33",
+      "n_components": 5,
+      "max_share": 0.8,
+      "explained_variance_ratio_": [
+        0.797296341577523,
+        0.08510544667574339,
+        0.06376717297584816,
+        0.03420785203960708,
+        0.019623186731276342
+      ],
+      "share_of_retained": [
+        0.7972963415775246,
+        0.08510544667574356,
+        0.06376717297584829,
+        0.03420785203960714,
+        0.01962318673127638
+      ],
+      "top_component": 0,
+      "top_share": 0.7972963415775246,
+      "total_variance_explained": 0.9999999999999981,
+      "failures": [],
+      "passed": true
+    },
+    "g1_margin": 0.0716666666666667,
+    "passed": true
+  }
+}

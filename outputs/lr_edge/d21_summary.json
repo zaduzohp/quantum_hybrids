@@ -1,0 +1,330 @@
+{
+  "0.1": {
+    "rule": {
+      "declared_before_measurement": true,
+      "widen_if": "arm A argmax at 0.1 in >= 12 of 24 cells AND median gain > 0.02",
+      "validation_noise": 0.02,
+      "arm_B_excluded": "D-18: only a measurement on arm A may move the grid"
+    },
+    "cells_total": 24,
+    "cells_with_A_argmax_at_probe": 1,
+    "median_A_gain_among_those": 0.0005555555555556424,
+    "cells_with_gain_above_noise": 0,
+    "mean_A_gain_all_cells": -0.0432638888888889,
+    "mean_B_gain_all_cells": -0.02618055555555555,
+    "recommendation": "LEAVE the contract grid as it is",
+    "owner_decision_required": true,
+    "note": "This probe may not select an lr. Widening CONTRACTS section 7.1 is D-21, the owner's decision; the script only supplies the evidence and the rule it was read against.",
+    "per_cell": [
+      {
+        "cell": "ds11|h2|L1",
+        "A_at_contract_top": 0.8266666666666667,
+        "A_at_probe": 0.8194444444444443,
+        "A_gain": -0.007222222222222352,
+        "B_at_contract_top": 0.7161111111111111,
+        "B_at_probe": 0.6644444444444445,
+        "B_gain": -0.05166666666666664,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|h2|L2",
+        "A_at_contract_top": 0.8277777777777778,
+        "A_at_probe": 0.8266666666666667,
+        "A_gain": -0.0011111111111111738,
+        "B_at_contract_top": 0.7383333333333333,
+        "B_at_probe": 0.6633333333333332,
+        "B_gain": -0.07500000000000007,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|h4|L1",
+        "A_at_contract_top": 0.87,
+        "A_at_probe": 0.7433333333333333,
+        "A_gain": -0.1266666666666667,
+        "B_at_contract_top": 0.7233333333333333,
+        "B_at_probe": 0.6716666666666667,
+        "B_gain": -0.05166666666666653,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|h4|L2",
+        "A_at_contract_top": 0.8333333333333334,
+        "A_at_probe": 0.7494444444444444,
+        "A_gain": -0.08388888888888901,
+        "B_at_contract_top": 0.7527777777777779,
+        "B_at_probe": 0.7366666666666667,
+        "B_gain": -0.016111111111111187,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|h42|L1",
+        "A_at_contract_top": 0.9722222222222223,
+        "A_at_probe": 0.9494444444444445,
+        "A_gain": -0.022777777777777786,
+        "B_at_contract_top": 0.7933333333333333,
+        "B_at_probe": 0.7816666666666666,
+        "B_gain": -0.011666666666666714,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|h42|L2",
+        "A_at_contract_top": 0.9655555555555556,
+        "A_at_probe": 0.9011111111111111,
+        "A_gain": -0.06444444444444453,
+        "B_at_contract_top": 0.7927777777777778,
+        "B_at_probe": 0.7533333333333333,
+        "B_gain": -0.039444444444444504,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|linear|L1",
+        "A_at_contract_top": 0.8177777777777777,
+        "A_at_probe": 0.8161111111111111,
+        "A_gain": -0.0016666666666665941,
+        "B_at_contract_top": 0.7044444444444444,
+        "B_at_probe": 0.7133333333333334,
+        "B_gain": 0.008888888888888946,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds11|linear|L2",
+        "A_at_contract_top": 0.8161111111111111,
+        "A_at_probe": 0.8166666666666668,
+        "A_gain": 0.0005555555555556424,
+        "B_at_contract_top": 0.7277777777777777,
+        "B_at_probe": 0.7305555555555555,
+        "B_gain": 0.002777777777777768,
+        "A_argmax_lr": 0.1,
+        "A_argmax_at_probe": true,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|h2|L1",
+        "A_at_contract_top": 0.8533333333333334,
+        "A_at_probe": 0.8483333333333333,
+        "A_gain": -0.0050000000000001155,
+        "B_at_contract_top": 0.7927777777777777,
+        "B_at_probe": 0.7922222222222223,
+        "B_gain": -0.0005555555555554204,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|h2|L2",
+        "A_at_contract_top": 0.8533333333333334,
+        "A_at_probe": 0.8433333333333333,
+        "A_gain": -0.01000000000000012,
+        "B_at_contract_top": 0.6933333333333334,
+        "B_at_probe": 0.6955555555555556,
+        "B_gain": 0.0022222222222222365,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|h4|L1",
+        "A_at_contract_top": 0.87,
+        "A_at_probe": 0.8383333333333334,
+        "A_gain": -0.03166666666666662,
+        "B_at_contract_top": 0.791111111111111,
+        "B_at_probe": 0.7155555555555555,
+        "B_gain": -0.07555555555555549,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|h4|L2",
+        "A_at_contract_top": 0.8894444444444444,
+        "A_at_probe": 0.831111111111111,
+        "A_gain": -0.05833333333333335,
+        "B_at_contract_top": 0.7149999999999999,
+        "B_at_probe": 0.6955555555555556,
+        "B_gain": -0.019444444444444264,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|h42|L1",
+        "A_at_contract_top": 0.963888888888889,
+        "A_at_probe": 0.9322222222222223,
+        "A_gain": -0.03166666666666673,
+        "B_at_contract_top": 0.8472222222222222,
+        "B_at_probe": 0.8105555555555556,
+        "B_gain": -0.036666666666666625,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|h42|L2",
+        "A_at_contract_top": 0.9616666666666666,
+        "A_at_probe": 0.9005555555555556,
+        "A_gain": -0.061111111111111005,
+        "B_at_contract_top": 0.763888888888889,
+        "B_at_probe": 0.7188888888888889,
+        "B_gain": -0.04500000000000004,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|linear|L1",
+        "A_at_contract_top": 0.8277777777777778,
+        "A_at_probe": 0.8194444444444445,
+        "A_gain": -0.008333333333333304,
+        "B_at_contract_top": 0.7794444444444445,
+        "B_at_probe": 0.7894444444444444,
+        "B_gain": 0.009999999999999898,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds22|linear|L2",
+        "A_at_contract_top": 0.8250000000000001,
+        "A_at_probe": 0.8205555555555555,
+        "A_gain": -0.004444444444444584,
+        "B_at_contract_top": 0.6833333333333332,
+        "B_at_probe": 0.6855555555555556,
+        "B_gain": 0.0022222222222223476,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|h2|L1",
+        "A_at_contract_top": 0.8638888888888889,
+        "A_at_probe": 0.7422222222222222,
+        "A_gain": -0.1216666666666667,
+        "B_at_contract_top": 0.7472222222222222,
+        "B_at_probe": 0.69,
+        "B_gain": -0.057222222222222285,
+        "A_argmax_lr": 0.03,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|h2|L2",
+        "A_at_contract_top": 0.8561111111111112,
+        "A_at_probe": 0.7355555555555555,
+        "A_gain": -0.12055555555555564,
+        "B_at_contract_top": 0.7399999999999999,
+        "B_at_probe": 0.7405555555555555,
+        "B_gain": 0.0005555555555556424,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|h4|L1",
+        "A_at_contract_top": 0.8572222222222221,
+        "A_at_probe": 0.7355555555555555,
+        "A_gain": -0.12166666666666659,
+        "B_at_contract_top": 0.7411111111111112,
+        "B_at_probe": 0.6761111111111111,
+        "B_gain": -0.06500000000000006,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|h4|L2",
+        "A_at_contract_top": 0.8616666666666667,
+        "A_at_probe": 0.8422222222222223,
+        "A_gain": -0.019444444444444375,
+        "B_at_contract_top": 0.7383333333333334,
+        "B_at_probe": 0.7372222222222221,
+        "B_gain": -0.0011111111111112848,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|h42|L1",
+        "A_at_contract_top": 0.9311111111111111,
+        "A_at_probe": 0.8622222222222223,
+        "A_gain": -0.06888888888888878,
+        "B_at_contract_top": 0.7838888888888889,
+        "B_at_probe": 0.7105555555555555,
+        "B_gain": -0.07333333333333336,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|h42|L2",
+        "A_at_contract_top": 0.9222222222222222,
+        "A_at_probe": 0.8783333333333334,
+        "A_gain": -0.043888888888888755,
+        "B_at_contract_top": 0.7888888888888889,
+        "B_at_probe": 0.7472222222222222,
+        "B_gain": -0.04166666666666663,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|linear|L1",
+        "A_at_contract_top": 0.8361111111111111,
+        "A_at_probe": 0.8305555555555556,
+        "A_gain": -0.005555555555555536,
+        "B_at_contract_top": 0.7216666666666667,
+        "B_at_probe": 0.7266666666666667,
+        "B_gain": 0.0050000000000000044,
+        "A_argmax_lr": 0.003,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      },
+      {
+        "cell": "ds33|linear|L2",
+        "A_at_contract_top": 0.8377777777777777,
+        "A_at_probe": 0.8188888888888889,
+        "A_gain": -0.018888888888888844,
+        "B_at_contract_top": 0.7055555555555556,
+        "B_at_probe": 0.7066666666666667,
+        "B_gain": 0.0011111111111110628,
+        "A_argmax_lr": 0.01,
+        "A_argmax_at_probe": false,
+        "A_gain_above_noise": false
+      }
+    ]
+  },
+  "configuration": {
+    "run_id": "d21_20260822T070952Z",
+    "git_commit": "24bfdaa-dirty",
+    "env_hash": "8f5e61236010",
+    "probe_lr": [
+      0.1
+    ],
+    "contract_grid": [
+      0.001,
+      0.003,
+      0.01,
+      0.03
+    ],
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "workers": 10,
+    "wall_seconds": 4931.724822917022
+  }
+}

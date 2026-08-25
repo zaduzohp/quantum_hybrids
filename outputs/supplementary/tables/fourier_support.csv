@@ -1,0 +1,24 @@
+ansatz,quantity,value,of,note
+L1,lattice_points_with_mass,3125.0,3125,
+L1,mass_share_active_coords_0,0.24288416979503588,1,share of spectral mass on terms with k active coordinates
+L1,mass_share_active_coords_1,0.3956434471708482,20,share of spectral mass on terms with k active coordinates
+L1,mass_share_active_coords_2,0.3280512497208464,160,share of spectral mass on terms with k active coordinates
+L1,mass_share_active_coords_3,0.008357993135937306,640,share of spectral mass on terms with k active coordinates
+L1,mass_share_active_coords_4,0.014631647011460039,1280,share of spectral mass on terms with k active coordinates
+L1,mass_share_active_coords_5,0.010431493165872238,1024,share of spectral mass on terms with k active coordinates
+L2,lattice_points_with_mass,3125.0,3125,
+L2,mass_share_active_coords_0,0.36251933036641504,1,share of spectral mass on terms with k active coordinates
+L2,mass_share_active_coords_1,0.383484493891552,20,share of spectral mass on terms with k active coordinates
+L2,mass_share_active_coords_2,0.11765799006635476,160,share of spectral mass on terms with k active coordinates
+L2,mass_share_active_coords_3,0.08891292844873741,640,share of spectral mass on terms with k active coordinates
+L2,mass_share_active_coords_4,0.040117253366842104,1280,share of spectral mass on terms with k active coordinates
+L2,mass_share_active_coords_5,0.007308003860098523,1024,share of spectral mass on terms with k active coordinates
+product,lattice_points_with_mass,21.0,3125,
+product,mass_share_active_coords_0,0.37605620018655883,1,share of spectral mass on terms with k active coordinates
+product,mass_share_active_coords_1,0.6239437998134411,20,share of spectral mass on terms with k active coordinates
+arm D (uniform on the same lattice),mass_share_active_coords_0,0.0003200000000000001,,probability that a drawn Omega row has k active coordinates
+arm D (uniform on the same lattice),mass_share_active_coords_1,0.006400000000000001,,probability that a drawn Omega row has k active coordinates
+arm D (uniform on the same lattice),mass_share_active_coords_2,0.05120000000000002,,probability that a drawn Omega row has k active coordinates
+arm D (uniform on the same lattice),mass_share_active_coords_3,0.2048000000000001,,probability that a drawn Omega row has k active coordinates
+arm D (uniform on the same lattice),mass_share_active_coords_4,0.40960000000000013,,probability that a drawn Omega row has k active coordinates
+arm D (uniform on the same lattice),mass_share_active_coords_5,0.3276800000000001,,probability that a drawn Omega row has k active coordinates

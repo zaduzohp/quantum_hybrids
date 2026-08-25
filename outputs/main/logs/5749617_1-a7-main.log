@@ -1,0 +1,424 @@
+[Sat Aug 22 10:14:14 AM CEST 2026] job 5749619 array-task 1 on r11ch04b02.lem.kdm.wcss.pl
+modules   initialised from /etc/profile.d/modules.sh
+Loading Python/3.12.3-GCCcore-13.3.0
+  Loading requirement: GCCcore/13.3.0 zlib/1.3.1-GCCcore-13.3.0
+    binutils/2.42-GCCcore-13.3.0 bzip2/1.0.8-GCCcore-13.3.0
+    ncurses/6.5-GCCcore-13.3.0 libreadline/8.2-GCCcore-13.3.0
+    Tcl/8.6.14-GCCcore-13.3.0 SQLite/3.45.3-GCCcore-13.3.0
+    XZ/5.4.5-GCCcore-13.3.0 libffi/3.4.5-GCCcore-13.3.0 OpenSSL/3
+module    Python/3.12.3-GCCcore-13.3.0
+WORKDIR   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A
+OUTROOT   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7
+PYTHON    /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python
+commit    unknown
+cpus      64
+cmd       SEEDS=(11 22 33); SEED=${SEEDS[$SLURM_ARRAY_TASK_ID]}; /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python scripts/run_main_series.py             --no-generate --dataset-seeds $SEED --workers ${SLURM_CPUS_PER_TASK:-64}             --out-dir /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds$SEED
+python    Python 3.12.3
+-----------------------------------------------------------------------
+# A7 main series  run_id a7_20260822T081428Z  commit unknown  env 56488e26fdba
+#   generator seeds [22]  dilutions ['linear', 'h2', 'h4', 'h42']  ansatze ['L1', 'L2']  seeds [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  widths [32, 128, 512]
+#   workers 64  patience 30  budget 300  backend pennylane
+#   ds22: hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed22 dataset_hash daf152204bbd7292 pca_hash f087808ca635cff7
+#   Jacobian rank of the socket per ansatz: {'L1': 35, 'L2': 35, 'product': 20} (nominal 35)
+#   resuming: 288 lr rows already on disk
+
+## stage 1 — lr selection: 0 tasks
+
+## stage 2 — G1/G2 per generator seed at the final lr
+  ds22: G1 PASS margin +0.045833 | G2 PASS evr1 0.7610
+
+## stage 3 — main grid: 200 tasks
+  [main    1/200] ds22 D_best     -       seed 1 2 rows  25.8 s/cell
+  [main    2/200] ds22 D_best     -       seed 2 2 rows  25.8 s/cell
+  [main    3/200] ds22 D_best     -       seed 2 2 rows  26.6 s/cell
+  [main    4/200] ds22 D_best     -       seed 3 2 rows  26.7 s/cell
+  [main    5/200] ds22 D_best     -       seed 2 2 rows  26.8 s/cell
+  [main    6/200] ds22 D_best     -       seed 3 2 rows  27.0 s/cell
+  [main    7/200] ds22 D_best     -       seed 1 2 rows  27.2 s/cell
+  [main    8/200] ds22 D_best     -       seed 3 2 rows  27.2 s/cell
+  [main    9/200] ds22 D_best     -       seed 1 2 rows  27.5 s/cell
+  [main   10/200] ds22 E          -       seed 2 8 rows  25.8 s/cell
+  [main   11/200] ds22 D_matched  -       seed 2 10 rows  25.9 s/cell
+  [main   12/200] ds22 B          L2      seed 1 8 rows  15.1 s/cell
+  [main   13/200] ds22 E          -       seed 3 8 rows  26.2 s/cell
+  [main   14/200] ds22 E          -       seed 1 8 rows  26.5 s/cell
+  [main   15/200] ds22 B          L1      seed 1 8 rows  16.0 s/cell
+  [main   16/200] ds22 B          L1      seed 2 8 rows  14.6 s/cell
+  [main   17/200] ds22 D_matched  -       seed 1 10 rows  27.0 s/cell
+  [main   18/200] ds22 D_best     -       seed 4 2 rows  1.4 s/cell
+  [main   19/200] ds22 D_matched  -       seed 3 10 rows  25.8 s/cell
+  [main   20/200] ds22 D_best     -       seed 4 2 rows  1.6 s/cell
+  [main   21/200] ds22 D_best     -       seed 4 2 rows  1.9 s/cell
+  [main   22/200] ds22 B          L2      seed 2 8 rows  16.8 s/cell
+  [main   23/200] ds22 B          L2      seed 3 8 rows  14.9 s/cell
+  [main   24/200] ds22 B          L1      seed 3 8 rows  18.7 s/cell
+  [main   25/200] ds22 E          -       seed 4 8 rows  0.8 s/cell
+  [main   26/200] ds22 D_matched  -       seed 4 10 rows  0.7 s/cell
+  [main   27/200] ds22 B          L1      seed 4 8 rows  0.7 s/cell
+  [main   28/200] ds22 B          L2      seed 4 8 rows  2.1 s/cell
+  [main   29/200] ds22 B          L1      seed 5 8 rows  1.3 s/cell
+  [main   30/200] ds22 B          L2      seed 5 8 rows  2.3 s/cell
+  [main   31/200] ds22 F          product seed 4 2 rows  512.2 s/cell
+  [main   32/200] ds22 F          product seed 3 2 rows  556.0 s/cell
+  [main   33/200] ds22 F          product seed 5 2 rows  514.2 s/cell
+  [main   34/200] ds22 E          -       seed 5 8 rows  0.8 s/cell
+  [main   35/200] ds22 D_best     -       seed 5 2 rows  1.5 s/cell
+  [main   36/200] ds22 D_matched  -       seed 5 10 rows  0.6 s/cell
+  [main   37/200] ds22 A          L2      seed 2 2 rows  567.7 s/cell
+  [main   38/200] ds22 D_best     -       seed 5 2 rows  1.9 s/cell
+  [main   39/200] ds22 D_best     -       seed 5 2 rows  2.1 s/cell
+  [main   40/200] ds22 A          L1      seed 2 2 rows  577.3 s/cell
+  [main   41/200] ds22 A          L1      seed 5 2 rows  578.8 s/cell
+  [main   42/200] ds22 F          product seed 5 2 rows  554.4 s/cell
+  [main   43/200] ds22 B          L1      seed 6 8 rows  1.6 s/cell
+  [main   44/200] ds22 A          L1      seed 3 2 rows  671.9 s/cell
+  [main   45/200] ds22 A          L2      seed 4 2 rows  665.7 s/cell
+  [main   46/200] ds22 F          product seed 2 2 rows  731.4 s/cell
+  [main   47/200] ds22 F          product seed 2 2 rows  750.4 s/cell
+  [main   48/200] ds22 B          L2      seed 6 8 rows  1.2 s/cell
+  [main   49/200] ds22 A          L2      seed 5 2 rows  798.2 s/cell
+  [main   50/200] ds22 F          product seed 2 2 rows  974.3 s/cell
+  [main   51/200] ds22 F          product seed 1 2 rows  984.1 s/cell
+  [main   52/200] ds22 A          L1      seed 4 2 rows  1059.9 s/cell
+  [main   53/200] ds22 E          -       seed 6 8 rows  1.1 s/cell
+  [main   54/200] ds22 D_matched  -       seed 6 10 rows  1.4 s/cell
+  [main   55/200] ds22 D_best     -       seed 6 2 rows  1.6 s/cell
+  [main   56/200] ds22 A          L2      seed 5 2 rows  1039.8 s/cell
+  [main   57/200] ds22 D_best     -       seed 6 2 rows  1.6 s/cell
+  [main   58/200] ds22 D_best     -       seed 6 2 rows  3.1 s/cell
+  [main   59/200] ds22 F          product seed 5 2 rows  1043.2 s/cell
+  [main   60/200] ds22 F          product seed 3 2 rows  1107.4 s/cell
+  [main   61/200] ds22 F          product seed 1 2 rows  1142.7 s/cell
+  [main   62/200] ds22 F          product seed 2 2 rows  1150.0 s/cell
+  [main   63/200] ds22 B          L1      seed 7 8 rows  0.9 s/cell
+  [main   64/200] ds22 A          L1      seed 2 2 rows  1231.7 s/cell
+  [main   65/200] ds22 F          product seed 2 2 rows  1234.1 s/cell
+  [main   66/200] ds22 A          L1      seed 2 2 rows  1234.4 s/cell
+  [main   67/200] ds22 B          L2      seed 7 8 rows  1.5 s/cell
+  [main   68/200] ds22 A          L1      seed 3 2 rows  1256.6 s/cell
+  [main   69/200] ds22 F          product seed 1 2 rows  1273.4 s/cell
+  [main   70/200] ds22 A          L2      seed 4 2 rows  1268.1 s/cell
+  [main   71/200] ds22 F          product seed 6 2 rows  551.5 s/cell
+  [main   72/200] ds22 A          L1      seed 6 2 rows  741.1 s/cell
+  [main   73/200] ds22 E          -       seed 7 8 rows  1.0 s/cell
+  [main   74/200] ds22 A          L2      seed 1 2 rows  1321.9 s/cell
+  [main   75/200] ds22 D_best     -       seed 7 2 rows  1.5 s/cell
+  [main   76/200] ds22 D_matched  -       seed 7 10 rows  1.6 s/cell
+  [main   77/200] ds22 D_best     -       seed 7 2 rows  1.5 s/cell
+  [main   78/200] ds22 D_best     -       seed 7 2 rows  1.8 s/cell
+  [main   79/200] ds22 F          product seed 3 2 rows  1358.5 s/cell
+  [main   80/200] ds22 A          L2      seed 3 2 rows  1398.7 s/cell
+  [main   81/200] ds22 F          product seed 3 2 rows  1418.6 s/cell
+  [main   82/200] ds22 A          L2      seed 2 2 rows  1429.6 s/cell
+  [main   83/200] ds22 B          L1      seed 8 8 rows  2.7 s/cell
+  [main   84/200] ds22 F          product seed 5 2 rows  1388.4 s/cell
+  [main   85/200] ds22 A          L2      seed 3 2 rows  1454.0 s/cell
+  [main   86/200] ds22 F          product seed 4 2 rows  1442.5 s/cell
+  [main   87/200] ds22 F          product seed 4 2 rows  1459.5 s/cell
+  [main   88/200] ds22 B          L2      seed 8 8 rows  2.1 s/cell
+  [main   89/200] ds22 F          product seed 6 2 rows  672.6 s/cell
+  [main   90/200] ds22 A          L2      seed 3 2 rows  1516.1 s/cell
+  [main   91/200] ds22 F          product seed 1 2 rows  1519.0 s/cell
+  [main   92/200] ds22 F          product seed 1 2 rows  1577.0 s/cell
+  [main   93/200] ds22 A          L2      seed 6 2 rows  885.5 s/cell
+  [main   94/200] ds22 E          -       seed 8 8 rows  1.0 s/cell
+  [main   95/200] ds22 D_best     -       seed 8 2 rows  0.8 s/cell
+  [main   96/200] ds22 D_matched  -       seed 8 10 rows  1.3 s/cell
+  [main   97/200] ds22 D_best     -       seed 8 2 rows  1.7 s/cell
+  [main   98/200] ds22 D_best     -       seed 8 2 rows  1.7 s/cell
+  [main   99/200] ds22 A          L1      seed 4 2 rows  1616.3 s/cell
+  [main  100/200] ds22 F          product seed 3 2 rows  1705.0 s/cell
+  [main  101/200] ds22 F          product seed 5 2 rows  1175.5 s/cell
+  [main  102/200] ds22 A          L1      seed 4 2 rows  1728.6 s/cell
+  [main  103/200] ds22 B          L1      seed 9 8 rows  1.4 s/cell
+  [main  104/200] ds22 A          L1      seed 7 2 rows  676.8 s/cell
+  [main  105/200] ds22 A          L1      seed 8 2 rows  523.5 s/cell
+  [main  106/200] ds22 F          product seed 6 2 rows  864.8 s/cell
+  [main  107/200] ds22 A          L1      seed 3 2 rows  1858.2 s/cell
+  [main  108/200] ds22 B          L2      seed 9 8 rows  1.1 s/cell
+  [main  109/200] ds22 F          product seed 7 2 rows  621.2 s/cell
+  [main  110/200] ds22 A          L2      seed 3 2 rows  1877.5 s/cell
+  [main  111/200] ds22 A          L1      seed 6 2 rows  1316.1 s/cell
+  [main  112/200] ds22 F          product seed 7 2 rows  624.1 s/cell
+  [main  113/200] ds22 E          -       seed 9 8 rows  1.0 s/cell
+  [main  114/200] ds22 D_matched  -       seed 9 10 rows  1.4 s/cell
+  [main  115/200] ds22 D_best     -       seed 9 2 rows  2.8 s/cell
+  [main  116/200] ds22 D_best     -       seed 9 2 rows  3.6 s/cell
+  [main  117/200] ds22 D_best     -       seed 9 2 rows  2.1 s/cell
+  [main  118/200] ds22 A          L1      seed 1 2 rows  1922.5 s/cell
+  [main  119/200] ds22 A          L2      seed 4 2 rows  1902.9 s/cell
+  [main  120/200] ds22 A          L1      seed 1 2 rows  1947.5 s/cell
+  [main  121/200] ds22 F          product seed 8 2 rows  528.6 s/cell
+  [main  122/200] ds22 B          L1      seed 10 8 rows  2.5 s/cell
+  [main  123/200] ds22 A          L1      seed 3 2 rows  2084.4 s/cell
+  [main  124/200] ds22 A          L2      seed 1 2 rows  2090.2 s/cell
+  [main  125/200] ds22 A          L2      seed 6 2 rows  1487.7 s/cell
+  [main  126/200] ds22 A          L1      seed 1 2 rows  2151.7 s/cell
+  [main  127/200] ds22 B          L2      seed 10 8 rows  1.7 s/cell
+  [main  128/200] ds22 A          L1      seed 4 2 rows  2188.0 s/cell
+  [main  129/200] ds22 A          L2      seed 9 2 rows  528.4 s/cell
+  [main  130/200] ds22 F          product seed 8 2 rows  761.5 s/cell
+  [main  131/200] ds22 F          product seed 8 2 rows  781.2 s/cell
+  [main  132/200] ds22 A          L2      seed 8 2 rows  872.3 s/cell
+  [main  133/200] ds22 F          product seed 4 2 rows  2282.5 s/cell
+  [main  134/200] ds22 E          -       seed 10 8 rows  0.6 s/cell
+  [main  135/200] ds22 D_best     -       seed 10 2 rows  1.6 s/cell
+  [main  136/200] ds22 D_best     -       seed 10 2 rows  2.0 s/cell
+  [main  137/200] ds22 D_best     -       seed 10 2 rows  2.1 s/cell
+  [main  138/200] ds22 D_matched  -       seed 10 10 rows  0.9 s/cell
+  [main  139/200] ds22 A          L1      seed 1 2 rows  2328.7 s/cell
+  [main  140/200] ds22 F          product seed 9 2 rows  463.5 s/cell
+  [main  141/200] ds22 F          product seed 6 2 rows  1602.3 s/cell
+  [main  142/200] ds22 A          L1      seed 7 2 rows  1279.2 s/cell
+  [main  143/200] ds22 A          L2      seed 6 2 rows  1705.9 s/cell
+  [main  144/200] ds22 F          product seed 9 2 rows  529.2 s/cell
+  [main  145/200] ds22 A          L2      seed 6 2 rows  1784.1 s/cell
+  [main  146/200] ds22 A          L1      seed 9 2 rows  854.1 s/cell
+  [main  147/200] ds22 F          product seed 8 2 rows  931.6 s/cell
+  [main  148/200] ds22 A          L2      seed 8 2 rows  1000.4 s/cell
+  [main  149/200] ds22 A          L2      seed 2 2 rows  2460.1 s/cell
+  [main  150/200] ds22 A          L1      seed 5 2 rows  2433.2 s/cell
+  [main  151/200] ds22 F          product seed 7 2 rows  1222.6 s/cell
+  [main  152/200] ds22 A          L1      seed 9 2 rows  915.2 s/cell
+  [main  153/200] ds22 A          L2      seed 5 2 rows  2459.6 s/cell
+  [main  154/200] ds22 A          L1      seed 10 2 rows  587.7 s/cell
+  [main  155/200] ds22 F          product seed 7 2 rows  1210.5 s/cell
+  [main  156/200] ds22 A          L1      seed 5 2 rows  2485.7 s/cell
+  [main  157/200] ds22 A          L2      seed 2 2 rows  2523.7 s/cell
+  [main  158/200] ds22 A          L2      seed 9 2 rows  804.4 s/cell
+  [main  159/200] ds22 A          L2      seed 7 2 rows  1406.4 s/cell
+  [main  160/200] ds22 F          product seed 8 2 rows  1051.2 s/cell
+  [main  161/200] ds22 A          L1      seed 6 2 rows  1997.1 s/cell
+  [main  162/200] ds22 A          L1      seed 7 2 rows  1515.7 s/cell
+  [main  163/200] ds22 F          product seed 9 2 rows  751.7 s/cell
+  [main  164/200] ds22 A          L2      seed 5 2 rows  2630.7 s/cell
+  [main  165/200] ds22 F          product seed 10 2 rows  512.5 s/cell
+  [main  166/200] ds22 A          L1      seed 6 2 rows  2165.8 s/cell
+  [main  167/200] ds22 A          L1      seed 2 2 rows  2741.9 s/cell
+  [main  168/200] ds22 F          product seed 7 2 rows  1488.5 s/cell
+  [main  169/200] ds22 A          L2      seed 1 2 rows  2813.3 s/cell
+  [main  170/200] ds22 A          L1      seed 10 2 rows  895.1 s/cell
+  [main  171/200] ds22 A          L1      seed 9 2 rows  1216.1 s/cell
+  [main  172/200] ds22 A          L1      seed 5 2 rows  2797.5 s/cell
+  [main  173/200] ds22 F          product seed 10 2 rows  601.0 s/cell
+  [main  174/200] ds22 A          L1      seed 8 2 rows  1571.2 s/cell
+  [main  175/200] ds22 F          product seed 4 2 rows  2892.4 s/cell
+  [main  176/200] ds22 A          L2      seed 7 2 rows  1697.0 s/cell
+  [main  177/200] ds22 F          product seed 6 2 rows  2008.1 s/cell
+  [main  178/200] ds22 F          product seed 9 2 rows  1155.1 s/cell
+  [main  179/200] ds22 A          L1      seed 8 2 rows  1858.8 s/cell
+  [main  180/200] ds22 A          L2      seed 7 2 rows  1998.3 s/cell
+  [main  181/200] ds22 A          L2      seed 7 2 rows  2072.7 s/cell
+  [main  182/200] ds22 F          product seed 9 2 rows  1415.8 s/cell
+  [main  183/200] ds22 A          L2      seed 4 2 rows  3288.7 s/cell
+  [main  184/200] ds22 A          L2      seed 8 2 rows  2139.5 s/cell
+  [main  185/200] ds22 A          L2      seed 8 2 rows  2183.7 s/cell
+  [main  186/200] ds22 A          L2      seed 10 2 rows  1634.1 s/cell
+  [main  187/200] ds22 F          product seed 10 2 rows  1499.7 s/cell
+  [main  188/200] ds22 F          product seed 10 2 rows  1500.8 s/cell
+  [main  189/200] ds22 A          L2      seed 10 2 rows  1740.7 s/cell
+  [main  190/200] ds22 A          L2      seed 9 2 rows  2260.5 s/cell
+  [main  191/200] ds22 A          L1      seed 10 2 rows  2121.2 s/cell
+  [main  192/200] ds22 A          L1      seed 8 2 rows  2760.9 s/cell
+  [main  193/200] ds22 A          L1      seed 10 2 rows  2357.4 s/cell
+  [main  194/200] ds22 A          L2      seed 10 2 rows  2263.8 s/cell
+  [main  195/200] ds22 A          L2      seed 9 2 rows  2535.7 s/cell
+  [main  196/200] ds22 F          product seed 10 2 rows  2172.7 s/cell
+  [main  197/200] ds22 A          L2      seed 1 2 rows  4592.3 s/cell
+  [main  198/200] ds22 A          L1      seed 7 2 rows  3702.8 s/cell
+  [main  199/200] ds22 A          L1      seed 9 2 rows  3586.3 s/cell
+  [main  200/200] ds22 A          L2      seed 10 2 rows  3352.3 s/cell
+====================================================================================================
+A7 — main series: descriptive statistics. Tests, CI, TOST and figures are A8.
+====================================================================================================
+
+SELECTED lr (cell = dataset seed x dilution x ansatz; arms A and B, seeds 1-3)
+  ds22  h2      L1  -> 0.03   | 0.001:0.8083 0.003:0.8128 0.01:0.8206 0.03:0.8231
+  ds22  h2      L2  -> 0.01   | 0.001:0.7686 0.003:0.7692 0.01:0.7803 0.03:0.7733
+  ds22  h4      L1  -> 0.01   | 0.001:0.8072 0.003:0.8217 0.01:0.8344 0.03:0.8306
+  ds22  h4      L2  -> 0.01   | 0.001:0.7597 0.003:0.7878 0.01:0.8044 0.03:0.8022
+  ds22  h42     L1  -> 0.01   | 0.001:0.8489 0.003:0.8936 0.01:0.9083 0.03:0.9056
+  ds22  h42     L2  -> 0.01   | 0.001:0.7989 0.003:0.8408 0.01:0.8686 0.03:0.8628
+  ds22  linear  L1  -> 0.03   | 0.001:0.7625 0.003:0.7864 0.01:0.7978 0.03:0.8036
+  ds22  linear  L2  -> 0.03   | 0.001:0.7272 0.003:0.7467 0.01:0.7522 0.03:0.7542
+
+SELECTED lr, arm E (own grid, one point wider — D-30)
+  ds22  h2      -> 0.1
+  ds22  h4      -> 0.1
+  ds22  h42     -> 0.01
+  ds22  linear  -> 0.1
+
+SELECTED lr, arm D_best (own grid, per width)
+  ds22  M=32   -> 0.03
+  ds22  M=128  -> 0.01
+  ds22  M=512  -> 0.003
+
+GATES at the final lr
+  ds22: G1 PASS margin +0.045833 strong 0.9000 floor 0.8042 | G2 PASS evr1 0.7610
+
+PER-ARM means and sigma on the 1200 test rows — EVERY ARM SEPARATELY
+  cell                   arm          n     mean       sd  theta_disp  epochs
+  ds22|h2|L1             A           10   0.7014   0.1826    7.08e-01    74.2
+  ds22|h2|L1             B           10   0.7141   0.1286    0.00e+00    62.8
+  ds22|h2|L1             E           10   0.8036   0.1109    0.00e+00    72.8
+  ds22|h2|L1             F           10   0.6564   0.1754    4.99e-01    61.1
+  ds22|h2|L1             D_matched   10   0.7059   0.0841    0.00e+00    67.3
+  ds22|h2|L2             A           10   0.7769   0.1525    6.26e-01    94.3
+  ds22|h2|L2             B           10   0.6391   0.1400    0.00e+00    78.0
+  ds22|h2|L2             E           10   0.8036   0.1109    0.00e+00    72.8
+  ds22|h2|L2             F           10   0.7279   0.1648    5.57e-01    86.0
+  ds22|h2|L2             D_matched   10   0.7076   0.0858    0.00e+00    85.6
+  ds22|h42|L1            A           10   0.9604   0.0099    8.58e-01   153.6
+  ds22|h42|L1            B           10   0.8170   0.0576    0.00e+00   149.2
+  ds22|h42|L1            E           10   0.9758   0.0047    0.00e+00   133.8
+  ds22|h42|L1            F           10   0.9672   0.0051    7.10e-01   101.3
+  ds22|h42|L1            D_matched   10   0.7810   0.0521    0.00e+00    91.7
+  ds22|h42|L2            A           10   0.9435   0.0220    7.42e-01   126.8
+  ds22|h42|L2            B           10   0.7568   0.0753    0.00e+00   135.9
+  ds22|h42|L2            E           10   0.9758   0.0047    0.00e+00   133.8
+  ds22|h42|L2            F           10   0.9672   0.0051    7.10e-01   101.3
+  ds22|h42|L2            D_matched   10   0.7810   0.0521    0.00e+00    91.7
+  ds22|h4|L1             A           10   0.8722   0.0278    9.45e-01   124.7
+  ds22|h4|L1             B           10   0.7667   0.0438    0.00e+00    95.2
+  ds22|h4|L1             E           10   0.8513   0.0246    0.00e+00    74.0
+  ds22|h4|L1             F           10   0.8356   0.0290    7.33e-01   102.1
+  ds22|h4|L1             D_matched   10   0.7448   0.0374    0.00e+00    84.3
+  ds22|h4|L2             A           10   0.8762   0.0306    8.75e-01   161.1
+  ds22|h4|L2             B           10   0.7184   0.0802    0.00e+00    83.1
+  ds22|h4|L2             E           10   0.8513   0.0246    0.00e+00    74.0
+  ds22|h4|L2             F           10   0.8356   0.0290    7.33e-01   102.1
+  ds22|h4|L2             D_matched   10   0.7448   0.0374    0.00e+00    84.3
+  ds22|linear|L1         A           10   0.8175   0.0089    9.74e-01    73.4
+  ds22|linear|L1         B           10   0.7493   0.0499    0.00e+00    99.5
+  ds22|linear|L1         E           10   0.8028   0.0054    0.00e+00    50.0
+  ds22|linear|L1         F           10   0.8127   0.0038    7.61e-01    40.9
+  ds22|linear|L1         D_matched   10   0.7077   0.0458    0.00e+00    59.8
+  ds22|linear|L2         A           10   0.8191   0.0060    1.08e+00    78.2
+  ds22|linear|L2         B           10   0.6967   0.0795    0.00e+00    90.2
+  ds22|linear|L2         E           10   0.8028   0.0054    0.00e+00    50.0
+  ds22|linear|L2         F           10   0.8127   0.0038    7.61e-01    40.9
+  ds22|linear|L2         D_matched   10   0.7077   0.0458    0.00e+00    59.8
+
+ESTIMANDS, paired by seed. MDE recomputed from the sigma of THIS series.
+  cell                   estimand            n      mean       sd      MDE  >=MDE
+  ds22|h2|L1             delta_AB           10   -0.0127   0.1644   0.1635     no
+  ds22|h2|L1             delta_AE           10   -0.1022   0.1751   0.1742     no
+  ds22|h2|L1             delta_AF           10   +0.0450   0.1855   0.1845     no
+  ds22|h2|L1             delta_BD_matched   10   +0.0082   0.1567   0.1558     no
+  ds22|h2|L2             delta_AB           10   +0.1378   0.1339   0.1332    yes
+  ds22|h2|L2             delta_AE           10   -0.0267   0.1925   0.1915     no
+  ds22|h2|L2             delta_AF           10   +0.0490   0.1837   0.1827     no
+  ds22|h2|L2             delta_BD_matched   10   -0.0685   0.1213   0.1207     no
+  ds22|h42|L1            delta_AB           10   +0.1434   0.0579   0.0576    yes
+  ds22|h42|L1            delta_AE           10   -0.0154   0.0101   0.0101    yes
+  ds22|h42|L1            delta_AF           10   -0.0068   0.0075   0.0074     no
+  ds22|h42|L1            delta_BD_matched   10   +0.0360   0.0646   0.0643     no
+  ds22|h42|L2            delta_AB           10   +0.1867   0.0766   0.0762    yes
+  ds22|h42|L2            delta_AE           10   -0.0323   0.0214   0.0213    yes
+  ds22|h42|L2            delta_AF           10   -0.0237   0.0222   0.0221    yes
+  ds22|h42|L2            delta_BD_matched   10   -0.0242   0.0830   0.0826     no
+  ds22|h4|L1             delta_AB           10   +0.1054   0.0404   0.0402    yes
+  ds22|h4|L1             delta_AE           10   +0.0208   0.0321   0.0319     no
+  ds22|h4|L1             delta_AF           10   +0.0366   0.0276   0.0275    yes
+  ds22|h4|L1             delta_BD_matched   10   +0.0220   0.0403   0.0401     no
+  ds22|h4|L2             delta_AB           10   +0.1577   0.0842   0.0838    yes
+  ds22|h4|L2             delta_AE           10   +0.0248   0.0275   0.0273     no
+  ds22|h4|L2             delta_AF           10   +0.0406   0.0428   0.0426     no
+  ds22|h4|L2             delta_BD_matched   10   -0.0263   0.0817   0.0812     no
+  ds22|linear|L1         delta_AB           10   +0.0682   0.0526   0.0524    yes
+  ds22|linear|L1         delta_AE           10   +0.0147   0.0096   0.0095    yes
+  ds22|linear|L1         delta_AF           10   +0.0048   0.0096   0.0095     no
+  ds22|linear|L1         delta_BD_matched   10   +0.0417   0.0691   0.0687     no
+  ds22|linear|L2         delta_AB           10   +0.1223   0.0803   0.0799    yes
+  ds22|linear|L2         delta_AE           10   +0.0162   0.0074   0.0074    yes
+  ds22|linear|L2         delta_AF           10   +0.0064   0.0068   0.0067     no
+  ds22|linear|L2         delta_BD_matched   10   -0.0109   0.0866   0.0862     no
+
+DECOMPOSITION Delta_AE = Delta_AB + (acc(B) - acc(E)) — mandatory in every cell
+  ds22|h2|L1             -0.0127 + -0.0895 = -0.1022  (Delta_AE -0.1022, residual +0.00e+00)
+  ds22|h2|L2             +0.1378 + -0.1645 = -0.0267  (Delta_AE -0.0267, residual +0.00e+00)
+  ds22|h42|L1            +0.1434 + -0.1588 = -0.0154  (Delta_AE -0.0154, residual -1.73e-17)
+  ds22|h42|L2            +0.1867 + -0.2190 = -0.0323  (Delta_AE -0.0323, residual +0.00e+00)
+  ds22|h4|L1             +0.1054 + -0.0846 = +0.0208  (Delta_AE +0.0208, residual -3.47e-18)
+  ds22|h4|L2             +0.1577 + -0.1329 = +0.0248  (Delta_AE +0.0248, residual +2.08e-17)
+  ds22|linear|L1         +0.0682 + -0.0535 = +0.0147  (Delta_AE +0.0147, residual +0.00e+00)
+  ds22|linear|L2         +0.1223 + -0.1061 = +0.0163  (Delta_AE +0.0162, residual -3.47e-18)
+
+ARM D_best — off the dilution axis, one point per (dataset seed x M)
+  ds22: selected M = 512
+    M=32   val 0.8288 test 0.8240 (sd 0.0130, lr 0.03)
+    M=128  val 0.8457 test 0.8450 (sd 0.0055, lr 0.01)
+    M=512  val 0.8508 test 0.8491 (sd 0.0038, lr 0.003)
+
+RIDGE readout control — REPORTED BESIDE the Adam head, not a consistency condition (D-19)
+  B          n   80 adam 0.7323 ridge 0.7161 gap +0.0162 alpha {'1e-06': 52, '0.0001': 0, '0.01': 4, '1.0': 24}
+  D_best     n   30 adam 0.8394 ridge 0.8271 gap +0.0123 alpha {'1e-06': 11, '0.0001': 9, '0.01': 3, '1.0': 7}
+  D_matched  n   50 adam 0.7294 ridge 0.7060 gap +0.0234 alpha {'1e-06': 40, '0.0001': 0, '0.01': 0, '1.0': 10}
+  E          n   40 adam 0.8584 ridge 0.7750 gap +0.0834 alpha {'1e-06': 40, '0.0001': 0, '0.01': 0, '1.0': 0}
+
+EPOCH BUDGET — how many runs hit 300 epochs
+  A             1 / 80   = 1.2 %
+  B             0 / 80   = 0.0 %
+  E             0 / 40   = 0.0 %
+  F             0 / 50   = 0.0 %
+  D_matched     0 / 50   = 0.0 %
+  D_best        0 / 30   = 0.0 %
+  ALL           1 / 330  = 0.3 %
+
+THREE UNCERTAINTY ACCOUNTS side by side, never combined (raport.tex 3.7)
+  (2) binomial SE on 1200 test rows: 0.0144
+  (1) sigma_Delta per cell: the 'sd' column of the estimand table above
+  (3) discordant pairs b/c — the input of McNemar; the test itself is A8
+      ds22|h2|L1             delta_AB: b 1181 c 1333 delta_AE: b 730 c 1956 delta_AF: b 1759 c 2077 delta_BD_matched: b 1802 c 1704
+      ds22|h2|L2             delta_AB: b 2222 c 568 delta_AE: b 1190 c 1510 delta_AF: b 1556 c 968 delta_BD_matched: b 1523 c 2325
+      ds22|h42|L1            delta_AB: b 1956 c 235 delta_AE: b 142 c 327 delta_AF: b 221 c 302 delta_BD_matched: b 1607 c 1175
+      ds22|h42|L2            delta_AB: b 2608 c 368 delta_AE: b 160 c 548 delta_AF: b 230 c 514 delta_BD_matched: b 1434 c 1724
+      ds22|h4|L1             delta_AB: b 1671 c 406 delta_AE: b 683 c 433 delta_AF: b 825 c 386 delta_BD_matched: b 1581 c 1317
+      ds22|h4|L2             delta_AB: b 2351 c 458 delta_AE: b 614 c 316 delta_AF: b 838 c 351 delta_BD_matched: b 1482 c 1798
+      ds22|linear|L1         delta_AB: b 1359 c 541 delta_AE: b 463 c 287 delta_AF: b 314 c 256 delta_BD_matched: b 1813 c 1313
+      ds22|linear|L2         delta_AB: b 2189 c 721 delta_AE: b 489 c 294 delta_AF: b 333 c 256 delta_BD_matched: b 1735 c 1866
+
+DETERMINISM (T-I, pipeline): 48 overlapping cells compared, 5 mismatches -> FAIL
+
+VERDICTS from the table declared before the run
+  [baseline scenario] ds22|linear|L1: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.06816666666666667, 'theta_displacement': 0.9738551676273346, 'mde_this_series': 0.05235431912433763}
+  [baseline scenario] ds22|linear|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.12233333333333334, 'theta_displacement': 1.0766679406166078, 'mde_this_series': 0.07989766277330436}
+  [STOP] ds22|h2|L1: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.7014166666666667, 'acc_B': 0.7140833333333334, 'acc_E': 0.8035833333333334, 'mde_AE_this_series': 0.17416005625956127}
+  [UNDECIDABLE at n=10] ds22|h2|L1: |Delta| below the MDE of this series
+      report the CI; do NOT write 'there is no effect' (raport.tex 3.7)
+      {'delta_AB': -0.01266666666666667, 'mde_this_series': 0.16348494872959365}
+  [STOP] ds22|h2|L2: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.7769166666666667, 'acc_B': 0.6390833333333333, 'acc_E': 0.8035833333333334, 'mde_AE_this_series': 0.1915296358679536}
+  [baseline scenario] ds22|h2|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.13783333333333334, 'theta_displacement': 0.6255220770835876, 'mde_this_series': 0.13316919248526102}
+  [STOP] ds22|h4|L1: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.8721666666666665, 'acc_B': 0.7667499999999999, 'acc_E': 0.8513333333333334, 'mde_AE_this_series': 0.03188710701064489}
+  [baseline scenario] ds22|h4|L1: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.10541666666666664, 'theta_displacement': 0.9448850989341736, 'mde_this_series': 0.04022982836189446}
+  [STOP] ds22|h4|L2: acc(A) ~ acc(E) with acc(B) < acc(E)
+      'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) — a result about ARCHITECTURE, not about trainability.
+      {'acc_A': 0.8761666666666666, 'acc_B': 0.7184166666666666, 'acc_E': 0.8513333333333334, 'mde_AE_this_series': 0.027335921591695206}
+  [baseline scenario] ds22|h4|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.15774999999999997, 'theta_displacement': 0.8754836201667786, 'mde_this_series': 0.08379242830536289}
+  [baseline scenario] ds22|h42|L1: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.14341666666666666, 'theta_displacement': 0.8576467394828796, 'mde_this_series': 0.0576016572645394}
+  [baseline scenario] ds22|h42|L2: Delta_AB > 0, theta moves
+      analyse per A6
+      {'delta_AB': 0.1866666666666667, 'theta_displacement': 0.7421165764331817, 'mde_this_series': 0.07615018084909363}
+
+wall 5493.8 s   outputs in /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds22
+====================================================================================================
+-----------------------------------------------------------------------
+[Sat Aug 22 11:46:03 AM CEST 2026] exit status 0

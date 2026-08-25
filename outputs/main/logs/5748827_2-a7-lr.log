@@ -1,0 +1,208 @@
+[Fri Aug 21 10:33:03 PM CEST 2026] job 5748827 array-task 2 on r11ch09b02.lem.kdm.wcss.pl
+modules   initialised from /etc/profile.d/modules.sh
+Loading Python/3.12.3-GCCcore-13.3.0
+  Loading requirement: GCCcore/13.3.0 zlib/1.3.1-GCCcore-13.3.0
+    binutils/2.42-GCCcore-13.3.0 bzip2/1.0.8-GCCcore-13.3.0
+    ncurses/6.5-GCCcore-13.3.0 libreadline/8.2-GCCcore-13.3.0
+    Tcl/8.6.14-GCCcore-13.3.0 SQLite/3.45.3-GCCcore-13.3.0
+    XZ/5.4.5-GCCcore-13.3.0 libffi/3.4.5-GCCcore-13.3.0 OpenSSL/3
+module    Python/3.12.3-GCCcore-13.3.0
+WORKDIR   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A
+OUTROOT   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7
+PYTHON    /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python
+commit    unknown
+cpus      32
+cmd       SEEDS=(11 22 33); SEED=${SEEDS[$SLURM_ARRAY_TASK_ID]}; /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/.venv-linux/bin/python scripts/run_main_series.py             --no-generate --dataset-seeds $SEED --workers ${SLURM_CPUS_PER_TASK:-32}             --out-dir /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds$SEED --stop-after gates
+python    Python 3.12.3
+-----------------------------------------------------------------------
+# A7 main series  run_id a7_20260821T203314Z  commit unknown  env 56488e26fdba
+#   generator seeds [33]  dilutions ['linear', 'h2', 'h4', 'h42']  ansatze ['L1', 'L2']  seeds [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  widths [32, 128, 512]
+#   workers 32  patience 30  budget 300  backend pennylane
+#   ds33: hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed33 dataset_hash 5d05157a8a23e915 pca_hash 536dc33fc72f70f2
+#   Jacobian rank of the socket per ansatz: {'L1': 35, 'L2': 35, 'product': 20} (nominal 35)
+
+## stage 1 — lr selection: 114 tasks
+  [lr    1/114] ds33 B          L1      seed 1 16 cells
+  [lr    2/114] ds33 A          L1      seed 1 1 cells
+  [lr    3/114] ds33 B          L2      seed 1 16 cells
+  [lr    4/114] ds33 E          -       seed 1 20 cells
+  [lr    5/114] ds33 D_best     -       seed 1 4 cells
+  [lr    6/114] ds33 D_best     -       seed 1 4 cells
+  [lr    7/114] ds33 D_best     -       seed 1 4 cells
+  [lr    8/114] ds33 A          L1      seed 1 1 cells
+  [lr    9/114] ds33 A          L1      seed 1 1 cells
+  [lr   10/114] ds33 A          L2      seed 1 1 cells
+  [lr   11/114] ds33 A          L2      seed 1 1 cells
+  [lr   12/114] ds33 A          L1      seed 1 1 cells
+  [lr   13/114] ds33 A          L1      seed 1 1 cells
+  [lr   14/114] ds33 A          L2      seed 1 1 cells
+  [lr   15/114] ds33 A          L2      seed 1 1 cells
+  [lr   16/114] ds33 A          L1      seed 1 1 cells
+  [lr   17/114] ds33 A          L1      seed 1 1 cells
+  [lr   18/114] ds33 A          L1      seed 1 1 cells
+  [lr   19/114] ds33 A          L1      seed 1 1 cells
+  [lr   20/114] ds33 A          L1      seed 1 1 cells
+  [lr   21/114] ds33 A          L1      seed 1 1 cells
+  [lr   22/114] ds33 A          L2      seed 1 1 cells
+  [lr   23/114] ds33 A          L2      seed 1 1 cells
+  [lr   24/114] ds33 A          L2      seed 1 1 cells
+  [lr   25/114] ds33 A          L2      seed 1 1 cells
+  [lr   26/114] ds33 B          L1      seed 2 16 cells
+  [lr   27/114] ds33 A          L2      seed 1 1 cells
+  [lr   28/114] ds33 A          L1      seed 2 1 cells
+  [lr   29/114] ds33 A          L1      seed 1 1 cells
+  [lr   30/114] ds33 A          L1      seed 2 1 cells
+  [lr   31/114] ds33 A          L2      seed 1 1 cells
+  [lr   32/114] ds33 A          L1      seed 2 1 cells
+  [lr   33/114] ds33 A          L1      seed 2 1 cells
+  [lr   34/114] ds33 A          L1      seed 2 1 cells
+  [lr   35/114] ds33 A          L2      seed 1 1 cells
+  [lr   36/114] ds33 A          L1      seed 2 1 cells
+  [lr   37/114] ds33 A          L1      seed 1 1 cells
+  [lr   38/114] ds33 A          L2      seed 1 1 cells
+  [lr   39/114] ds33 A          L2      seed 2 1 cells
+  [lr   40/114] ds33 A          L2      seed 2 1 cells
+  [lr   41/114] ds33 B          L2      seed 2 16 cells
+  [lr   42/114] ds33 E          -       seed 2 20 cells
+  [lr   43/114] ds33 D_best     -       seed 2 4 cells
+  [lr   44/114] ds33 D_best     -       seed 2 4 cells
+  [lr   45/114] ds33 D_best     -       seed 2 4 cells
+  [lr   46/114] ds33 A          L2      seed 2 1 cells
+  [lr   47/114] ds33 A          L1      seed 2 1 cells
+  [lr   48/114] ds33 A          L1      seed 1 1 cells
+  [lr   49/114] ds33 A          L1      seed 2 1 cells
+  [lr   50/114] ds33 A          L1      seed 1 1 cells
+  [lr   51/114] ds33 A          L2      seed 1 1 cells
+  [lr   52/114] ds33 A          L1      seed 1 1 cells
+  [lr   53/114] ds33 A          L2      seed 2 1 cells
+  [lr   54/114] ds33 A          L2      seed 2 1 cells
+  [lr   55/114] ds33 A          L2      seed 2 1 cells
+  [lr   56/114] ds33 A          L1      seed 2 1 cells
+  [lr   57/114] ds33 A          L1      seed 3 1 cells
+  [lr   58/114] ds33 A          L1      seed 3 1 cells
+  [lr   59/114] ds33 A          L1      seed 3 1 cells
+  [lr   60/114] ds33 A          L1      seed 2 1 cells
+  [lr   61/114] ds33 A          L2      seed 2 1 cells
+  [lr   62/114] ds33 A          L2      seed 1 1 cells
+  [lr   63/114] ds33 A          L1      seed 2 1 cells
+  [lr   64/114] ds33 B          L1      seed 3 16 cells
+  [lr   65/114] ds33 A          L2      seed 1 1 cells
+  [lr   66/114] ds33 A          L2      seed 2 1 cells
+  [lr   67/114] ds33 A          L2      seed 1 1 cells
+  [lr   68/114] ds33 A          L2      seed 2 1 cells
+  [lr   69/114] ds33 A          L2      seed 2 1 cells
+  [lr   70/114] ds33 A          L1      seed 3 1 cells
+  [lr   71/114] ds33 A          L2      seed 2 1 cells
+  [lr   72/114] ds33 A          L2      seed 2 1 cells
+  [lr   73/114] ds33 A          L1      seed 2 1 cells
+  [lr   74/114] ds33 A          L1      seed 2 1 cells
+  [lr   75/114] ds33 A          L1      seed 2 1 cells
+  [lr   76/114] ds33 A          L1      seed 2 1 cells
+  [lr   77/114] ds33 A          L1      seed 3 1 cells
+  [lr   78/114] ds33 A          L2      seed 3 1 cells
+  [lr   79/114] ds33 A          L1      seed 3 1 cells
+  [lr   80/114] ds33 A          L2      seed 2 1 cells
+  [lr   81/114] ds33 B          L2      seed 3 16 cells
+  [lr   82/114] ds33 A          L1      seed 3 1 cells
+  [lr   83/114] ds33 D_best     -       seed 3 4 cells
+  [lr   84/114] ds33 D_best     -       seed 3 4 cells
+  [lr   85/114] ds33 E          -       seed 3 20 cells
+  [lr   86/114] ds33 D_best     -       seed 3 4 cells
+  [lr   87/114] ds33 A          L2      seed 3 1 cells
+  [lr   88/114] ds33 A          L1      seed 3 1 cells
+  [lr   89/114] ds33 A          L2      seed 3 1 cells
+  [lr   90/114] ds33 A          L1      seed 2 1 cells
+  [lr   91/114] ds33 A          L1      seed 3 1 cells
+  [lr   92/114] ds33 A          L2      seed 3 1 cells
+  [lr   93/114] ds33 A          L1      seed 3 1 cells
+  [lr   94/114] ds33 A          L2      seed 3 1 cells
+  [lr   95/114] ds33 A          L2      seed 3 1 cells
+  [lr   96/114] ds33 A          L2      seed 3 1 cells
+  [lr   97/114] ds33 A          L2      seed 3 1 cells
+  [lr   98/114] ds33 A          L2      seed 3 1 cells
+  [lr   99/114] ds33 A          L1      seed 3 1 cells
+  [lr  100/114] ds33 A          L1      seed 3 1 cells
+  [lr  101/114] ds33 A          L2      seed 2 1 cells
+  [lr  102/114] ds33 A          L2      seed 3 1 cells
+  [lr  103/114] ds33 A          L1      seed 3 1 cells
+  [lr  104/114] ds33 A          L2      seed 3 1 cells
+  [lr  105/114] ds33 A          L2      seed 2 1 cells
+  [lr  106/114] ds33 A          L2      seed 3 1 cells
+  [lr  107/114] ds33 A          L2      seed 3 1 cells
+  [lr  108/114] ds33 A          L2      seed 3 1 cells
+  [lr  109/114] ds33 A          L1      seed 3 1 cells
+  [lr  110/114] ds33 A          L2      seed 2 1 cells
+  [lr  111/114] ds33 A          L2      seed 3 1 cells
+  [lr  112/114] ds33 A          L1      seed 3 1 cells
+  [lr  113/114] ds33 A          L1      seed 3 1 cells
+  [lr  114/114] ds33 A          L2      seed 3 1 cells
+
+## stage 2 — G1/G2 per generator seed at the final lr
+  ds33: G1 PASS margin +0.071667 | G2 PASS evr1 0.7973
+====================================================================================================
+A7 stage 1 — lr selection. THE MAIN SERIES IS COMMITTED TO THESE VALUES.
+====================================================================================================
+
+CELL (dataset seed x dilution x ansatz) — arms A and B
+  ds33|linear|L1           -> 0.03    | 0.001:0.7386 0.003:0.7694 0.01:0.7761 0.03:0.7789 | margin +0.0028  <-- ON THE UPPER EDGE
+      A          0.001:0.7900 0.003:0.8361 0.01:0.8328 0.03:0.8361
+      B          0.001:0.6872 0.003:0.7028 0.01:0.7194 0.03:0.7217
+  ds33|linear|L2           -> 0.03    | 0.001:0.7161 0.003:0.7622 0.01:0.7678 0.03:0.7717 | margin +0.0039  <-- ON THE UPPER EDGE
+      A          0.001:0.7844 0.003:0.8317 0.01:0.8389 0.03:0.8378
+      B          0.001:0.6478 0.003:0.6928 0.01:0.6967 0.03:0.7056
+  ds33|h2|L1               -> 0.03    | 0.001:0.7639 0.003:0.7972 0.01:0.8047 0.03:0.8056 | margin +0.0008  <-- ON THE UPPER EDGE
+      A          0.001:0.8111 0.003:0.8522 0.01:0.8617 0.03:0.8639
+      B          0.001:0.7167 0.003:0.7422 0.01:0.7478 0.03:0.7472
+  ds33|h2|L2               -> 0.01    | 0.001:0.7792 0.003:0.7803 0.01:0.8025 0.03:0.7981 | margin +0.0044
+      A          0.001:0.8517 0.003:0.8494 0.01:0.8644 0.03:0.8561
+      B          0.001:0.7067 0.003:0.7111 0.01:0.7406 0.03:0.7400
+  ds33|h4|L1               -> 0.01    | 0.001:0.7611 0.003:0.7819 0.01:0.8011 0.03:0.7992 | margin +0.0019
+      A          0.001:0.8133 0.003:0.8456 0.01:0.8583 0.03:0.8572
+      B          0.001:0.7089 0.003:0.7183 0.01:0.7439 0.03:0.7411
+  ds33|h4|L2               -> 0.01    | 0.001:0.7864 0.003:0.7894 0.01:0.8028 0.03:0.8000 | margin +0.0028
+      A          0.001:0.8539 0.003:0.8594 0.01:0.8683 0.03:0.8617
+      B          0.001:0.7189 0.003:0.7194 0.01:0.7372 0.03:0.7383
+  ds33|h42|L1              -> 0.01    | 0.001:0.8161 0.003:0.8436 0.01:0.8600 0.03:0.8575 | margin +0.0025
+      A          0.001:0.8750 0.003:0.9294 0.01:0.9389 0.03:0.9311
+      B          0.001:0.7572 0.003:0.7578 0.01:0.7811 0.03:0.7839
+  ds33|h42|L2              -> 0.01    | 0.001:0.8181 0.003:0.8439 0.01:0.8636 0.03:0.8556 | margin +0.0081
+      A          0.001:0.8639 0.003:0.8983 0.01:0.9317 0.03:0.9222
+      B          0.001:0.7722 0.003:0.7894 0.01:0.7956 0.03:0.7889
+
+ARM E — own grid, one point wider (D-30)
+  ds33|linear              -> 0.1     | 0.001:0.7600 0.003:0.7600 0.01:0.7611 0.03:0.7661 0.1:0.7694 | margin +0.0033  <-- ON THE UPPER EDGE
+      E          0.001:0.7600 0.003:0.7600 0.01:0.7611 0.03:0.7661 0.1:0.7694
+  ds33|h2                  -> 0.03    | 0.001:0.7867 0.003:0.8400 0.01:0.8444 0.03:0.8456 0.1:0.8411 | margin +0.0011
+      E          0.001:0.7867 0.003:0.8400 0.01:0.8444 0.03:0.8456 0.1:0.8411
+  ds33|h4                  -> 0.01    | 0.001:0.8361 0.003:0.8433 0.01:0.8489 0.03:0.8489 0.1:0.8439 | margin +0.0000
+      E          0.001:0.8361 0.003:0.8433 0.01:0.8489 0.03:0.8489 0.1:0.8439
+  ds33|h42                 -> 0.03    | 0.001:0.8972 0.003:0.9206 0.01:0.9333 0.03:0.9467 0.1:0.9289 | margin +0.0133
+      E          0.001:0.8972 0.003:0.9206 0.01:0.9333 0.03:0.9467 0.1:0.9289
+
+ARM D_best — own grid, per width
+  ds33|M32                 -> 0.03    | 0.001:0.7967 0.003:0.8100 0.01:0.8217 0.03:0.8239 | margin +0.0022  <-- ON THE UPPER EDGE
+      D_best     0.001:0.7967 0.003:0.8100 0.01:0.8217 0.03:0.8239
+  ds33|M128                -> 0.01    | 0.001:0.8406 0.003:0.8461 0.01:0.8472 0.03:0.8411 | margin +0.0011
+      D_best     0.001:0.8406 0.003:0.8461 0.01:0.8472 0.03:0.8411
+  ds33|M512                -> 0.001   | 0.001:0.8528 0.003:0.8511 0.01:0.8517 0.03:0.8478 | margin +0.0011  <-- ON THE LOWER EDGE
+      D_best     0.001:0.8528 0.003:0.8511 0.01:0.8517 0.03:0.8478
+
+ARGMAX ON A GRID EDGE: 6 selection(s)
+  cell: ds33|linear|L1, ds33|linear|L2, ds33|h2|L1
+  arm_E: ds33|linear
+  arm_D_best: ds33|M32, ds33|M512
+  ⚠ an optimum on an edge is NOT bracketed: the value is a bound, not an optimum.
+    Arm E is expected here (D-30, declared and limited). A CELL lr on the upper
+    edge is the shape of D-18/D-21 and is a decision for the owner BEFORE the
+    main series — widening the contract grid is not the driver's call.
+====================================================================================================
+
+lr table   /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds33/a7_lr_table.csv
+selection  /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds33/a7_lr_selection.json
+gates      /lustre/pd03/hpc-iwowoj-1781179048/quantum-hybrids-A/outputs/a7/ds33/a7_gates.json
+
+The main series runs from these numbers: re-run the same command with the
+same --out-dir and without --stop-after; stage 1 will plan 0 tasks and the
+selection is recomputed from the table on disk.
+-----------------------------------------------------------------------
+[Sat Aug 22 01:05:57 AM CEST 2026] exit status 0

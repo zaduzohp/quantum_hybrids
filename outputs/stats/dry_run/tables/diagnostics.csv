@@ -1,0 +1,82 @@
+status,quantity,scope,value,note
+PROVISIONAL — NOT A RESULT,theta_displacement mean,arm A,0.853362962603569,socket trained — 0 would be an optimiser failure (SPEC 7.7)
+PROVISIONAL — NOT A RESULT,theta_displacement CI95 on sigma,arm A,[0.04184404139792836; 0.27541106009748645],
+PROVISIONAL — NOT A RESULT,theta_displacement mean,arm B,0.0,socket frozen — 0 is correct here
+PROVISIONAL — NOT A RESULT,theta_displacement CI95 on sigma,arm B,[0.0; 0.0],
+PROVISIONAL — NOT A RESULT,theta_displacement mean,arm D_best,0.0,socket frozen — 0 is correct here
+PROVISIONAL — NOT A RESULT,theta_displacement CI95 on sigma,arm D_best,[0.0; 0.0],
+PROVISIONAL — NOT A RESULT,theta_displacement mean,arm D_matched,0.0,socket frozen — 0 is correct here
+PROVISIONAL — NOT A RESULT,theta_displacement CI95 on sigma,arm D_matched,[0.0; 0.0],
+PROVISIONAL — NOT A RESULT,theta_displacement mean,arm E,0.0,socket frozen — 0 is correct here
+PROVISIONAL — NOT A RESULT,theta_displacement CI95 on sigma,arm E,[0.0; 0.0],
+PROVISIONAL — NOT A RESULT,theta_displacement mean,arm F,0.832115963101387,socket trained — 0 would be an optimiser failure (SPEC 7.7)
+PROVISIONAL — NOT A RESULT,theta_displacement CI95 on sigma,arm F,[0.14492382698554504; 0.9538663926818918],
+PROVISIONAL — NOT A RESULT,runs hitting the 300-epoch budget,arm A,0/4,fraction 0.000
+PROVISIONAL — NOT A RESULT,best_epoch mean,arm A,55.5,
+PROVISIONAL — NOT A RESULT,runs hitting the 300-epoch budget,arm B,0/4,fraction 0.000
+PROVISIONAL — NOT A RESULT,best_epoch mean,arm B,47.25,
+PROVISIONAL — NOT A RESULT,runs hitting the 300-epoch budget,arm D_best,0/6,fraction 0.000
+PROVISIONAL — NOT A RESULT,best_epoch mean,arm D_best,46.333333333333336,
+PROVISIONAL — NOT A RESULT,runs hitting the 300-epoch budget,arm D_matched,0/4,fraction 0.000
+PROVISIONAL — NOT A RESULT,best_epoch mean,arm D_matched,44.5,
+PROVISIONAL — NOT A RESULT,runs hitting the 300-epoch budget,arm E,0/2,fraction 0.000
+PROVISIONAL — NOT A RESULT,best_epoch mean,arm E,10.0,
+PROVISIONAL — NOT A RESULT,runs hitting the 300-epoch budget,arm F,0/4,fraction 0.000
+PROVISIONAL — NOT A RESULT,best_epoch mean,arm F,30.5,
+PROVISIONAL — NOT A RESULT,ridge control: adam - ridge,arm B,0.0012500000000000011,"D-19 closed: reported BESIDE, not a consistency condition. The gap is the measured price of the readout convention."
+PROVISIONAL — NOT A RESULT,ridge control: adam - ridge,arm D_best,0.010833333333333325,"D-19 closed: reported BESIDE, not a consistency condition. The gap is the measured price of the readout convention."
+PROVISIONAL — NOT A RESULT,ridge control: adam - ridge,arm D_matched,-0.0016666666666666774,"D-19 closed: reported BESIDE, not a consistency condition. The gap is the measured price of the readout convention."
+PROVISIONAL — NOT A RESULT,ridge control: adam - ridge,arm E,0.016666666666666663,"D-19 closed: reported BESIDE, not a consistency condition. The gap is the measured price of the readout convention."
+PROVISIONAL — NOT A RESULT,"headroom against the ceiling max{SVM,MLP}",ds11|linear,0.20805555555555555,"acc(E) 0.7683, ceiling 0.9764, exceeds MDE: no"
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — p,linear|L1|delta_AB,0.8541185580288485,⛔ NOT reported as a test — see the power row below
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — 90% CI,linear|L1|delta_AB,[-0.1783; +0.4058],half width 0.2920 > delta — NO result could declare equivalence
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — moc przy Δ=0,linear|L1|delta_AB,0.009279686890492878,"⛔ NOT a verdict. TOST at delta = 0.02 for delta_AB has power 0.009 and is not reported as a test; the 90% CI alone is reported. Declaring equivalence at this delta would need n ~ 93 seeds. This is a methodological contribution to the discussion (SPEC 7.5), not a missing result."
+PROVISIONAL — NOT A RESULT,seeds needed for 80% TOST power,linear|L1|delta_AB,93,
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — p,linear|L1|delta_AE,0.9809242757641637,REPORTED as a test (D-4)
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — 90% CI,linear|L1|delta_AE,[+0.0459; +0.0775],half width 0.0158
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — moc przy Δ=0,linear|L1|delta_AE,0.7438356521044243,reported as a test (D-4). A verdict of NON-equivalence at power ~1 is a POSITIVE result: the test COULD have declared equivalence and did not.
+PROVISIONAL — NOT A RESULT,seeds needed for 80% TOST power,linear|L1|delta_AE,3,
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — p,linear|L2|delta_AB,0.9316794840352223,⛔ NOT reported as a test — see the power row below
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — 90% CI,linear|L2|delta_AB,[-0.0253; +0.3062],half width 0.1657 > delta — NO result could declare equivalence
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — moc przy Δ=0,linear|L2|delta_AB,0.02789361352907081,"⛔ NOT a verdict. TOST at delta = 0.02 for delta_AB has power 0.028 and is not reported as a test; the 90% CI alone is reported. Declaring equivalence at this delta would need n ~ 31 seeds. This is a methodological contribution to the discussion (SPEC 7.5), not a missing result."
+PROVISIONAL — NOT A RESULT,seeds needed for 80% TOST power,linear|L2|delta_AB,31,
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — p,linear|L2|delta_AE,0.9211191443118709,REPORTED as a test (D-4)
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — 90% CI,linear|L2|delta_AE,[-0.0007; +0.1098],half width 0.0552 > delta — NO result could declare equivalence
+PROVISIONAL — NOT A RESULT,TOST delta=0.02 — moc przy Δ=0,linear|L2|delta_AE,0.18653577934973373,reported as a test (D-4). A verdict of NON-equivalence at power ~1 is a POSITIVE result: the test COULD have declared equivalence and did not.
+PROVISIONAL — NOT A RESULT,seeds needed for 80% TOST power,linear|L2|delta_AE,5,
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L1|delta_AB,b=345 c=72,supplementary: the paired reading of the same population as the binomial SE
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_AB|ds11|seed1,1.1331322341928529e-12,b=108 c=27 discordant 135
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_AB|ds11|seed2,1.1817709646951033e-32,b=237 c=45 discordant 282
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L1|delta_AE,b=172 c=24,"MANDATORY for Delta_AE: sigma_Delta(A-E) is SMALLER than the binomial SE, so the CI over seeds narrows the uncertainty by itself (raport.tex 3.7)."
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_AE|ds11|seed1,2.4570971290651306e-15,b=90 c=13 discordant 103
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_AE|ds11|seed2,1.4159872634786435e-14,b=82 c=11 discordant 93
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L1|delta_AF,b=60 c=27,supplementary: the paired reading of the same population as the binomial SE
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_AF|ds11|seed1,0.0050976432976312935,b=28 c=10 discordant 38
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_AF|ds11|seed2,0.04438416098714981,b=32 c=17 discordant 49
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L1|delta_BD_matched,b=299 c=323,supplementary: the paired reading of the same population as the binomial SE
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_BD_matched|ds11|seed1,4.500723756840062e-06,b=190 c=110 discordant 300
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L1|delta_BD_matched|ds11|seed2,7.069139305562682e-09,b=109 c=213 discordant 322
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L2|delta_AB,b=508 c=171,supplementary: the paired reading of the same population as the binomial SE
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_AB|ds11|seed1,3.3144748778881715e-14,b=234 c=97 discordant 331
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_AB|ds11|seed2,3.964691978310429e-28,b=274 c=74 discordant 348
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L2|delta_AE,b=155 c=24,"MANDATORY for Delta_AE: sigma_Delta(A-E) is SMALLER than the binomial SE, so the CI over seeds narrows the uncertainty by itself (raport.tex 3.7)."
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_AE|ds11|seed1,8.065094010420559e-16,b=87 c=11 discordant 98
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_AE|ds11|seed2,3.8083949050165733e-10,b=68 c=13 discordant 81
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L2|delta_AF,b=72 c=45,supplementary: the paired reading of the same population as the binomial SE
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_AF|ds11|seed1,0.001402688503695515,b=36 c=13 discordant 49
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_AF|ds11|seed2,0.716300760154337,b=36 c=32 discordant 68
+PROVISIONAL — NOT A RESULT,McNemar b/c (summed over seeds),linear|L2|delta_BD_matched,b=265 c=364,supplementary: the paired reading of the same population as the binomial SE
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_BD_matched|ds11|seed1,0.19494402523244087,b=184 c=159 discordant 343
+PROVISIONAL — NOT A RESULT,"McNemar p (exact, per seed)",linear|L2|delta_BD_matched|ds11|seed2,1.454637778761846e-13,b=81 c=205 discordant 286
+PROVISIONAL — NOT A RESULT,decomposition Δ_AE = Δ_AB + (acc(B)-acc(E)),linear|L1,+0.113750 + -0.052083 = +0.061667,"Δ_AE +0.061667, residual +0.00e+00"
+PROVISIONAL — NOT A RESULT,decomposition Δ_AE = Δ_AB + (acc(B)-acc(E)),linear|L2,+0.140417 + -0.085833 = +0.054583,"Δ_AE +0.054583, residual +0.00e+00"
+PROVISIONAL — NOT A RESULT,TOST power recomputed at the ORIGINAL sigma,"TOST power A<->E, delta=0.02",1.0000,documents say 1.000 (raport.tex 3.7 / D-4); agrees
+PROVISIONAL — NOT A RESULT,TOST power recomputed at the ORIGINAL sigma,"TOST power A<->B, delta=0.02",0.0171,"documents say 0.000 (raport.tex 3.7 / D-4); ⚠️ DIVERGENCE — category 1.6(b), reported, NOT a STOP; changes no decision: both values sit on the same side of the 0.8 floor"
+PROVISIONAL — NOT A RESULT,TOST power recomputed at the ORIGINAL sigma,"TOST power, allocation-contrast sigma_Delta",0.0030,documents say 0.003 (SPEC 7.5 table); agrees
+PROVISIONAL — NOT A RESULT,TOST power recomputed at the ORIGINAL sigma,"TOST power, sigma_Delta(A-B) smoke n=3",0.2893,"documents say 0.044 (SPEC 7.5 / 7.6 remark); ⚠️ DIVERGENCE — category 1.6(b), reported, NOT a STOP; changes no decision: both values sit on the same side of the 0.8 floor"
+PROVISIONAL — NOT A RESULT,account 1 — CI over the paired differences,MAIN,MAIN. Generalises over initialisations at a fixed split.,
+PROVISIONAL — NOT A RESULT,account 2 — binomial SE,1200 test rows,0.014433756729740645,
+PROVISIONAL — NOT A RESULT,account 3 — McNemar,discordant pairs,"same population as (2) but paired, therefore smaller","⛔ THREE numbers, three labels, one marked main. Never summed, no 'total uncertainty' is computed."
+PROVISIONAL — NOT A RESULT,Holm correction,confirmatory family,NOT APPLIED,"the confirmatory family has ONE element (H1 = Delta_AB at the linear head), so the Holm correction is not applied. P1 and P2 are descriptive and do not enter the family. Stated explicitly so it does not read as an omission."
+PROVISIONAL — NOT A RESULT,MixedLM (check),ansatz L1,,"reported as a CHECK. In part A the mixed model is formally redundant: the design is balanced and the random part is one intercept, so the fixed effect equals the within-subject contrast (SPEC 7.3). MixedLM did not fit: LinAlgError('Singular matrix')"
+PROVISIONAL — NOT A RESULT,MixedLM (check),ansatz L2,,"reported as a CHECK. In part A the mixed model is formally redundant: the design is balanced and the random part is one intercept, so the fixed effect equals the within-subject contrast (SPEC 7.3). MixedLM did not fit: LinAlgError('Singular matrix')"

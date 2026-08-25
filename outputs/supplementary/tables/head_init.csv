@@ -1,0 +1,9 @@
+quantity,width,value,note
+bias_bound_over_weighted_sum_sd,,3.3979378180385345,bias reaches +-0.4472; std(w.x) = 0.1316 on the frozen features
+he_variance_over_default_variance,,5.999999999999999,He for ReLU against torch's legacy nn.Linear default
+share_of_units_born_nearly_dead,2,0.28,2000 draws; 'nearly dead' = positive on < 5 % of inputs
+share_of_draws_with_every_unit_dead,2,0.071,this is what collapses the head to a constant classifier
+share_of_units_born_nearly_dead,3,0.2723333333333333,2000 draws; 'nearly dead' = positive on < 5 % of inputs
+share_of_draws_with_every_unit_dead,3,0.019,this is what collapses the head to a constant classifier
+share_of_units_born_nearly_dead,4,0.263875,2000 draws; 'nearly dead' = positive on < 5 % of inputs
+share_of_draws_with_every_unit_dead,4,0.0055,this is what collapses the head to a constant classifier
