@@ -2,14 +2,9 @@
 
 A vendored copy loses the upstream tests, so its behaviour has to be pinned here.
 
-The digests below were produced in parallel by the UPSTREAM qml_benchmarks package
-(commit 95e5a07e8e9e75ba7e24e67fb32b030112a1309a, installed with jax and numpyro in
-a separate venv) and by the copy in src/qsocket/vendored/ — 16 arrays, 399,000
-numbers, zero differences bit-for-bit.
-
-If any of these tests fails, the copy or the numerics underneath it stopped
-reproducing upstream. Do not refresh the digests without understanding what changed;
-the dataset rests on these numbers.
+The digests below were produced in parallel by the upstream qml_benchmarks package
+(commit 95e5a07e8e9e75ba7e24e67fb32b030112a1309a, installed in a separate venv) and by the
+copy in src/qsocket/vendored/ — 16 arrays, 399,000 numbers, zero differences.
 """
 
 import hashlib
