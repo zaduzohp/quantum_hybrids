@@ -11,6 +11,19 @@
 \usepackage{hyperref}
 \geometry{margin=2.5cm}
 
+% =====================================================================
+% ZMIANY REDAKCYJNE (poprawki spójności liczbowej i literówki)
+% Każda zmiana jest oznaczona komentarzem "% >>> ZMIANA nn:" bezpośrednio
+% nad zmienionym fragmentem. Komentarze LaTeX nie wchodzą do PDF, więc
+% skompilowany dokument jest czysty, a git diff pokazuje i zmianę,
+% i jej uzasadnienie w tym samym miejscu.
+% Pełna lista zmian: zmiany_raport.md
+% Nie zmieniano: tytułu, sekcji o literaturze, brzmienia tekstu,
+% sekcji jeszcze nieuzupełnionych (ansatze, streszczenie).
+% =====================================================================
+
+% >>> UWAGA (bez zmiany): w tytule jest literowka "reporodukowaalnego" -> "reprodukowalnego".
+% >>> Nie poprawiam, bo tytulu nie ruszam zgodnie z instrukcja. Do decyzji autorki.
 \title{Przeprowadzenie wielokrotnej ewaluacji i wkładu komponentu kwantowego oraz przygotowanie reporodukowaalnego pakietu wyników i dokumentacji publikacyjnej dla modeli hybrydowych QML.}
 \author{}
 \date{}
@@ -33,7 +46,7 @@ Aby lepiej zrozumieć projekt i skąd pojawił się sam pomysł, przybliżono tu
 \subsection{Krótki przegląd literatury}
 
 \subsubsection{QELM}
-Zamrażanie obwodu kwantowego i trenowanie wyłącznie klasycznego odczytu na jego wyjściu jest po prostu przyjętą konwencją, a nie zmierzoną decyzją. W Quantum Extreme Learning Machines (QELM) obwód pełni funkcję ustalonego rezerwuaru, a trenowana jest wyłącznie liniowa warstwa odczytu. \citet{xiong2023} opisują to jako połączenie \emph{,,rich feature map induced by the dynamics of a quantum substrate --- the quantum reservoir --- and the efficient post-measurement training via linear regression''}, a \citet{sakurai2026} przeciwstawiają to podejściom wariacyjnym: \emph{,,QCL involves optimizing the quantum circuit for a specific task, while QELM uses a fixed quantum circuit followed by a classical learning step''}. Architektura ta odpowiada dokładnie ramieniu B w naszym badani, gdzie w literaturze QELM jest modelem docelowym, u nas punktem odniesienia w kontraście z ramieniem trenowanym.
+Zamrażanie obwodu kwantowego i trenowanie wyłącznie klasycznego odczytu na jego wyjściu jest po prostu przyjętą konwencją, a nie zmierzoną decyzją. W Quantum Extreme Learning Machines (QELM) obwód pełni funkcję ustalonego rezerwuaru, a trenowana jest wyłącznie liniowa warstwa odczytu. \citet{xiong2023} opisują to jako połączenie \emph{,,rich feature map induced by the dynamics of a quantum substrate --- the quantum reservoir --- and the efficient post-measurement training via linear regression''}, a \citet{sakurai2026} przeciwstawiają to podejściom wariacyjnym: \emph{,,QCL involves optimizing the quantum circuit for a specific task, while QELM uses a fixed quantum circuit followed by a classical learning step''}. Architektura ta odpowiada dokładnie ramieniu B w naszym badaniu, gdzie w literaturze QELM jest modelem docelowym, u nas punktem odniesienia w kontraście z ramieniem trenowanym.
 
 \paragraph{QELM a QRC: rozróżnienie.}
 
@@ -41,7 +54,7 @@ Obydwie idee wywodzą się z reservoir computing i extreme learning machines \ci
 
 Nasz projekt nawiązuje do nurtu QELM. Zadanie jest klasyfikacją binarną, nie ma pamięci między próbkami, a odczyt to pięć wartości oczekiwanych podanych dalej do głowy. Ma to bezpośrednią konsekwencję dla tego, z czym powinniśmy się porównywać. Prace, które mierzą przewagę QRC na szeregach czasowych, odpowiadają na inne pytanie, nawet jeśli mechanizm zamrożonego rezerwuaru jest ten sam.
 
-\paragraph{Możliwości.} Co taka statyczna mapa cech potrafi wyliczyć, opisują \citet{schuld2021}. Model kwantowy z kodowaniem danych jest szeregiem Fouriera, w którym kodowanie ustala dostępny nośnik częstotliwości. Trenowalne parametry wpływają wyłącznie na współczynniki przy tych częstotliwościach. Jeśli re-uploading powtarza to kodowanie $R$ razy, nośnik rośnie do $|\omega| \le R$ na cechę, ale wciąż jest to kodowanie, nie trening, które o tym decyduje. 
+\paragraph{Możliwości.} \citet{schuld2021} opisują jakie możliwości może mieć taki model.  Model kwantowy z kodowaniem danych jest szeregiem Fouriera, w którym kodowanie ustala dostępny nośnik częstotliwości. Trenowalne parametry wpływają wyłącznie na współczynniki przy tych częstotliwościach. Jeśli re-uploading powtarza to kodowanie $R$ razy, nośnik rośnie do $|\omega| \le R$ na cechę, ale wciąż jest to kodowanie, nie trening, które o tym decyduje. 
 
 Fakt, że wyjście obwodu jest w istocie zredukowanym szeregiem Fouriera, rodzi pytanie o sens stosowania takich modeli, skoro teoretycznie łatwo je odtworzyć klasycznie. \citet{schreiber2023} pokazują, że duże klasy modeli z re-uploadingiem mają klasyczny surogat, który odtwarza tę samą relację wejście-wyjście, i że w badanych przez nich problemach żadnej przewagi kwantowej nie widać. \citet{landman2022} oraz później \citet{sweke2025} rozwijają to w kierunku praktycznym, konstruując klasyczne przybliżenie przez próbkowanie kilku częstotliwości z widma obwodu, metodą losowych cech Fouriera (RFF). Jeśli obwód kwantowy jest surogatowalny z definicji, to porównanie z klasycznym odpowiednikiem musi to testować empirycznie, a nie zakładać z góry, w którą stronę wynik pójdzie.
 
@@ -63,11 +76,9 @@ Choć podobne zestawienia pojawiają się w literaturze, mają one charakter pob
 
 Najbliżej metodologicznie stoi seria prac Pandeya, i wymaga ona osobnego komentarza, bo jest to program jednego autora. Pierwsza z nich \citep{pandey2026a} (praca jest preprintem złożonym do \emph{Machine Learning: Science and Technology}) demonstruje, na czterokubitowym obwodzie o ustalonym kodowaniu, że niemożność dopasowania do atraktora Lorenza wynika z sufitu pojemności architektury, a nie z barren plateau. Rozstrzyga to porównując zmierzoną wariancję gradientu z teoretyczną podłogą oraz sprawdzając nasycenie rzędu jakobianu wyjścia. To jest bliski odpowiednik naszego rozróżnienia między sufitem nieliniowości a barren plateaus jako dwoma osobnymi, mierzonymi wielkościami. Najważniejszy jest dla nas wniosek, że na tym samym zadaniu zarówno zamrożony rezerwuar kwantowy, jak i klasyczna sieć biją wariacyjny obwód, a autor stwierdza wprost, że przewaga jest architektoniczna, nie kwantowa.
 
-Druga praca \citep{pandey2026b} dopasowuje nakład strojenia hiperparametrów między kwantowym rezerwuarem i klasycznym baseline'em i pokazuje, że przy równym nakładzie dwa często przywoływane mechanizmy przewagi QRC nie utrzymują się. Jest to zoperacjonalizowana wersja zarzutu Bowlesa o asymetryczne strojenie, z zestawem kontroli, który obejmuje przyczynowy podział bez przecieku, strojenie tylko na walidacji stosowane jednakowo do wszystkich modeli, dopasowany wymiar cech, bramki poprawności i deterministyczną odtwarzalność.
+Druga praca \citep{pandey2026b} dopasowuje nakład strojenia hiperparametrów między kwantowym rezerwuarem i klasycznym baseline'em i pokazuje, że przy równym nakładzie dwa często przywoływane mechanizmy przewagi QRC nie utrzymują się. Jest to  wersja zarzutu Bowlesa o asymetryczne strojenie, z zestawem kontroli, który obejmuje przyczynowy podział bez przecieku, strojenie tylko na walidacji stosowane jednakowo do wszystkich modeli, dopasowany wymiar cech, bramki poprawności i deterministyczną odtwarzalność.
 
 Jednak jak ta praca odnosi się do naszej?  \citet{pandey2026b} nie odpowiada na nasze pytanie tylko je zakłada. We wstępie pisze, że \emph{,,a fixed quantum reservoir avoids the trainability pathologies of variational circuits while supplying a high-dimensional nonlinear feature map''}, i przyjmuje to jako uzasadnienie, dlaczego zamrożenie jest sensownym wyborem, powołując się na literaturę o barren plateaus. Nigdy nie mierzy, ile ta decyzja kosztuje w trafności. Jego estymandem jest zamrożony rezerwuar kwantowy wobec uczciwie dobranego klasycznego baseline'u, czyli w naszej pracy kontrast między ramieniem B i ramionami klasycznymi, a nie kontrast A wobec B. W skrócie, przesłanka, którą \citet{pandey2026b} przyjmuje, jest dokładnie tym, co my mierzymy.
-
-Żadna z dotychczasowych prac nie mierzy różnicy między trenowanym i zamrożonym obwodem jako głównej wielkości do estymacji. Nasz wkład nie polega na tym, że jako pierwsi zauważamy to rozróżnienie, ale na rygorze jego weryfikacji: wprowadzamy sparowaną inicjalizację, z góry zadeklarowane skale odniesienia (rozrzut i sufit zadania) oraz jawną metodologię na wypadek, gdyby empiryczna różnica między reżimami okazała się bliska zeru.
 
 \subsection{Pytania badawcze}
 Z tego przeglądu wyniknęło parę pytań, na które ten eksperyment stara się odpowiedzieć:
@@ -77,7 +88,7 @@ Z tego przeglądu wyniknęło parę pytań, na które ten eksperyment stara się
     \item Czy zamrożone gniazdo kwantowe jest lepsze niż brak gniazda?
     \item Kiedy wkład kwantowy nic nie daje, czyli oś rozcieńczenia zawartości parametrów kwantowych.
     \item Ile klasycznej głowy kupuje to, co kupuje trening gniazda?
-    \item Porównanie obwodu splątanego z niespątanym: co dokładnie zabiera usunięcie CZ?
+    \item Porównanie obwodu splątanego z niesplątanym: co dokładnie zabiera usunięcie CZ?
     \item Porównanie konwencji QELM z jego klasycznymi odpowiednikami.
 \end{enumerate}
 
@@ -168,7 +179,7 @@ dane $\rightarrow$ PCA-5 (ZAMROŻONE) $\rightarrow$ MinMax do $[-\pi/4, \pi/4]$ 
 \bottomrule
 \end{tabularx}
 \end{table}
-\textbf{Ramię D.} $\Omega$ ma wyrazy całkowite, próbkowane z widma obwodu ($|\omega| \le R$), $b \sim U[0,2\pi)$, wagi zamrożone. Losowanie $(\Omega, b)$ idzie przez klucz \texttt{derive(seed, 'RFF', R, M)}, w którym nie ma nazwy ramienia. To jest ten sam niezmiennik parowania, który sprawia, że A i B startują z identycznej $\theta$. Wybrana nieliniowość to $\cos$ (jakis mention o literaturze). A dlaczego dwa D? Bo dopasowanie po liczbie parametrów nie gwarantuje dopasowania pojemności, a słaby baseline klasyczny to najłatwiejszy zarzut. Zatem to, że mamy dwa ramiona odpowiada osobno na każdy z tych zarzutów: \texttt{D\_matched} siedzi na osi rozcieńczenia i sprawdza, czy gniazdo kwantowe różni się od klasycznego tej samej wielkości; \texttt{D\_best} stoi poza osią, jako jeden punkt, i sprawdza, czy poprawnie wymiarowany klasyczny model losowych cech dogania ramię B, niezależnie od dopasowania rozmiaru. Szerokość $M \in \{32, 128, 512\}$ dla \texttt{D\_best} wybieramy na 600 próbkach walidacyjnych, \textbf{osobno dla każdego ziarna generatora}, z remisami rozstrzyganymi na korzyść mniejszego $M$.
+\textbf{Ramię D.} $\Omega$ ma wyrazy całkowite, próbkowane z widma obwodu ($|\omega| \le R$), $b \sim U[0,2\pi)$, wagi zamrożone. Losowanie $(\Omega, b)$ idzie przez klucz \texttt{derive(seed, 'RFF', R, M)}, w którym nie ma nazwy ramienia. To jest ten sam niezmiennik parowania, który sprawia, że A i B startują z identycznej $\theta$. Wybrana nieliniowość to $\cos$ \citet{sakurai2026}. A dlaczego dwa D? Bo dopasowanie po liczbie parametrów nie gwarantuje dopasowania pojemności, a słaby baseline klasyczny to najłatwiejszy zarzut. Zatem to, że mamy dwa ramiona odpowiada osobno na każdy z tych zarzutów: \texttt{D\_matched} siedzi na osi rozcieńczenia i sprawdza, czy gniazdo kwantowe różni się od klasycznego tej samej wielkości; \texttt{D\_best} stoi poza osią, jako jeden punkt, i sprawdza, czy poprawnie wymiarowany klasyczny model losowych cech dogania ramię B, niezależnie od dopasowania rozmiaru. Szerokość $M \in \{32, 128, 512\}$ dla \texttt{D\_best} wybieramy na 600 próbkach walidacyjnych, \textbf{osobno dla każdego ziarna generatora}, z remisami rozstrzyganymi na korzyść mniejszego $M$.
 
 
 \textbf{Reguła interpretacji.} \texttt{D\_matched} mówi, czy przy dopasowanej wielkości gniazdo kwantowe różni się od klasycznego: \texttt{D\_matched} $\approx B$ znaczy ,,nieodróżnialne przy tym rozmiarze'', a \texttt{D\_matched} $\neq B$ znaczy, że sam rozmiar nie tłumaczy całej różnicy. \texttt{D\_best} mówi, czy istnieje w ogóle klasyczny model losowych cech, który dogania $B$: \texttt{D\_best} $> B$ znaczy, że taki model istnieje, choć większy niż gniazdo kwantowe, a \texttt{D\_best} $\lesssim B$ znaczy, że nawet powiększenie klasycznego modelu nie pomaga.
@@ -214,6 +225,7 @@ Szkielet L1 z usuniętymi bramkami CZ. Jest wyłącznie negatywną kontrolą bra
 \midrule
 linear ($5\rightarrow1$) & 6 & 85,4 \% \\
 h2 & 15 & 70,0 \% \\
+\texttt{h3} (sonda) & 22 & 61,4 \% \\
 h4 & 29 & 54,7 \% \\
 h42 & 295 & 10,6 \% \\
 \bottomrule
@@ -244,7 +256,7 @@ backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision =
 \end{tabularx}
 \end{table}
 
-\paragraph{Wspólne lr dla gniazda i głowy.} Gniazdo i głowa dzielą jeden współczynnik uczenia. Uzasadnienie takiej decyzji, że Adam normalizuje krok per parametr, dotyczy skali gradientu, nie naturalnej skali samego parametru: kąty gniazda żyją na $[0,2\pi)$, a wagi głowy startują z $U[\pm 1/\sqrt{5}]$. Przy $\mathrm{lr} = 0{,}03$ krok Adama odpowiada więc 0,48,\% skali kąta, ale 3,35,\% skali wagi. Dlatego wybór jednego \texttt{lr} dla obu części mógł postawić pytanie: czy zmiana wyniku pochodzi od dostrojenia gniazda, czy od dostrojenia głowy. 
+\paragraph{Wspólne lr dla gniazda i głowy.} Gniazdo i głowa dzielą jeden współczynnik uczenia. Uzasadnienie takiej decyzji, że Adam normalizuje krok per parametr, dotyczy skali gradientu, nie naturalnej skali samego parametru: kąty gniazda żyją na $[0,2\pi)$, a wagi głowy startują z $U[\pm 1/\sqrt{5}]$. Przy $\mathrm{lr} = 0{,}03$ krok Adama odpowiada więc 0,48\,\% skali kąta, ale 3,35\,\% skali wagi. Dlatego wybór jednego \texttt{lr} dla obu części mógł postawić pytanie: czy zmiana wyniku pochodzi od dostrojenia gniazda, czy od dostrojenia głowy. 
 
 \subsection{Protokół ewaluacji}
 
@@ -257,7 +269,7 @@ backend & statevector, PennyLane lightning.qubit + adjoint, default\_precision =
 \toprule
 \textbf{oś} & \textbf{poziomy} \\
 \midrule
-rozcieńczenie & linear $\cdot$ h2 $\cdot$ h4 $\cdot$ h42 \\
+rozcieńczenie & linear $\cdot$ \texttt{h2} $\cdot$ \texttt{h4} $\cdot$ \texttt{h42} (+ \texttt{h3} jako sonda poza siatką) \\
 ramiona & A, B, D\_matched, D\_best, E, F \\
 ziarna treningowe & 1--10 \\
 ziarna generatora & 11 $\cdot$ 22 $\cdot$ 33  \\
@@ -273,8 +285,8 @@ Ramiona \textbf{E} (tożsamość), \textbf{D} (gniazdo klasyczne) i \textbf{F} (
 \begin{itemize}
     \item \textbf{główna:} accuracy na 1200 próbkach testowych
     \item \textbf{diagnostyczne:} AUC, macro-F$_1$
-    \item \textbf{diagnostyka ruchu parametrów:} $\theta_{\text{displacement}} = \|\theta_{\text{final}} - \theta_{\text{init}}\| / \sqrt{P}$, \texttt{grad\_rms\_start/end}, \texttt{best\_epoch}, \texttt{epochs\_run}. $\theta_{\text{displacement}}$ odpowiada na pytanie \emph{czy optymalizator się ruszył}. Nie jest to liczba $K$ z granicy \citet{caro2022}: norma znormalizowana przez $\sqrt{P}$ nie odróżnia kilku dużych przesunięć od wielu małych, a granica $\sqrt{K/N}$ te przypadki rozróżnia. Zmierzony rozkład per parametr podajemy w \S\ref{sec:ruch}.
-    \item \textbf{wymiar efektywny gniazda:} \texttt{socket\_params\_effective} --- numeryczny rząd $\partial\langle Z_i\rangle/\partial\theta$ mierzony
+    \item \textbf{diagnostyka ruchu parametrów:} $\theta_{\text{displacement}} = \|\theta_{\text{final}} - \theta_{\text{init}}\| / \sqrt{P}$, \texttt{grad\_rms\_start/end}, \texttt{best\_epoch}, \texttt{epochs\_run}. $\theta_{\text{displacement}}$ odpowiada na pytanie \emph{czy optymalizator się ruszył}. Nie jest to liczba $K$ z granicy \citet{caro2022}. Zmierzony rozkład per parametr podajemy w \S\ref{sec:ruch}.
+    \item \textbf{wymiar efektywny gniazda:} \texttt{socket\_params\_effective}, czyli numeryczny rząd $\partial\langle Z_i\rangle/\partial\theta$ mierzony
     \item \textbf{niepewność} $\Delta$ na tym samym zbiorze testowym: test McNemara na parach niezgodnych
 \item \textbf{poprawność dla każdego wiersza testowego}, zapisywana bitowo. Test McNemara opiera się na analizie par niezgodnych, dlatego wymaga precyzyjnej informacji, które dokładnie próbki zostały poprawnie sklasyfikowane przez poszczególne ramiona.
 \end{itemize}
@@ -282,7 +294,7 @@ Ramiona \textbf{E} (tożsamość), \textbf{D} (gniazdo klasyczne) i \textbf{F} (
 \subsubsection{Reprodukowalność}
 Wszystko zaseedowane; każde mrożenie zbioru niesie własny hash weryfikowany przy wczytaniu.
 \textbf{Odcisk środowiska} zapisywany przy każdym przejeździe (\texttt{env\_hash}), a przed serią na klastrze odbyła się walidacja wobec maszyny: $\langle Z_i \rangle$ zgodne do $10^{-10}$ przez trzy niezależne implementacje, hashe wszystkich trzech zbiorów i krótki odcisk treningu ramienia $A$. 
-\textbf{Schemat wyniku} to 46 kolumn o ustalonej kolejności, a wznowiony przebieg odmawia pracy, jeśli plik na dysku ma inny schemat
+Schemat wyniku to 46 kolumn o ustalonej kolejności, a wznowiony przebieg odmawia pracy, jeśli plik na dysku ma inny schemat
 
 
 
@@ -324,7 +336,8 @@ $\sigma_{\text{hw}}$ & rozrzut między sesjami sprzętowymi \\
 \end{table}
 
 \subsubsection{Osie rozcieńczenia}
-Oś zadeklarowano jako cztery punkty: linear (6) $\cdot$ h2 (15) $\cdot$ h4 (29) $\cdot$ h42 (295).
+% >>> ZMIANA 21: doprecyzowane kształty głów - 'h42' czyta sie jako 5-4-2-1 (37 par.), a oznacza 5-42-1 (295 par.)
+Oś zadeklarowano jako cztery punkty: linear ($5\rightarrow1$, 6 parametrów) $\cdot$ \texttt{h2} ($5\rightarrow2\rightarrow1$, 15) $\cdot$ \texttt{h4} ($5\rightarrow4\rightarrow1$, 29) $\cdot$ \texttt{h42} ($5\rightarrow42\rightarrow1$, 295).
 
 Piąty punkt, \textbf{h3 (22 parametry), dołożono po serii} jako sondę awarii opisanej w \S\ref{sec:ograniczenia}. Nie jest częścią zadeklarowanej siatki i jest raportowany jako punkt obok osi.
 \subsection{Analiza statystyczna}
@@ -332,12 +345,12 @@ Piąty punkt, \textbf{h3 (22 parametry), dołożono po serii} jako sondę awarii
 \paragraph{Co uśredniamy.} W każdej komórce siatki estymand jest średnią z trzydziestu różnic parowanych: dziesięć ziaren treningowych na każdym z trzech ziaren generatora. Te trzydzieści liczb rozjeżdża się z dwóch niezależnych powodów. Pierwszy to losowanie inicjalizacji, co ma być w słupku błędu, bo wynik ma się uogólniać na inicjalizacje. Drugi to różnica trudności między ds11, ds22 i ds33, co już nie wchodzi do tej metryki, bo trzy zbiory nie są próbką z populacji zbiorów, tylko trzema konkretnymi, zamrożonymi plikami.
 \paragraph{Ziarno generatora jest efektem stałym.} Alternatywą byłoby potraktowanie zbioru jako składowej wariancji, czyli oszacowanie rozrzutu trudności zbiorów. Z trzech poziomów jest to niewykonalne (przedział ufności dla $\sigma$ przy $n=3$ rozciąga się na czynnik 12), wymaga to większej ilości prób zbioru. Traktujemy więc zbiór jako trzy ustalone poziomy i interpretujemy jako wynik dotyczy tych trzech zbiorów, a nie „zbiorów typu hyperplanes". Rozrzut międzyzbiorowy raportujemy osobno (\S\ref{sec:skale}) jako ustalenie o stabilności efektu między zadaniami.
 \paragraph{Estymator blokowany.} Estymatą jest średnia trzech średnich zbiorowych, każda z dziesięciu ziaren. Projekt jest zbalansowany, więc wypada ona identycznie jak naiwna średnia z trzydziestu różnic. Dla estymandu głównego zmienia prawie nic, przedział jest węższy o dwa procent. Dla $\Delta_{AE}$ bardzo dużo: przedział węższy dwa i pół raza, bo tam ponad osiemdziesiąt procent rozrzutu spulowanego to różnica trudności zbiorów, nie szum ziarna. Blokowanie wybraliśmy zatem z powodu projektu eksperymentu, a nie z powodu tego, co robi z liczbą. 
-\paragraph{MixedLM jako sprawdzenie.} Obok raportujemy model mieszany z losowym wyrazem wolnym po ziarnie treningowym wyłącznie jako kontrolę. Przy zbalansowanym projekcie i pojedynczym losowym wyrazie wolnym musi on dać ten sam efekt stały co kontrast parowany, i daje. Gdyby nie dał, byłoby to ustalenie o modelu do zgłoszenia, a nie wybór między dwiema liczbami.
+\paragraph{MixedLM jako sprawdzenie.} Obok raportujemy model mieszany z losowym wyrazem wolnym po ziarnie treningowym wyłącznie jako kontrolę. Przy zbalansowanym projekcie i pojedynczym losowym wyrazie wolnym musi on dać ten sam efekt stały co kontrast parowany, i daje. Gdyby nie dał, byłoby to ustalenie o modelu do zgłoszenia.
 
 \paragraph{Granice pulowania.} Reguła zadeklarowana przed analizą: jeśli 95\,\% CI któregokolwiek zbioru nie zachodzi na CI spulowane, wygrywa odczyt per zbiór. Trzy zbiory mają mierzalnie różną trudność, więc $\Delta$ nie musi być między nimi porównywalne.
 
 
-\paragraph{Minimalny wykrywalny efekt.} MDE $= (t_{0{,}975;\,df} + t_{0{,}80;\,df})\cdot \mathrm{SE}$ (test dwustronny, moc 80\%), liczone na blokowanym $\mathrm{SE}$ i $df = 27$, co przy $n = 30$ daje stałą $0{,}5307$ zamiast $0{,}995$ z $n = 10$. MDE liczymy \textbf{z $\sigma$ tej serii}, nie z pilota --- MDE wpisany na sztywno zamroziłby próg na wartości pilotowej.
+\paragraph{Minimalny wykrywalny efekt.} MDE $= (t_{0{,}975;\,df} + t_{0{,}80;\,df})\cdot \mathrm{SE}$ (test dwustronny, moc 80\%), liczone na blokowanym $\mathrm{SE}$ i $df = 27$, co przy $n = 30$ daje stałą $0{,}5307$ zamiast $0{,}995$ z $n = 10$. MDE liczymy \textbf{z $\sigma$ tej serii}, nie z pilota.
 
 \paragraph{Test.} \textbf{Kontrast parowany}: 30 różnic blokowanych po ziarnie generatora dla liczby spulowanej, 10 różnic w odczycie per zbiór. Do tego dokładny test znaków i dokładny test Wilcoxona (\texttt{sign\_test\_exact}, \texttt{wilcoxon\_signed\_rank\_exact} z \texttt{qsocket.exact\_tests}). Ze względu na rozmiar próby ($n=30$), dokładny rozkład zerowy testu Wilcoxona 
 wyznaczono za pomocą algorytmu programowania dynamicznego. Równoważność z enumeracją jest przypięta testem dla każdego $n \le 14$, w tym dla przypadków z gęstymi remisami i dokładnymi zerami.
@@ -350,19 +363,19 @@ TOST przy $\delta = 0{,}02$ liczymy i raportujemy dla wszystkich komórek, każd
 \paragraph{Złożenie niepewności.}
 $\Delta$ raportujemy z trzema rachunkami niepewności obok siebie, bez składania ich w jedną liczbę:
 \begin{enumerate}
-    \item CI z 10 różnic parowanych po ziarnie --- analiza główna, uogólniająca na inicjalizacje przy ustalonym podziale;
-    \item binomialne SE $= 0{,}0144$, uogólniające na losowanie zbioru testowego przy ustalonym ziarnie;
+    \item CI z 30 różnic parowanych (10 ziaren treningowych na każdym z trzech ziaren generatora, $df = 27$). To analiza główna, uogólniająca na inicjalizacje przy ustalonym podziale;
+    \item binomialne SE $= \sqrt{\mathrm{acc}\,(1-\mathrm{acc})/1200} = 0{,}0144$, liczone przy $\mathrm{acc} = 0{,}5$ jako wariant najbardziej konserwatywny (przy obserwowanym $\mathrm{acc} \approx 0{,}82$ wyszłoby $0{,}0111$); uogólnia na losowanie zbioru testowego przy ustalonym ziarnie;
     \item test McNemara na parach niezgodnych, ta sama populacja co (2), ale parowany, więc mniejszy.
 \end{enumerate}
 
-\paragraph{Tablica werdyktów.} Reguły odczytu wyników są zadeklarowane przed analizą i stosowane mechanicznie, żeby wynik nieoczekiwany nie był interpretowany po fakcie. Obowiązujące reguły: (i) $\Delta_{AB} \approx 0$ przy $\theta_{\text{displacement}} \approx 0$ znaczy „optymalizator nie ruszył", \textbf{nie} „trening jest zbędny"; (ii) $\text{acc}(A) \approx \text{acc}(E)$ przy $\text{acc}(B) < \text{acc}(E)$ jest wynikiem o architekturze, nie o trenowalności; (iii) $|\Delta|$ poniżej MDE jest nierozstrzygnięciem przy tym $n$ raportujemy przedział i liczbę ziaren potrzebną do rozstrzygnięcia, nie wolno napisać „efektu nie ma".
+\paragraph{Tablica werdyktów.} Reguły odczytu wyników są zadeklarowane przed analizą i stosowane mechanicznie, żeby wynik nieoczekiwany nie był interpretowany po fakcie. Obowiązujące reguły: (i) $\Delta_{AB} \approx 0$ przy $\theta_{\text{displacement}} \approx 0$ znaczy „optymalizator nie ruszył", nie „trening jest zbędny"; (ii) $\text{acc}(A) \approx \text{acc}(E)$ przy $\text{acc}(B) < \text{acc}(E)$ jest wynikiem o architekturze, nie o trenowalności; (iii) $|\Delta|$ poniżej MDE jest nierozstrzygnięciem przy tym $n$ raportujemy przedział i liczbę ziaren potrzebną do rozstrzygnięcia, nie wolno napisać „efektu nie ma".
 
 
 \section{Wyniki}
 % podpunkty dla kazdej osi
 
 \subsection{Zmierzone skale odniesienia}
-\textbf{Dekompozycja rozrzutu.} Trzydzieści różnic $\Delta_{AB}$ (dziesięć ziaren na każdym z trzech zbiorów) różni się od siebie z dwóch niezależnych powodów: losowości inicjalizacji oraz tego, że same zbiory różnią się trudnością. Spulowanie wszystkich trzydziestu różnic w jedną liczbę rozrzutu miesza te dwa źródła, a interesuje nas wyłącznie pierwsze: to ono jest mianownikiem MDE, TOST i przedziału ufności, i to ono mierzył pilot, który operował na jednym zbiorze i z definicji nie mógł zobaczyć drugiego źródła. Rozdzielamy więc rozrzut na trzy wielkości. ,,Wewnątrz'' to reszta po odjęciu od każdej różnicy średniej jej własnego zbioru (RMS z trzech bloków), ona jest naszym mianownikiem. ,,Między'' to rozrzut trzech średnich blokowych względem siebie, osobne ustalenie o stabilności efektu między zadaniami, nie składnik mianownika. ,,Połączony'' rozrzut wszystkich trzydziestu różnic podajemy dla kompletności, ale nie da się go porównać z pilotem, bo zawiera różnicę trudności zbiorów, której pilot nigdy nie mógł zmierzyć.
+\textbf{Dekompozycja rozrzutu.} Trzydzieści różnic $\Delta_{AB}$ (dziesięć ziaren na każdym z trzech zbiorów) różni się od siebie z dwóch niezależnych powodów: losowości inicjalizacji oraz tego, że same zbiory różnią się trudnością. Spulowanie wszystkich trzydziestu różnic w jedną liczbę rozrzutu miesza te dwa źródła, a interesuje nas wyłącznie pierwsze. Rozdzielamy więc rozrzut na trzy wielkości. ,,Wewnątrz'' to reszta po odjęciu od każdej różnicy średniej jej własnego zbioru (RMS z trzech bloków), ona jest naszym mianownikiem. ,,Między'' to rozrzut trzech średnich blokowych względem siebie, osobne ustalenie o stabilności efektu między zadaniami, nie składnik mianownika. ,,Połączony'' rozrzut wszystkich trzydziestu różnic podajemy dla kompletności, ale nie da się go porównać z pilotem, bo zawiera różnicę trudności zbiorów, której pilot nigdy nie mógł zmierzyć.
 
 \begin{table}[htbp]
 \centering
@@ -399,12 +412,12 @@ sufit wobec $\max\{$SVM, MLP$\}$ & +0,2128 & +0,1806 & +0,1678 \\
 \end{table}
 
 \subsection{Sprawdzenie siatki \texttt{lr}}
-\paragraph{Czy siatka lr nie jest obcięta za nisko.} Wybrane $\mathrm{lr}$ leżało na górnej krawędzi siatki w 12 z 24 komórek, więc sprawdziliśmy jeden punkt powyżej niej ($\mathrm{lr} = 0{,}1$) na wszystkich 24 komórkach ramienia $A$. Reguła zadeklarowan przed pomiarem, która potencjalnie mogłaby wpłynąć na rozszerzenie siatki brzmiała: siatkę wolno rozszerzyć, jeśli argmax ramienia $A$ trafi na $0{,}1$ w co najmniej 12 z 24 komórek \textbf{i} mediana zysku przekroczy szum walidacyjny 0,020. Zmierzone: argmax na $0{,}1$ w \textbf{1 z 24} komórek, mediana zysku w tej jednej komórce +0,0006, zero komórek z zyskiem powyżej szumu, średni zysk po wszystkich 24 komórkach $-$0,0433. Reguła nie odpaliła w żadnym z dwóch warunków, więc siatka zostaje.
+\paragraph{Czy siatka lr nie jest obcięta za nisko.} Wybrane $\mathrm{lr}$ leżało na górnej krawędzi siatki w 12 z 24 komórek, więc sprawdziliśmy jeden punkt powyżej niej ($\mathrm{lr} = 0{,}1$) na wszystkich 24 komórkach ramienia $A$. Reguła zadeklarowana przed pomiarem, która potencjalnie mogłaby wpłynąć na rozszerzenie siatki brzmiała: siatkę wolno rozszerzyć, jeśli argmax ramienia $A$ trafi na $0{,}1$ w co najmniej 12 z 24 komórek \textbf{i} mediana zysku przekroczy szum walidacyjny 0,020. Zmierzone: argmax na $0{,}1$ w \textbf{1 z 24} komórek, mediana zysku w tej jednej komórce +0,0006, zero komórek z zyskiem powyżej szumu, średni zysk po wszystkich 24 komórkach $-$0,0433. Reguła nie odpaliła w żadnym z dwóch warunków, więc siatka zostaje.
 
-\paragraph{Ile kosztuje wspólne \texttt{lr} dla ramion A i B.} lr jest wybierane raz na komórkę, jako najlepsza średnia accuracy walidacyjna po ramionach $A$ i $B$, a estymandem jest różnica $A-B$ na tej samej walidacji. Odpowiedź jest w tabelach \texttt{lr}, które niosą accuracy walidacyjną i testową przy każdym punkcie siatki. Wspólne \texttt{lr} różni się od własnego optimum ramienia $B$ w \textbf{6 z 24} komórek (i ramienia $A$ w 9 z 24). Średnie $\Delta_{AB}$ na ziarnach 1--3: \textbf{+0,1190} przy wspólnym \texttt{lr} wobec \textbf{+0,1201}, gdyby każde ramię dostało swoje najlepsze walidacyjne \texttt{lr}.
+\paragraph{Ile kosztuje wspólne \texttt{lr} dla ramion A i B.} lr jest wybierane raz na komórkę, jako najlepsza średnia accuracy walidacyjna po ramionach $A$ i $B$, a estymandem jest różnica $A-B$ na tej samej walidacji. Odpowiedź jest w tabelach \texttt{lr}, które niosą accuracy walidacyjną i testową przy każdym punkcie siatki. Wspólne \texttt{lr} różni się od własnego optimum ramienia $B$ w 6 z 24 komórek (i ramienia $A$ w 9 z 24). Średnie $\Delta_{AB}$ na ziarnach 1--3: +0,1190 przy wspólnym \texttt{lr} wobec \textbf{+0,1201}, gdyby każde ramię dostało swoje najlepsze walidacyjne \texttt{lr}.
 
 \subsection{Zastosowanie reguły pulowania}
-Na tej serii reguła nie uruchamia się dla $\Delta_{AB}$ w żadnej z ośmiu komórek. Temu estymand główny raportujemy jako jedną liczbę na komórkę. Odpala dla $\Delta_{AE}$ przy głowie liniowej (L1: wszystkie trzy zbiory, L2: dwa) i przy \texttt{h4}/L2 (ds11), wtedy tam podajemy trzy liczby.
+Na tej serii reguła nie uruchamia się dla $\Delta_{AB}$ w żadnej z ośmiu komórek. Dlatego estymand główny raportujemy jako jedną liczbę na komórkę. Odpala dla $\Delta_{AE}$ przy głowie liniowej (L1: wszystkie trzy zbiory, L2: dwa) i przy \texttt{h4}/L2 (ds11), wtedy tam podajemy trzy liczby.
 
 \subsection{Ile kosztuje zamrożenie gniazda przy odczycie liniowym?}\label{sec:h1}
 
@@ -440,8 +453,8 @@ L1 & ds11 & +0,0919 & [+0,0570; +0,1269] & \textbf{0,432} \\
 L1 & ds22 & +0,0682 & [+0,0305; +0,1058] & \textbf{0,378} \\
 L1 & ds33 & +0,1049 & [+0,0821; +0,1277] & \textbf{0,625} \\
 L2 & ds11 & +0,0905 & [+0,0621; +0,1189] & \textbf{0,425} \\
-L2 & ds22 & +0,1223 & [+0,0649; +0,1798] & \textbf{0,678} \\
-L2 & ds33 & +0,12375 & [+0,0759; +0,1716] & \textbf{0,738} \\
+L2 & ds22 & +0,1223 & [+0,0649; +0,1798] & \textbf{0,677} \\
+L2 & ds33 & +0,1238 & [+0,0759; +0,1716] & \textbf{0,738} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -454,7 +467,7 @@ Dla głowy liniowej MDE wynosi \textbf{0,0241} (L1) i \textbf{0,0343} (L2) dla $
 \subsubsection{Równoważność (TOST)}
 Dla $A\leftrightarrow E$ moc jest wysoka w pięciu z ośmiu komórek. Tam test miał sprawiedliwą szansę orzec równoważność, a jej nie orzekł, co pokazuje realną nierównoważność. W trzech komórkach (\texttt{h2}/L1, \texttt{h2}/L2, \texttt{h4}/L2) moc spada, przez co tam brak orzeczenia równoważności nic nie mówi o prawdzie, tylko o tym, że $\sigma_\Delta$ jest za duże dla $\delta=0{,}02$ przy $n=10$.
 
-Dla $A\leftrightarrow B$ moc nie przekracza 0,8 w żadnej komórce, zatem podajemy tam wyłącznie 90\,\% CI, bez interpretacji test/nie-test. Przyczyna nie jest w wielkości $\Delta_{AB}$, ale w tym, że $\sigma_\Delta(A{-}B)$ jest 5--7$\times$ większe niż $\sigma_\Delta(A{-}E)$ (\S\ref{sec:skale}. B jest zamrożone na losowej inicjalizacji, więc jego accuracy skacze między ziarnami ($\sigma_{\text{seed}}(B)\approx0{,}044$--$0{,}048$, wobec $\sigma_{\text{seed}}(E)\approx0{,}005$).
+Dla $A\leftrightarrow B$ moc nie przekracza 0,8 w żadnej komórce, zatem podajemy tam wyłącznie 90\,\% CI, bez interpretacji test/nie-test. Przyczyna nie jest w wielkości $\Delta_{AB}$, ale w tym, że $\sigma_\Delta(A{-}B)$ jest 5--7$\times$ większe niż $\sigma_\Delta(A{-}E)$ (\S\ref{sec:skale}). B jest zamrożone na losowej inicjalizacji, więc jego accuracy skacze między ziarnami ($\sigma_{\text{seed}}(B)\approx0{,}044$--$0{,}048$, wobec $\sigma_{\text{seed}}(E)\approx0{,}005$).
 
 \begin{table}[htbp]
 \centering
@@ -489,17 +502,17 @@ $\Delta_{AB}$, L1 & 4854 & 1674 & +0,0883 \\
 $\Delta_{AB}$, L2 & 6119 & 2080 & +0,1122 \\
 $\Delta_{AE}$, L1 & 2145 & 716 & +0,0397 \\
 $\Delta_{AE}$, L2 & 2078 & 782 & +0,0360 \\
-$\Delta_{AF}$, L1 & 1300 & 733 & +0,01575 \\
+$\Delta_{AF}$, L1 & 1300 & 733 & +0,0158 \\
 $\Delta_{AF}$, L2 & 1258 & 824 & +0,0121 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-$(b-c)$ podzielone przez $30\times1200$ odtwarza $\Delta$ dokładnie. Kkontrola spójności między rachunkiem (1) i (3).
+$(b-c)$ podzielone przez $30\times1200$ odtwarza $\Delta$ dokładnie. Kontrola spójności między rachunkiem (1) i (3).
 
-\subsection{Kiedy wkład kwantowy nic nie daje, czyli oś rozcieńczenia zawartości parametrów kwantowych.}
+\subsection{Kiedy wkład kwantowy nic nie daje, czyli oś rozcieńczenia zawartości parametrów kwantowych.}\label{sec:rozcienczenie}
 
-Pytanie opisowe, raportowane z CI i \textbf{nietestowane}. $\Delta_{AB}$ wzdłuż osi, z dołożoną po serii sondą \texttt{h3}:
+Pytanie opisowe, raportowane z CI. $\Delta_{AB}$ wzdłuż osi, z dołożoną po serii sondą \texttt{h3}:
 
 \begin{table}[htbp]
 \centering
@@ -517,6 +530,7 @@ h42 (295) & +0,1524 & [+0,1305; +0,1742] & +0,1717 & [+0,1499; +0,1934] \\
 \end{tabular}
 \end{table}
 
+
 $^{*}$ \texttt{h2}: 53 z 250 przebiegów tej kolumny zdegenerowało się do stałego klasyfikatora, awaria opisana w \S\ref{sec:ograniczenia}. Punkt zostaje w tabeli; odczyt osi biegnie po pozostałych czterech.
 
 \textbf{Wkład komponentu wzdłuż osi.} Na pytanie kiedy wkład kwantowy przestaje cokolwiek dawać odpowiada wprost $\Delta_{AE} = \text{acc}(A) - \text{acc}(E)$, czyli porównanie trenowanego gniazda z brakiem gniazda:
@@ -526,7 +540,7 @@ $^{*}$ \texttt{h2}: 53 z 250 przebiegów tej kolumny zdegenerowało się do sta�
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{rozcieńczenie} & $\Delta_{AE}$ \textbf{L1} & \textbf{95\,\% CI L1} & $\Delta_{AE}$ \textbf{L2} & \textbf{95\,\% CI L2} & \textbf{powyżej MDE} \\
+\textbf{rozcieńczenie} & $\Delta_{AE}$ \textbf{L1} & \textbf{95\,\% CI L1} & $\Delta_{AE}$ \textbf{L2} & \textbf{95\,\% CI L2} & \textbf{powyżej MDE komórki} \\
 \midrule
 linear (6) & \textbf{+0,0397} & [+0,0366; +0,0427] & \textbf{+0,0360} & [+0,0326; +0,0394] & tak / tak \\
 h2 (15)$^{*}$ & $-$0,0322 & [$-$0,0774; +0,0130] & $-$0,0092 & [$-$0,0792; +0,0607] & nie / nie \\
@@ -556,7 +570,7 @@ h42 (295) & \textbf{$-$0,1731} & [$-$0,1940; $-$0,1522] & \textbf{$-$0,1990} & [
 \end{tabular}
 \end{table}
 
-Konwencja zmrażania na tym zadaniu kosztuje więc nie tylko wobec treningu, ale wobec niewstawiania niczego: od $0{,}05$ przy głowie liniowej (QELM )do $0{,}20$ przy \texttt{h42}. Koszt rośnie z pojemnością głowy, bo im więcej potrafi głowa, tym więcej traci na przepuszczeniu cech przez zamrożony obwód zamiast wprost.
+Konwencja zmrażania na tym zadaniu kosztuje więc nie tylko wobec treningu, ale wobec niewstawiania niczego: od $0{,}05$ przy głowie liniowej (QELM) do $0{,}20$ przy \texttt{h42}. Koszt rośnie z pojemnością głowy, bo im więcej potrafi głowa, tym więcej traci na przepuszczeniu cech przez zamrożony obwód zamiast wprost.
 
 \textbf{Reguła wykluczenia} Przebieg, który zdegenerował się do stałego klasyfikatora jest awarią przyrządu. Kryterium jest mierzalne bez patrzenia na $\Delta$ i odpala w ramieniu $E$, które nie ma części kwantowej, więc nie może być podejrzewane o dobranie pod wynik. Skutkiem reguły jest to, że punktu \texttt{h2} nie czytamy jako pomiaru wkładu gniazda.
 
@@ -588,11 +602,15 @@ linear & 0 / 300 \\
 \toprule
 \textbf{rozcieńczenie} & $A$ & $B$ & $E$ & $F$ & \texttt{D\_matched} \\
 \midrule
+linear & 0/60 & 0/60 & 0/30 & 0/30 & 0/30 \\
 h2 & \textbf{16/60} & 13/60 & \textbf{5/30} & 16/50 & 3/50 \\
-h4 & 0/60 & 1/60 & 0/30 & 0/50 & 0/50 \\
-h42, linear & 0 & 0 & 0 & 0 & 0 \\
+h4 & 0/60 & 1/60 & 0/30 & \textbf{0/30} & \textbf{0/30} \\
+h42 & 0/60 & 0/60 & 0/30 & 0/30 & 0/30 \\
 \bottomrule
 \end{tabular}
+\begin{minipage}{\textwidth}
+\footnotesize Mianownik to liczba przebiegów danego ramienia w tym punkcie osi. Ramiona $A$ i $B$ mają wymiar ansatzu (10 ziaren treningowych $\times$ 3 ziarna generatora $\times$ 2 ansatze $= 60$), ramię $E$ nie ma go ($10 \times 3 = 30$). Ramiona $F$ i \texttt{D\_matched} nie mają wymiaru ansatzu, ale są parowane przy \texttt{lr} \textbf{komórki}, który go ma: gdy L1 i L2 wybierają różne \texttt{lr}, przebieg istnieje dwukrotnie. Zmierzone: rozjazd zdarza się \textbf{wyłącznie przy \texttt{h2}}, na ds22 i ds33 ($\mathrm{lr} = 0{,}03$ dla L1, $0{,}01$ dla L2), stąd $10 + 20 + 20 = 50$; przy \texttt{h4} i \texttt{h42} L1 i L2 wybierają to samo \texttt{lr} na wszystkich trzech zbiorach, stąd $10\times 3 = 30$. Sumy wierszy zgadzają się z mianownikami tabeli zbiorczej wyżej: $250$ przy \texttt{h2}, $210$ przy \texttt{h4} i \texttt{h42}.
+\end{minipage}
 \end{table}
 
 Zjawisko zapadania się modelu nie wynika z właściwości samej części kwantowej, lecz z problemu martwych 
@@ -602,11 +620,11 @@ zależna od wyboru seedu (szczególnie dla ziaren 5--10). Ponieważ funkcja
 ramiona przy danym ziarnie dzielą wagi początkowe głowy, co prowadzi do 
 skorelowanych awarii.
 
-\textbf{(b) \texttt{h42} jest przy sufitcie zadania}, co opisano wyżej: acc($E$)$-$sufit to $+0{,}0015$ / $-0{,}0053$ / $+0{,}0008$, w każdym zbiorze poniżej MDE.
+\textbf{(b) \texttt{h42} jest przy suficie zadania}, co opisano wyżej: $\text{acc}(E \text{ przy } \texttt{h42}) - \max\{\text{acc(SVM)}, \text{acc(MLP)}\}$ to $+0{,}0015$ / $-0{,}0053$ / $+0{,}0008$, w każdym zbiorze poniżej MDE.
 
-\subsection{Porównanie obwodu splątanego z niespątanym: co dokładnie zabiera usunięcie CZ?}
+\subsection{Ramiona --- tabela referencyjna}\label{sec:ramiona}
 
-Średnie accuracy testowe przy głowie liniowej, 30 przebiegów na komórkę:
+Średnie accuracy testowe przy głowie liniowej, 30 przebiegów na komórkę. Tabela jest wspólna dla dwóch następnych sekcji: pytania o splątanie (\S\ref{sec:splatanie}) i o klasyczne odpowiedniki konwencji QELM (\S\ref{sec:qelm-klasyczne}).
 
 \begin{table}[htbp]
 \centering
@@ -627,6 +645,60 @@ $F$ (produktowy) & 0,8061 & 0,0142 & 0,7792 & 0,8275 & kontrola splątania \\
 \end{tabular}
 \end{table}
 
+\subsection{Porównanie obwodu splątanego z niesplątanym: co dokładnie zabiera usunięcie CZ?}\label{sec:splatanie}
+
+Ramię $F$ to szkielet ansatzu L1 z wyciętym wachlarzem CZ, czyli blok $R_z(5) \to R_x(5) \to R_z(5)$: to samo kodowanie, ta sama nominalna liczba parametrów (35 przy $R = 2$), ta sama specyfikacja inicjalizacji \texttt{U0-2pi} i trenowane tak samo jak $A$. Kontrast $\Delta_{AF}$ trzyma więc trening stały i zmienia wyłącznie obecność bramek CZ.
+
+\textbf{Górne ograniczenie} Wycięcie CZ odbiera nam i splątanie i parametry efektywne: zmierzony rząd jakobianu ramienia $F$ wynosi 20 z 35 nominalnych, wobec 35 z 35 dla $A$. W obwodzie separowalnym $\langle Z_i \rangle$ zależy wyłącznie od obrotów kubitu $i$, a sąsiadujące obroty tej samej osi się sumują, więc 15 stopni swobody przepada. $\Delta_{AF}$ zawiera splątanie i utraconą pojemność naraz. Odczyt wymagałby obwodu niesplątanego dopasowanego rzędem, a nie tylko liczbą parametrów.
+
+Przy tych zastrzeżeniach całkowity wkład gniazda rozkłada się na dwa człony, które sumują się dokładnie w każdym punkcie osi:
+\[
+\underbrace{\Delta_{AE}}_{\text{całe gniazdo}} \;=\; \underbrace{\Delta_{FE}}_{\text{separowalna mapa cech}} \;+\; \underbrace{\Delta_{AF}}_{\text{splątanie}\,+\,\text{utracona pojemność}}
+\]
+
+Rozkład na całej siatce rozcieńczenia, ansatz L1, 30 różnic parowanych blokowanych po ziarnie generatora ($df = 27$):
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{rozcieńczenie} & $\Delta_{FE}$ & \textbf{95\,\% CI} & $\Delta_{AF}$ & \textbf{95\,\% CI} & $\Delta_{AE}$ & \textbf{95\,\% CI} \\
+\midrule
+linear (6) & \textbf{+0,0239} & [+0,0213; +0,0266] & \textbf{+0,0157} & [+0,0129; +0,0186] & \textbf{+0,0397} & [+0,0366; +0,0427] \\
+h2 (15) & $-$0,0537$^\dagger$ & [$-$0,1200; +0,0125] & +0,0216$^\dagger$ & [$-$0,0501; +0,0932] & $-$0,0322$^\dagger$ & [$-$0,0774; +0,0130] \\
+\texttt{h3} (22), sonda & $-$0,0030$^\dagger$ & [$-$0,0303; +0,0242] & +0,0337$^\dagger$ & [+0,0091; +0,0583] & +0,0307 & [+0,0205; +0,0409] \\
+h4 (29) & $-$0,0226$^\dagger$ & [$-$0,0425; $-$0,0026] & +0,0262$^\dagger$ & [+0,0077; +0,0447] & +0,0036$^\dagger$ & [$-$0,0095; +0,0167] \\
+h42 (295) & \textbf{$-$0,0114} & [$-$0,0165; $-$0,0064] & \textbf{$-$0,0093} & [$-$0,0129; $-$0,0056] & \textbf{$-$0,0207} & [$-$0,0272; $-$0,0142] \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\footnotesize $^\dagger$ poniżej MDE swojej komórki, czyli nierozstrzygnięcie. MDE per komórka ($\Delta_{FE}$ / $\Delta_{AF}$ / $\Delta_{AE}$): linear 0,0038 / 0,0040 / 0,0043 $\cdot$ \texttt{h2} 0,0938 / 0,1015 / 0,0640 $\cdot$ \texttt{h3} 0,0386 / 0,0348 / 0,0144 $\cdot$ \texttt{h4} 0,0282 / 0,0262 / 0,0186 $\cdot$ \texttt{h42} 0,0072 / 0,0051 / 0,0092. Suma $\Delta_{FE} + \Delta_{AF}$ odtwarza $\Delta_{AE}$ w każdym wierszu co do czwartego miejsca; ramiona $F$ i $E$ nie mają wymiaru ansatzu, a $F$ jest w tym rozkładzie brane przy \texttt{lr} komórki L1.
+\end{minipage}
+\end{table}
+
+\textbf{Rozstrzygnięte są dwa punkty osi:}
+
+
+\textbf{Przy głowie liniowej} oba człony są dodatnie i oba powyżej MDE. Z całego wkładu gniazda ($+0{,}0397$) separowalna mapa cech daje $+0{,}0239$, a splątanie co najwyżej $+0{,}0157$, czyli \textbf{40\,\%}. Większość tego, co gniazdo wnosi tam, gdzie stoi pytanie konfirmacyjne, daje więc trenowana mapa trygonometryczna, którą dla obwodu produktowego można zapisać w postaci zamkniętej, bo $\langle Z_i \rangle$ zależy wyłącznie od $x_i$. Sam efekt splątania jest rzędu jednego binomialnego SE (0,0144).
+
+
+\textbf{Przy \texttt{h42}} oba człony są ujemne i oba powyżej MDE: gniazdo szkodzi ($-0{,}0207$), przy czym szkodzi zarówno mapa cech ($-0{,}0114$), jak i splątanie ($-0{,}0093$, czyli 45\,\% szkody). Obwód produktowy \textbf{bije} splątany. Przy głowie o 295 parametrach przepuszczenie cech przez jakiekolwiek gniazdo jest kosztem, a splątanie dokłada do tego kosztu.
+
+
+\textbf{Trzy pozostałe punkty osi są nierozstrzygnięciami.} Przy \texttt{h4} oba człony mają przeciwne znaki i niemal dokładnie się kasują, ale żaden z trzech kontrastów nie przekracza MDE swojej komórki. Kolumna \texttt{h2} jest dodatkowo zanieczyszczona zapadaniem się głowy (53 z 250 przebiegów, \S\ref{sec:rozcienczenie}) i jej $\sigma_\Delta$ jest o rząd wielkości większe niż przy głowie liniowej, co widać po MDE rzędu 0,10. W sondzie \texttt{h3} powyżej MDE leży wyłącznie $\Delta_{AE}$.
+
+\subsection{Porównanie konwencji QELM z jego klasycznymi odpowiednikami.}\label{sec:qelm-klasyczne}
+
+\textbf{Ramię $D$.} Wszystko o nim jest \textbf{eksploracyjne}.
+
+\begin{itemize}
+        \item \textbf{\texttt{D\_matched} dopasowana mapa klasyczna.} Pięć losowych cech Fouriera (\texttt{D\_MATCHED\_WIDTH = 5}), zamrożonych, o tym samym wymiarze wyjścia co gniazdo i tym samym nośniku $|\omega| \le R$. Dopasowanie dotyczy rozmiaru i nośnika, nie rozkładu częstotliwości (\S\ref{sec:siatka}). $\Delta_{BD\_matched}$ leży poniżej MDE w 7 z 8 komórek. Przy głowie liniowej, czyli tam, gdzie stoi pytanie konfirmacyjne, $\Delta_{BD\_matched} = +0{,}0412$ dla L1 (MDE 0,0311, CI wyklucza zero). Zamrożone gniazdo kwantowe wygrywa z dopasowaną mapą klasyczną. Dla L2 wynosi $+0{,}0136$ przy MDE 0,0421 i jest nierozstrzygnięciem. Możemy stwierdzić, że przy odczycie liniowym zamrożone gniazdo kwantowe ma małą, ale rozstrzygniętą przewagę nad mapą klasyczną dopasowaną rozmiarem i nośnikiem przy L1, a przy L2 nie wiemy.
+      \item \textbf{\texttt{D\_best} baseline kosztowy.} 128 losowych cech Fouriera na ds11 i 512 na ds22 i ds33 (wybór na walidacji, osobno per zbiór), czyli 25--100-krotność pięciu wyjść gniazda. $\Delta_{BD\_best} < 0$ we wszystkich ośmiu komórkach i wszędzie powyżej MDE; przy głowie liniowej $-0{,}1010$ (L1) i $-0{,}1285$ (L2). Ramię odpowiada na pytanie, \emph{czy warto w ogóle wstawiać zamrożone gniazdo kwantowe na tym zadaniu}: tani klasyczny model losowych cech, któremu wolno mieć ich sto razy więcej, wygrywa o 0,04--0,17. Niedopasowanie jest tutaj celowa, bo ma ono ograniczać wartość praktyczną gniazda.
+\end{itemize}
+
 Kontrasty przy głowie liniowej (30 różnic parowanych, $df = 27$):
 
 \begin{table}[htbp]
@@ -636,31 +708,19 @@ Kontrasty przy głowie liniowej (30 różnic parowanych, $df = 27$):
 \toprule
 \textbf{estymand} & \textbf{L1} & \textbf{95\,\% CI L1} & \textbf{L2} & \textbf{95\,\% CI L2} \\
 \midrule
-$\Delta_{AE}$ & +0,0397 & [+0,0366; +0,0427] & +0,0360 & [+0,0326; +0,0394] \\
-$\Delta_{AF}$ & +0,01575 & [+0,0129; +0,0186] & +0,0121 & [+0,0092; +0,0149] \\
 $\Delta_{BD\_matched}$ & +0,0412 & [+0,0193; +0,0631] & +0,0136 & [$-$0,0161; +0,0434] \\
 $\Delta_{BD\_best}$ & $-$0,1010 & [$-$0,1175; $-$0,0844] & $-$0,1285 & [$-$0,1521; $-$0,1050] \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Splątanie po treningu.} $\Delta_{AF} > 0$ i przedział wyklucza zero, ale efekt jest mały: 0,012--0,016, czyli około jednego binomialnego SE. Przy \texttt{h42} znak się odwraca ($-0{,}0093$ / $-0{,}0159$) --- przy dużej głowie obwód produktowy wystarcza. Kontrola splątania wypada więc dodatnio, ale nie jest to duża liczba.
-
-\subsection{Porównanie konwencji QELM z jego klasycznymi odpowiednikami.}
-
-\textbf{Ramię $D$.} Wszystko o nim jest \textbf{eksploracyjne}.
-
-\begin{itemize}
-    \item $\Delta_{BD\_matched}$ leży poniżej MDE w 7 z 8 komórek (wyjątek: \texttt{linear}/L1, $+0{,}0412$). Dozwolone zdanie: \emph{to gniazdo kwantowe jest trygonometryczną mapą cech o nośniku $|\omega| \le R$, a klasyczna mapa o tym samym nośniku i tej samej wielkości robi to samo}. \textbf{Nie} „kwantowość jest bezużyteczna" --- porównanie jest dopasowane rozmiarem i nośnikiem, nie rozkładem częstotliwości (\S\ref{sec:siatka} i akapit o ramieniu D).
-    \item $\Delta_{BD\_best} < 0$ we \textbf{wszystkich} komórkach: poprawnie wymiarowany klasyczny model losowych cech \textbf{bije} zamrożone gniazdo kwantowe. Wybrane $M$ to 128 (ds11) i 512 (ds22, ds33), wybór na walidacji, osobno dla każdego zbioru. Jest to wynik o \textbf{baseline'ach}, nie o kwantowości: \texttt{D\_best} ma inną liczbę cech, więc porównanie nie jest dopasowane, i to musi być napisane.
-\end{itemize}
 
 \textbf{Czy ramię $B$ to nie po prostu jedno złe losowanie.} Alternatywne wyjaśnienie $\Delta_{AB} > 0$ brzmi: ramię $B$ nie jest modelem QELM, tylko modelem z przypadkowo złą inicjalizacją, a trening w $A$ jedynie naprawia szkodę losowania. Dane mówią, że ramię $B$ \emph{jest} zdominowane przez losowanie: $\sigma_{\text{seed}}(B)/\sigma_{\text{seed}}(A) = 6{,}2$ z tabeli wyżej, a rozstęp $B$ to 0,632--0,797 (L1) wobec 0,806--0,833 dla $A$. 
 
 
-\textbf{Konwencja QELM to jest jedno losowanie}. Estymand jest zdefiniowany nad rozkładem inicjalizacji. W naszym przypadku \textbf{najlepszy z 30 przebiegów ramienia $B$ osiąga 0,7967}, wobec średniej $A$ 0,8218 (L1) i 0,8181 (L2), czyli nawet najszczęśliwsze z dziesięciu losowań zamrożonego gniazda przegrywa z typowym trenowanym o 0,021--0,025. Jest to statystyka opisowa.
+\textbf{Konwencja QELM to jest jedno losowanie}. Estymand jest zdefiniowany nad rozkładem inicjalizacji. W naszym przypadku najlepszy z 30 przebiegów ramienia $B$ osiąga 0,7967, wobec średniej $A$ 0,8218 (L1) i 0,8181 (L2), czyli nawet najszczęśliwsze z trzydziestu losowań zamrożonego gniazda przegrywa z typowym trenowanym o 0,021--0,025. Jest to statystyka opisowa.
 
-\textbf{Czy ramię $B$ to konwencja QELM}, skoro głowa jest trenowana Adamem. Literatura QELM zakłada odczyt liniowy w formie zamkniętej, n. regresję liniową, ridge, ewentualnie logistyczną, a my trenujemy głowę Adamem na BCE. Zatem wprowadzono kontrolę ridge. Mierzy ona, ile to zmienia. Luka \emph{Adam $-$ ridge} zmienia się wzdłuż osi o rząd wielkości i zmienia znak, więc podajemy ją per rozcieńczenie. W tym wypadku jedna liczba spulowana po osi opisywałaby tu każdy punkt źle:
+\textbf{Czy ramię $B$ to konwencja QELM}, skoro głowa jest trenowana Adamem. Literatura QELM zakłada odczyt liniowy w formie zamkniętej, np. regresję liniową, ridge, ewentualnie logistyczną, a my trenujemy głowę Adamem na BCE. Zatem wprowadzono kontrolę ridge. Mierzy ona, ile to zmienia. Luka \emph{Adam $-$ ridge} zmienia się wzdłuż osi o rząd wielkości i zmienia znak, więc podajemy ją per rozcieńczenie. W tym wypadku jedna liczba spulowana po osi opisywałaby tu każdy punkt źle:
 
 \begin{table}[htbp]
 \centering
@@ -676,13 +736,13 @@ $E$ & +0,0146 & $-$0,0054 & +0,0415 & +0,0885 & +0,1978 \\
 \end{tabular}
 \end{table}
 
-Przy głowie liniowej, czyli tam, gdzie stoi pytanie konfirmacyjne, luka wynosi \textbf{+0,0034} --- Adam wypada minimalnie lepiej od formy zamkniętej. Policzony wprost, z parowaniem po ziarnie i tym samym estymatorem blokowanym, kontrast z ramieniem $B$ pod odczytem ridge daje
+Przy głowie liniowej, czyli tam, gdzie stoi pytanie konfirmacyjne, luka wynosi \textbf{+0,0034}. Adam wypada minimalnie lepiej od formy zamkniętej. Policzony wprost, z parowaniem po ziarnie i tym samym estymatorem blokowanym, kontrast z ramieniem $B$ pod odczytem ridge daje
 
 \begin{center}
 $\Delta_{AB}^{\text{ridge}} = +0{,}0895$ (L1) \quad i \quad $+0{,}1178$ (L2),
 \end{center}
 
-wobec $+0{,}0883$ i $+0{,}1122$ pod Adamem. Estymand jest więc \textbf{odporny na konwencję odczytu}, a nasz wybór jest dla konwencji QELM \emph{łaskawszy} o 0,001--0,006: dajemy jej wersję lepszą niż dosłowna i różnica mimo to pozostaje dodatnia. Luka jest raportowana \emph{obok}, nie jako warunek spójności: ridge minimalizuje stratę kwadratową na etykietach $\pm 1$, a Adam BCE, więc jest ona ustaleniem, nie usterką.
+wobec $+0{,}0883$ i $+0{,}1122$ pod Adamem. Estymand jest więc \textbf{odporny na konwencję odczytu}, a nasz wybór jest dla konwencji QELM \emph{łaskawszy} o 0,001--0,006: dajemy jej wersję lepszą niż dosłowna i różnica mimo to pozostaje dodatnia. Luka jest raportowana \emph{obok}, nie jako warunek spójności.
 
 \subsection{Diagnostyka przebiegów}\label{sec:ruch}
 
@@ -709,12 +769,11 @@ $F$ & 27,0 & 53,3 & 87,2 & 75,5 & 88,5 \\
 
 $\theta_{\text{displacement}}$ ramion zamrożonych ($B$, $E$, $D$) jest zerem z definicji i nie ma go w tabeli. Wielkości te podajemy \textbf{per rozcieńczenie, nie spulowane po osi}: średnia po całej osi miesza cztery reżimy, a przy \texttt{h2} dodatkowo wciąga zdegenerowane przebiegi.
 
-\textbf{Gniazdo rusza się najbardziej przy głowie liniowej} (1,0176 wobec 0,80--0,91 dalej na osi). Im mniej pojemności ma głowa klasyczna, tym więcej pracy bierze na siebie gniazdo --- co jest niezależnym potwierdzeniem, że oś rozcieńczenia mierzy to, co miała mierzyć.
+\textbf{Gniazdo rusza się najbardziej przy głowie liniowej} (1,0176 wobec 0,75--0,91 dalej na osi). Im mniej pojemności ma głowa klasyczna, tym więcej pracy bierze na siebie gniazdo. To jest niezależnym potwierdzeniem, że oś rozcieńczenia mierzy to co miała mierzyć.
 
-Budżet 300 epok wiąże w \textbf{5 z 1220} przebiegów całej serii i sondy, więc trening kończy early stopping, nie budżet. Tu pulowanie jest nieszkodliwe.
+Budżet 300 epok wiąże w \textbf{5 z 1220} przebiegów całej serii wraz z sondą \texttt{h3}, więc trening kończy early stopping. Tu pulowanie jest nieszkodliwe.
 
-\textbf{Wiersz STOP o bezruchu gniazda odpala --- na poziomie pojedynczych przebiegów.} W \textbf{13 przebiegach} ramion trenowanych ($A$: 3, $F$: 10) $\theta_{\text{displacement}}$ jest \textbf{dokładnie zerem}, i wszystkie 13 to \textbf{dokładnie te same przebiegi}, które zapadły się do stałego klasyfikatora (wszystkie w \texttt{h2}). Mechanizm jest jeden: martwe jednostki ReLU zerują gradient docierający do gniazda, więc gniazdo nie rusza się ani o krok. Zgodnie z regułą (i) nie wolno tych przebiegów czytać jako „trening jest zbędny" --- to jest awaria optymalizatora. Średnia po komórce jest niezerowa, bo pozostałe przebiegi ruszają się normalnie, więc reguła nie odpala na poziomie komórki; odpala na poziomie przebiegu i tak ją raportujemy.
-
+W \textbf{13 przebiegach} ramion trenowanych ($A$: 3, $F$: 10) $\theta_{\text{displacement}}$ jest \textbf{dokładnie zerem}, i wszystkie 13 to dokładnie te same przebiegi, które zapadły się do stałego klasyfikatora (wszystkie w \texttt{h2}). Średnia po komórce jest niezerowa, bo pozostałe przebiegi ruszają się normalnie, więc reguła stopu nie odpala na poziomie komórki.
 \textbf{Ile bramek faktycznie się ruszyło.} $\theta_{\text{displacement}}$ jest normą i nie odróżnia kilku dużych przesunięć od wielu małych, a granica \citet{caro2022} właśnie to rozróżnia. Rozkład per parametr, zmierzony na odtworzonej komórce (ds11, $A$, L1, głowa liniowa, ziarno 1): średnia $|\Delta\theta_i| = 0{,}729$ rad, mediana 0,687, maksimum 2,031, przy $\|\Delta\theta\|/\sqrt{P} = 0{,}860$. Liczba bramek przesuniętych o więcej niż $\tau$:
 
 \begin{table}[htbp]
@@ -729,33 +788,8 @@ $K$ z 35 & \textbf{35} & 34 & 33 & 30 & \textbf{25} & 8 \\
 \end{tabular}
 \end{table}
 
-Ruszyły się \textbf{wszystkie} bramki, 25 z nich o więcej niż 0,5 rad. Czyli $K \approx T$, a nie $K \ll T$: ramię $A$ leży w \textbf{pesymistycznym} reżimie granicy $\sqrt{T/N}$, a nie w korzystnym $\sqrt{K/N}$. Jest to kierunek przeciwny do pochlebnego --- trening nie zyskuje ukrytej przewagi generalizacyjnej. Pomiar dotyczy jednej komórki; uogólnienie na całą serię wymagałoby zapisywania $\theta_{\text{final}}$, czego seria nie robiła.
+Ruszyły się \textbf{wszystkie} bramki, 25 z nich o więcej niż 0,5 rad. Czyli $K \approx T$, a nie $K \ll T$: ramię $A$ leży w \textbf{pesymistycznym} reżimie granicy $\sqrt{T/N}$, a nie w korzystnym $\sqrt{K/N}$. Pomiar dotyczy jednej komórki; uogólnienie na całą serię wymagałoby zapisywania $\theta_{\text{final}}$, czego seria nie robiła.
 
-\subsection{Zastosowanie tablicy werdyktów}
-
-Reguły są stosowane mechanicznie. Na tej serii odpaliły; wiersz o architekturze niżej odpowiada wprost na pytanie \emph{czy zamrożone gniazdo kwantowe jest lepsze niż brak gniazda}:
-
-\begin{table}[htbp]
-\centering
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\textwidth}{lcX}
-\toprule
-\textbf{wiersz} & \textbf{komórki} & \textbf{skutek} \\
-\midrule
-$\Delta_{AB} > 0$, CI wyklucza 0 & linear/L1, linear/L2 & \\
-$|\Delta_{AB}|$ poniżej MDE & \texttt{h2}/L1 & \textbf{NIEROZSTRZYGNIĘTE} przy tym $n$; do rozstrzygnięcia potrzeba $\sim$110 ziaren. \textbf{Nie wolno} napisać „efektu nie ma" \\
-acc($A$) $\approx$ acc($E$) przy acc($B$) $<$ acc($E$) & \texttt{h2}/L1, \texttt{h2}/L2, \texttt{h4}/L1, \texttt{h4}/L2 & \textbf{STOP}: wynik o \textbf{architekturze}, nie o trenowalności \\
-moc TOST $A\leftrightarrow E$ poniżej 0,8 & \texttt{h2}/L1, \texttt{h2}/L2, \texttt{h4}/L2 & \textbf{STOP}: decyzja o raportowaniu TOST dla $\Delta_{AE}$ opierała się na mocy 1,000 i tu traci podstawę \\
-$\Delta_{BD\_matched} \approx 0$ & 7 z 8 komórek & eksploracyjne \\
-$\Delta_{BD\_best} < 0$ & 8 z 8 komórek & eksploracyjne, oczekiwane \\
-krzywa P1 & L1, L2 & opisowa, niemalejąca \\
-MixedLM wobec kontrastu parowanego & L1, L2 & \textbf{OK} --- równoważne (wyraz wolny +0,088333 / +0,112194) \\
-$\Delta_{AB} \approx 0$ przy $\theta_{\text{displacement}} \approx 0$ & --- & nie odpalił \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-Wiersz o architekturze wymaga komentarza, bo w \texttt{h2} i w \texttt{h4} znaczy co innego. W \texttt{h2} jest prawdopodobnie artefaktem zapadania się głowy (P1, punkt (a)). W \texttt{h4} nie: tam acc($E$) $= 0{,}8560$ wobec acc($B$) $= 0{,}7414$ przy jednym zapadniętym przebiegu, a $\Delta_{AE}$ mieści się poniżej MDE. Odczyt jest więc realny i mocny: \textbf{zamrożone gniazdo kwantowe jest tam gorsze niż brak gniazda, a trening dociąga je dokładnie do poziomu braku gniazda}. To jest twierdzenie o architekturze, nie o trenowalności, i tak je raportujemy.
 
 \subsection{Rysunki}
 
@@ -788,7 +822,7 @@ Pięć rysunków, wszystkie z tego samego przebiegu analizy co tabele wyżej.
 \begin{figure}[htbp]
 \centering
 % \includegraphics[width=0.8\textwidth]{wykres_E.pdf}
-\caption{Rozkład \texttt{best\_epoch} per ramię, z linią budżetu 300 epok. Budżet wiąże w 3 z 970 przebiegów. \textsc{plik:} \texttt{wykres\_E.pdf} (\texttt{fig5\_best\_epoch.pdf}).}
+\caption{Rozkład \texttt{best\_epoch} per ramię, z linią budżetu 300 epok. Budżet wiąże w 3 z 970 przebiegów serii bez sondy \texttt{h3}. \textsc{plik:} \texttt{wykres\_E.pdf} (\texttt{fig5\_best\_epoch.pdf}).}
 \end{figure}
 
 \subsection{Interpretacja i status wyników}
@@ -811,10 +845,11 @@ Pięć rysunków, wszystkie z tego samego przebiegu analizy co tabele wyżej.
 
 \textbf{Ramię $D$ dzieli nośnik częstotliwości, nie rozkład.} $\Delta_{BD}$ mierzy kontrast z klasyczną mapą o tym samym nośniku i tej samej wielkości. Rozkład masy widmowej jest inny: obwód L1 trzyma 96,7\,\% masy na wyrazach o najwyżej dwóch aktywnych współrzędnych, a $\Omega$ losowane jednostajnie z tej samej kraty trafia w takie wyrazy z prawdopodobieństwem 0,058. Do tego \texttt{D\_matched} pokrywa 5 z 3125 punktów nośnika na losowanie. Wszystko o ramieniu $D$ jest eksploracyjne.
 
-\textbf{Awaria głowy przy \texttt{h2}.} Głowy MLP osi inicjalizowano domyślnym schematem PyTorcha dla \texttt{nn.Linear}, w którym waga i bias pochodzą z $U(\pm 1/\sqrt{5})$. Przy cechach o odchyleniu 0,228 daje to $\mathrm{std}(w\cdot x) = 0{,}132$, podczas gdy bias sięga $\pm 0{,}447$, czyli 3,4-krotności odchylenia sumy ważonej: jedno pechowe losowanie biasu wypycha całą jednostkę pod zero dla prawie wszystkich wejść. Zmierzone na 2000 losowań: 27\,\% jednostek startuje z dodatnią pre-aktywacją na mniej niż 5\,\% wejść, i to niezależnie od szerokości warstwy. Prawdopodobieństwo, że umrą \emph{wszystkie} jednostki, wynosi 7,5\,\% przy dwóch, 1,6\,\% przy trzech i 0,6\,\% przy czterech. Jest to zjawisko opisane jako sieć „born dead'' przez \citet{lu2020}. Przy \texttt{h2} zrealizowało się w 53 z 250 przebiegów, we wszystkich ramionach, także w wariancie E. Ma to \textbf{ograniczony zasięg}: dotyczy jednego z czterech punktów osi. Pytanie konfirmacyjne stoi przy głowie liniowej, w której nie ma żadnej aktywacji, i tam nie zdegenerował się ani jeden z 300 przebiegów. Przy \texttt{h4} i \texttt{h42} awaria praktycznie nie występuje (1 przebieg na 420).
+\textbf{Awaria głowy przy \texttt{h2}.} Głowy MLP osi inicjalizowano domyślnym schematem PyTorcha dla \texttt{nn.Linear}, w którym waga i bias pochodzą z $U(\pm 1/\sqrt{5})$. Przy cechach o odchyleniu 0,228 daje to $\mathrm{std}(w\cdot x) = 0{,}132$, podczas gdy bias sięga $\pm 0{,}447$, czyli 3,4-krotności odchylenia sumy ważonej: jedno pechowe losowanie biasu wypycha całą jednostkę pod zero dla prawie wszystkich wejść. Zmierzone na 2000 losowań: 27\,\% jednostek startuje z dodatnią pre-aktywacją na mniej niż 5\,\% wejść, i to niezależnie od szerokości warstwy. Prawdopodobieństwo, że umrą \emph{wszystkie} jednostki, wynosi 7,5\,\% przy dwóch, 1,6\,\% przy trzech i 0,6\,\% przy czterech. Jest to zjawisko opisane jako sieć „born dead'' przez \citet{lu2020}. Przy \texttt{h2} zrealizowało się w 53 z 250 przebiegów, we wszystkich ramionach, także w wariancie E.
+Przewidywane 7,5\,\% dotyczy wyłącznie \emph{startu}: to prawdopodobieństwo, że obie jednostki są martwe już przy inicjalizacji. Obserwowane 53 z 250 to 21,2\,\%, czyli $2{,}8\times$ więcej, więc śmierć przy inicjalizacji nie wyjaśnia całości zjawiska --- pozostała część jednostek umiera w trakcie treningu. Rozstęp między ramionami jest zgodny z tym odczytem: 26,7\,\% ($A$), 21,7\,\% ($B$), 16,7\,\% ($E$), 32,0\,\% ($F$) i 6,0\,\% (\texttt{D\_matched}), przy czym tylko ostatnia wartość jest bliska przewidywaniu z inicjalizacji. Ma to \textbf{ograniczony zasięg}: dotyczy jednego z czterech punktów osi. Pytanie konfirmacyjne stoi przy głowie liniowej, w której nie ma żadnej aktywacji, i tam nie zdegenerował się ani jeden z 300 przebiegów. Przy \texttt{h4} i \texttt{h42} awaria praktycznie nie występuje (1 przebieg na 420).
 
 \section{Future work}
-Na ten moment przeprowadziny eksperyment można nazwać prof-of-concept, a nie podważeniem konkretnej dziedziny badań. Jeśli badania miałyby iść w tym kierunku, musiałby skupić się na poszerzeniu analizowanej ilości architektur, przypadków, encodingów czy inicjalizacji. Pomysły na rozszerzenie tego eksperymentu to przetestowanie ansatzów na większej ilości qubitów, dostosowanych do innych topologii i innych bramek. Kolejnym rozszerzeniem mogłoby być zaprojektowanie ansatzu, który nie respektuje topologii hardware, np. plątanie typu ring. Odnośnie awarii h2, w kolejnym etapie można byłoby przeprojektować głowę MLP, aby uniknąć takich problemów (np. inne funckje aktywacji
+Na ten moment przeprowadzony eksperyment można nazwać proof-of-concept, a nie podważeniem konkretnej dziedziny badań. Jeśli badania miałyby iść w tym kierunku, musiałby skupić się na poszerzeniu analizowanej ilości architektur, przypadków, encodingów czy inicjalizacji. Pomysły na rozszerzenie tego eksperymentu to przetestowanie ansatzów na większej ilości qubitów, dostosowanych do innych topologii i innych bramek. Kolejnym rozszerzeniem mogłoby być zaprojektowanie ansatzu, który nie respektuje topologii hardware, np. plątanie typu ring. Odnośnie awarii h2, w kolejnym etapie można byłoby przeprojektować głowę MLP, aby uniknąć takich problemów (np. inne funkcje aktywacji).
 
 Chcąc także odnieść eksperyment jeszcze bardziej do dziedziny można byłoby poruszyć temat encoderów czy autoencoderów, tak jak w pracy \citet{mari2019}.
 
