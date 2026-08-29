@@ -1,7 +1,8 @@
 """PennyLane execution path for the quantum socket: lightning.qubit + adjoint.
 
 Faster alternative to the Qiskit path. Same circuit, encoding, theta and observables — only the way the
-derivative is obtained changes.
+derivative is obtained changes. Which observables, and in which order, is not decided here:
+both backends read it from qsocket.observables.pauli_z_chains.
 
 The circuit is translated gate by gate from the QuantumCircuit that
 ansatzes.build_socket_circuit produces, never re-declared here, so the two backends
@@ -24,6 +25,8 @@ import pennylane as qml
 import torch
 import torch.nn as nn
 from qiskit import QuantumCircuit
+
+from qsocket.observables import DEFAULT_READOUT_ORDER, pauli_z_chains, readout_size
 
 LIGHTNING_DEVICE = "lightning.qubit"
 DIFF_METHOD = "adjoint"
@@ -83,13 +86,47 @@ def make_device(n_qubits: int):
     return qml.device(LIGHTNING_DEVICE, wires=n_qubits, shots=None)
 
 
-def make_qnode(circuit: QuantumCircuit, n_qubits: int, *, interface: str):
-    """QNode returning the five <Z_i>, differentiated by the adjoint method.
+def _z_chain_operator(chain: tuple[int, ...]):
+    """Product of PauliZ over the qubits of one chain; PauliZ itself for weight 1.
+
+    reduce over @ rather than qml.prod(*ops): a single-element prod is a Prod wrapping
+    one operator, which is mathematically the same observable but not the same object the
+    order=1 path has always passed to adjoint. Keeping weight 1 literally unchanged is
+    what makes "the first n columns are the main-series readout" true of the executed
+    circuit, not only of the label list.
+    """
+    operator = qml.PauliZ(chain[0])
+    for wire in chain[1:]:
+        operator = operator @ qml.PauliZ(wire)
+    return operator
+
+
+def make_qnode(
+    circuit: QuantumCircuit,
+    n_qubits: int,
+    *,
+    interface: str,
+    readout_order: int = DEFAULT_READOUT_ORDER,
+):
+    """QNode returning the Z-chain expectation values, differentiated by the adjoint method.
+
+    readout_order=1 (the default, and the whole main series) returns the n <Z_i>.
+    Higher orders append the heavier chains in the order fixed by qsocket.observables,
+    so the first n outputs are unchanged. All the observables commute, hence one state
+    and one run.
 
     x may carry a leading batch dimension; PennyLane broadcasts the rotation angles and
     lightning evaluates the batch in one call.
+
+    Cost note: adjoint differentiates once per observable, so wall time grows roughly
+    linearly in the number of outputs — order=2 at n=5 is 15 observables against 5.
     """
     instructions = translate_circuit(circuit)
+    # Built once here, not per trace: the operators are stateless and reinstantiating
+    # them on every forward pass would only add work.
+    observables = [
+        _z_chain_operator(chain) for chain in pauli_z_chains(n_qubits, order=readout_order)
+    ]
 
     def _circuit(x, theta):
         for instruction in instructions:
@@ -98,7 +135,7 @@ def make_qnode(circuit: QuantumCircuit, n_qubits: int, *, interface: str):
                 continue
             source = x if instruction.vector == "x" else theta
             _ROTATIONS[instruction.name](source[..., instruction.index], wires=instruction.wires[0])
-        return [qml.expval(qml.PauliZ(i)) for i in range(n_qubits)]
+        return [qml.expval(observable) for observable in observables]
 
     return qml.QNode(_circuit, make_device(n_qubits), interface=interface, diff_method=DIFF_METHOD)
 
@@ -109,37 +146,52 @@ def expectations_pennylane(
     X: np.ndarray,
     *,
     n_qubits: int = 5,
+    readout_order: int = DEFAULT_READOUT_ORDER,
 ) -> np.ndarray:
-    """Exact <Z_i> for every row of X, shape (len(X), n_qubits), in float64.
+    """Exact Z-chain expectations for every row of X, shape (len(X), n_outputs), float64.
 
     PennyLane counterpart of rank.z_expectation_batch. The equivalence test needs it
     because the torch path is float32 on both backends, so agreement at 1e-10 can only
     be established where nothing is downcast.
     """
-    qnode = make_qnode(circuit, n_qubits, interface="numpy")
+    qnode = make_qnode(circuit, n_qubits, interface="numpy", readout_order=readout_order)
     X = np.atleast_2d(np.asarray(X, dtype=np.float64))
     values = qnode(X, np.asarray(theta, dtype=np.float64))
+    n_outputs = readout_size(n_qubits, order=readout_order)
     return np.stack([np.asarray(v, dtype=np.float64) for v in values], axis=-1).reshape(
-        len(X), n_qubits
+        len(X), n_outputs
     )
 
 
 class PennyLaneQuantumLayer(nn.Module):
-    """(B, n_qubits) -> (B, n_qubits) of <Z_i>, with theta as the trainable weight.
+    """(B, n_qubits) -> (B, n_outputs) of Z-chain expectations, theta the trainable weight.
 
     Mirrors the surface of Qiskit's TorchConnector — parameter named `weight`, forward
     takes a batch — so callers stay backend-agnostic.
+
+    n_outputs is n_qubits at readout_order=1 and readout_size(n_qubits, order) above it.
+    The output width is a field rather than n_qubits reused, because the input width and
+    the output width stop being equal as soon as the readout is widened.
     """
 
-    def __init__(self, circuit: QuantumCircuit, n_qubits: int, initial_weights: np.ndarray):
+    def __init__(
+        self,
+        circuit: QuantumCircuit,
+        n_qubits: int,
+        initial_weights: np.ndarray,
+        *,
+        readout_order: int = DEFAULT_READOUT_ORDER,
+    ):
         super().__init__()
         self.n_qubits = n_qubits
+        self.readout_order = readout_order
+        self.n_outputs = readout_size(n_qubits, order=readout_order)
         self.diff_method = DIFF_METHOD
-        self.qnode = make_qnode(circuit, n_qubits, interface="torch")
+        self.qnode = make_qnode(circuit, n_qubits, interface="torch", readout_order=readout_order)
         # float32 matches TorchConnector, so theta is bit-for-bit identical on both
         # backends for a given seed.
         self.weight = nn.Parameter(torch.as_tensor(np.asarray(initial_weights), dtype=torch.float32))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         values = self.qnode(x, self.weight)
-        return torch.stack(list(values), dim=-1).to(x.dtype).reshape(*x.shape[:-1], self.n_qubits)
+        return torch.stack(list(values), dim=-1).to(x.dtype).reshape(*x.shape[:-1], self.n_outputs)
