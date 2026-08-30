@@ -1,0 +1,40 @@
+SONDA h3 — estymandy, estymator blokowany (df = N - J = 27), 30 par na komorke
+h3 NIE jest punktem osi kontraktowej. Dolozona po serii, zeby zdiagnozowac awarie h2.
+lr komorki (A,B): {'L1/ds11': np.float64(0.003), 'L1/ds22': np.float64(0.01), 'L1/ds33': np.float64(0.003), 'L2/ds11': np.float64(0.03), 'L2/ds22': np.float64(0.003), 'L2/ds33': np.float64(0.003)}
+lr ramienia E   : {'ds11': np.float64(0.03), 'ds22': np.float64(0.1), 'ds33': np.float64(0.01)}
+
+estymand          ans     n      Delta                  95% CI  sigma_D      MDE     p_znak     p_wilc
+delta_AB          L1     30    +0.1180  [ +0.0869; +0.1492]   0.0832   0.0442   1.86e-09   1.86e-09
+delta_AB          L2     30    +0.1271  [ +0.0957; +0.1584]   0.0836   0.0444   3.73e-09   3.73e-09
+delta_AE          L1     30    +0.0307  [ +0.0205; +0.0409]   0.0272   0.0144   0.000325   5.46e-07
+delta_AE          L2     30    +0.0212  [ -0.0036; +0.0461]   0.0664   0.0352   0.000325   7.68e-05
+delta_BE          L1     30    -0.0874  [ -0.1186; -0.0561]   0.0835   0.0443   3.73e-09   3.73e-09
+delta_BE          L2     30    -0.1058  [ -0.1415; -0.0702]   0.0951   0.0505   5.77e-08   9.31e-09
+delta_AF          L1     30    +0.0337  [ +0.0091; +0.0583]   0.0656   0.0348   0.000546   9.98e-06
+delta_AF          L2     30    +0.0222  [ -0.0131; +0.0576]   0.0943   0.0501    0.00143   0.000304
+delta_BD_matched  L1     30    +0.0088  [ -0.0223; +0.0400]   0.0831   0.0441     0.0987      0.153
+delta_BD_matched  L2     30    -0.0077  [ -0.0468; +0.0314]   0.1044   0.0554          1      0.855
+
+ZAPADNIECIA (accuracy dokladnie rowna udzialowi klasy): 5 z 250
+arm  ansatz_level
+A    L2              1
+B    L1              1
+     L2              1
+F    product         2
+
+theta_displacement, ramiona trenowane:
+     count    mean     min
+arm                       
+A       60  0.7929  0.1773
+F       50  0.6127  0.1350
+
+accuracy per ramie:
+                        count    mean     std     min     max
+arm       ansatz_level                                       
+A         L1               30  0.8397  0.0220  0.7800  0.8700
+          L2               30  0.8302  0.0675  0.4850  0.8658
+B         L1               30  0.7216  0.0850  0.4658  0.8183
+          L2               30  0.7032  0.0863  0.4817  0.8100
+D_matched                  50  0.7143  0.0463  0.5742  0.7792
+E                          30  0.8090  0.0287  0.7542  0.8725
+F         product          50  0.8063  0.0666  0.4850  0.8717

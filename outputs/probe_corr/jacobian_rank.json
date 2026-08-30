@@ -1,0 +1,27 @@
+{
+  "what": "numerical rank of d(socket outputs)/d(theta) for the L1 socket at R=2, per readout order",
+  "why": "If the rank is unchanged at order=2, the parameter space of the socket did not change and the whole difference the probe measures lies in the richness of the readout.",
+  "recipe": "rank.effective_dimension(build_socket_circuit('L1', n, R), R=2, readout_order=order)",
+  "batch": 50,
+  "tol": 1e-08,
+  "theta_seed": 20260814,
+  "x_seed": 31337,
+  "git_commit": "15d02d6420258038e9ec9313304764d7dbf3c135",
+  "measurements": {
+    "order_1": {
+      "readout_order": 1,
+      "n_outputs": 5,
+      "jacobian_rows": 250,
+      "theta_params": 35,
+      "numerical_rank": 35
+    },
+    "order_2": {
+      "readout_order": 2,
+      "n_outputs": 15,
+      "jacobian_rows": 750,
+      "theta_params": 35,
+      "numerical_rank": 35
+    }
+  },
+  "verdict": "rank unchanged: 35 at both orders"
+}

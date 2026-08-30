@@ -302,7 +302,7 @@
     10
    ]
   },
-  "results_csv": "outputs/a8/main/a7_results_combined.csv",
+  "results_csv": "outputs/stats/main/a7_results_combined.csv",
   "status": "complete contract grid"
  },
  "series_numbers_vs_pilot": {
