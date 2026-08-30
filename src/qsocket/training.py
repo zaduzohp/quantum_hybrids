@@ -57,11 +57,21 @@ class TrainResult:
 
 
 def to_binary_labels(y) -> torch.Tensor:
-    """Map {-1, +1} to {0, 1}. Generators return +-1; BCE needs {0, 1}."""
+    """Map {-1, +1} to {0, 1}. Generators return +-1; BCE needs {0, 1}.
+
+    One coding or the other, never both: {-1, 0, 1} used to pass, because every value was
+    individually admissible, and -1 and 0 then collapsed into the same class. A three-class
+    label vector would have trained silently as a binary one.
+    """
     values = np.asarray(y).reshape(-1).astype(np.float64)
     unique = np.unique(values)
-    if not np.all(np.isin(unique, (-1.0, 0.0, 1.0))):
-        raise ValueError(f"labels must be in {{-1,+1}} or {{0,1}}, got {unique.tolist()}")
+    admissible = np.all(np.isin(unique, (-1.0, 1.0))) or np.all(np.isin(unique, (0.0, 1.0)))
+    if not admissible:
+        raise ValueError(
+            f"labels must be entirely in {{-1,+1}} or entirely in {{0,1}}, got "
+            f"{unique.tolist()}. A mix of the two codings is not a binary problem: -1 and "
+            "0 would both map to class 0."
+        )
     return torch.as_tensor(values > 0, dtype=torch.float32)
 
 
@@ -487,26 +497,3 @@ def ridge_control(
         "val_accuracy_per_alpha": {float(a): float(v) for a, v in val_accuracy.items()},
         "accuracy": accuracy_by_split,
     }
-
-
-def ridge_readout(features_tr, y_tr, features_val, y_val, *, alpha: float) -> float:
-    """Closed-form ridge readout; returns validation accuracy.
-
-    The one place in the project with a least-squares objective, matching how the QELM
-    literature computes the readout: linear dilution level, frozen socket. Labels are
-    taken as {-1,+1} and the decision threshold is 0.
-    """
-    Phi_tr = np.asarray(features_tr, dtype=np.float64)
-    Phi_val = np.asarray(features_val, dtype=np.float64)
-    t_tr = np.where(np.asarray(y_tr).reshape(-1) > 0, 1.0, -1.0)
-    t_val = np.where(np.asarray(y_val).reshape(-1) > 0, 1.0, -1.0)
-
-    # Explicit intercept column, left unpenalised to match the bias of the head.
-    A_tr = np.hstack([Phi_tr, np.ones((len(Phi_tr), 1))])
-    A_val = np.hstack([Phi_val, np.ones((len(Phi_val), 1))])
-    penalty = alpha * np.eye(A_tr.shape[1])
-    penalty[-1, -1] = 0.0
-
-    w = np.linalg.solve(A_tr.T @ A_tr + penalty, A_tr.T @ t_tr)
-    predicted = np.where(A_val @ w > 0, 1.0, -1.0)
-    return float(np.mean(predicted == t_val))
