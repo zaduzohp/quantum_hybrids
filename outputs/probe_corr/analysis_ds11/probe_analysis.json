@@ -1,0 +1,485 @@
+{
+  "status": "EXPLORATORY",
+  "readout_order": 2,
+  "dataset_seeds": [
+    11
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "per_arm": {
+    "A_corr": {
+      "n": 10,
+      "mean": 0.8254166666666667,
+      "sd": 0.008270597183866349,
+      "sigma_ci95_low": 0.005688807923902404,
+      "sigma_ci95_high": 0.015098886434384118,
+      "min": 0.8058333333333333,
+      "max": 0.835
+    },
+    "B_corr": {
+      "n": 10,
+      "mean": 0.7804166666666668,
+      "sd": 0.02011636671659531,
+      "sigma_ci95_low": 0.013836745259548032,
+      "sigma_ci95_high": 0.036724643913114245,
+      "min": 0.7491666666666666,
+      "max": 0.8133333333333334
+    },
+    "D_corr": {
+      "n": 10,
+      "mean": 0.7921666666666666,
+      "sd": 0.01119551276953582,
+      "sigma_ci95_low": 0.007700667840494737,
+      "sigma_ci95_high": 0.020438642110592507,
+      "min": 0.7766666666666666,
+      "max": 0.8133333333333334
+    }
+  },
+  "per_arm_per_dataset": {
+    "A_corr": {
+      "ds11": {
+        "n": 10,
+        "mean": 0.8254166666666667,
+        "sd": 0.008270597183866349,
+        "sigma_ci95_low": 0.005688807923902404,
+        "sigma_ci95_high": 0.015098886434384118,
+        "min": 0.8058333333333333,
+        "max": 0.835
+      }
+    },
+    "B_corr": {
+      "ds11": {
+        "n": 10,
+        "mean": 0.7804166666666668,
+        "sd": 0.02011636671659531,
+        "sigma_ci95_low": 0.013836745259548032,
+        "sigma_ci95_high": 0.036724643913114245,
+        "min": 0.7491666666666666,
+        "max": 0.8133333333333334
+      }
+    },
+    "D_corr": {
+      "ds11": {
+        "n": 10,
+        "mean": 0.7921666666666666,
+        "sd": 0.01119551276953582,
+        "sigma_ci95_low": 0.007700667840494737,
+        "sigma_ci95_high": 0.020438642110592507,
+        "min": 0.7766666666666666,
+        "max": 0.8133333333333334
+      }
+    }
+  },
+  "estimands": {
+    "Delta_A'B'": {
+      "label": "Delta_A'B'",
+      "status": "EXPLORATORY",
+      "n": 10,
+      "blocked": {
+        "n": 10,
+        "mean": 0.045000000000000005,
+        "sd": 0.019376866696216997,
+        "min": 0.021666666666666612,
+        "max": 0.08333333333333337,
+        "n_positive": 10,
+        "n_negative": 0,
+        "n_zero": 0,
+        "se": 0.006127503267750768,
+        "ci95_low": 0.031138624592788197,
+        "ci95_high": 0.05886137540721181,
+        "ci95_half_width": 0.013861375407211806,
+        "ci90_low": 0.03376759451499272,
+        "ci90_high": 0.05623240548500729,
+        "ci90_half_width": 0.011232405485007283,
+        "sigma_ci95_low": 0.013328091110140224,
+        "sigma_ci95_high": 0.03537460514593816,
+        "mde_constant": 0.9947137350096735,
+        "mde": 0.019274435444178565,
+        "above_mde": true,
+        "ci95_excludes_zero": true,
+        "p_sign_exact": 0.001953125,
+        "sign_positive": 10,
+        "sign_negative": 0,
+        "p_wilcoxon_exact": 0.001953125,
+        "wilcoxon_statistic": 0.0,
+        "t_statistic": 7.343937332002147,
+        "p_t": 4.3553390048225714e-05,
+        "pooling": "blocked (generator seed = FIXED effect, SPEC 7.3)",
+        "blocked_computable": true,
+        "n_blocks": 1,
+        "block_means": {
+          "11": 0.045000000000000005
+        },
+        "df_residual": 9,
+        "sd_pooled_iid": 0.019376866696216997,
+        "between_block_spread": 0.0
+      },
+      "pooled_blocked": {
+        "computable": true,
+        "blocks": [
+          11
+        ],
+        "n": 10,
+        "n_blocks": 1,
+        "block_means": {
+          "11": 0.045000000000000005
+        },
+        "block_counts": {
+          "11": 10
+        },
+        "mean": 0.045000000000000005,
+        "df_residual": 9,
+        "model": "d_ij = mu + alpha_j (dataset = FIXED effect); estimate = unweighted mean of block means",
+        "not_a_variance_component": "three levels do not support a variance component (SPEC 7.6: the CI on sigma at n=3 spans a factor of 12). This is a blocking factor.",
+        "mse_within": 0.00037546296296296346,
+        "sigma_within": 0.019376866696216997,
+        "se": 0.006127503267750768,
+        "ci95_low": 0.031138624592788197,
+        "ci95_high": 0.05886137540721181,
+        "ci95_half_width": 0.013861375407211806,
+        "p_sign_exact": 0.001953125
+      },
+      "per_dataset": {
+        "ds11": {
+          "n": 10,
+          "mean": 0.045000000000000005,
+          "sd": 0.019376866696216997,
+          "min": 0.021666666666666612,
+          "max": 0.08333333333333337,
+          "n_positive": 10,
+          "n_negative": 0,
+          "n_zero": 0,
+          "se": 0.006127503267750767,
+          "ci95_low": 0.0311386245927882,
+          "ci95_high": 0.05886137540721181,
+          "ci95_half_width": 0.013861375407211805,
+          "ci90_low": 0.03376759451499272,
+          "ci90_high": 0.05623240548500729,
+          "ci90_half_width": 0.011232405485007283,
+          "sigma_ci95_low": 0.013328091110140224,
+          "sigma_ci95_high": 0.03537460514593816,
+          "mde_constant": 0.9947137350096735,
+          "mde": 0.01927443544417856,
+          "above_mde": true,
+          "ci95_excludes_zero": true,
+          "p_sign_exact": 0.001953125,
+          "sign_positive": 10,
+          "sign_negative": 0,
+          "p_wilcoxon_exact": 0.001953125,
+          "wilcoxon_statistic": 0.0,
+          "t_statistic": 7.343937332002147,
+          "p_t": 4.3553390048225714e-05
+        }
+      },
+      "unpaired_left": [],
+      "unpaired_right": [],
+      "divergence": {
+        "checkable": false,
+        "rule": "any per-dataset 95% CI failing to overlap the pooled 95% CI. On divergence the PER-DATASET reading wins and the divergence is a finding, not a defect."
+      },
+      "tost": {
+        "n": 10,
+        "computable": true,
+        "delta": 0.02,
+        "alpha": 0.05,
+        "mean": 0.045000000000000005,
+        "sd": 0.019376866696216997,
+        "ci90_low": 0.03376759451499272,
+        "ci90_high": 0.05623240548500729,
+        "ci90_half_width": 0.011232405485007283,
+        "p_lower": 1.0924390631007345e-06,
+        "p_upper": 0.9986209219361898,
+        "pvalue": 0.9986209219361898,
+        "equivalent": false,
+        "half_width_exceeds_delta": false
+      },
+      "tost_power": 0.8264070498427851
+    },
+    "Delta_B'D_corr": {
+      "label": "Delta_B'D_corr",
+      "status": "EXPLORATORY",
+      "n": 10,
+      "blocked": {
+        "n": 10,
+        "mean": -0.011750000000000005,
+        "sd": 0.030172983787111356,
+        "min": -0.054166666666666696,
+        "max": 0.03500000000000003,
+        "n_positive": 3,
+        "n_negative": 7,
+        "n_zero": 0,
+        "se": 0.009541535257060495,
+        "ci95_low": -0.03333445232585101,
+        "ci95_high": 0.009834452325851005,
+        "ci95_half_width": 0.02158445232585101,
+        "ci90_low": -0.02924071167711305,
+        "ci90_high": 0.0057407116771130366,
+        "ci90_half_width": 0.017490711677113042,
+        "sigma_ci95_low": 0.020754040541441955,
+        "sigma_ci95_high": 0.055084106438748504,
+        "mde_constant": 0.9947137350096735,
+        "mde": 0.030013481399263867,
+        "above_mde": false,
+        "ci95_excludes_zero": false,
+        "p_sign_exact": 0.34375,
+        "sign_positive": 3,
+        "sign_negative": 7,
+        "p_wilcoxon_exact": 0.28515625,
+        "wilcoxon_statistic": 16.5,
+        "t_statistic": -1.2314580079034245,
+        "p_t": 0.24935848314132897,
+        "pooling": "blocked (generator seed = FIXED effect, SPEC 7.3)",
+        "blocked_computable": true,
+        "n_blocks": 1,
+        "block_means": {
+          "11": -0.011750000000000005
+        },
+        "df_residual": 9,
+        "sd_pooled_iid": 0.030172983787111356,
+        "between_block_spread": 0.0
+      },
+      "pooled_blocked": {
+        "computable": true,
+        "blocks": [
+          11
+        ],
+        "n": 10,
+        "n_blocks": 1,
+        "block_means": {
+          "11": -0.011750000000000005
+        },
+        "block_counts": {
+          "11": 10
+        },
+        "mean": -0.011750000000000005,
+        "df_residual": 9,
+        "model": "d_ij = mu + alpha_j (dataset = FIXED effect); estimate = unweighted mean of block means",
+        "not_a_variance_component": "three levels do not support a variance component (SPEC 7.6: the CI on sigma at n=3 spans a factor of 12). This is a blocking factor.",
+        "mse_within": 0.0009104089506172848,
+        "sigma_within": 0.030172983787111356,
+        "se": 0.009541535257060495,
+        "ci95_low": -0.03333445232585101,
+        "ci95_high": 0.009834452325851005,
+        "ci95_half_width": 0.02158445232585101,
+        "p_sign_exact": 0.34375
+      },
+      "per_dataset": {
+        "ds11": {
+          "n": 10,
+          "mean": -0.011750000000000005,
+          "sd": 0.030172983787111356,
+          "min": -0.054166666666666696,
+          "max": 0.03500000000000003,
+          "n_positive": 3,
+          "n_negative": 7,
+          "n_zero": 0,
+          "se": 0.009541535257060493,
+          "ci95_low": -0.03333445232585101,
+          "ci95_high": 0.009834452325851001,
+          "ci95_half_width": 0.021584452325851006,
+          "ci90_low": -0.02924071167711305,
+          "ci90_high": 0.0057407116771130366,
+          "ci90_half_width": 0.017490711677113042,
+          "sigma_ci95_low": 0.020754040541441955,
+          "sigma_ci95_high": 0.055084106438748504,
+          "mde_constant": 0.9947137350096735,
+          "mde": 0.03001348139926386,
+          "above_mde": false,
+          "ci95_excludes_zero": false,
+          "p_sign_exact": 0.34375,
+          "sign_positive": 3,
+          "sign_negative": 7,
+          "p_wilcoxon_exact": 0.28515625,
+          "wilcoxon_statistic": 16.5,
+          "t_statistic": -1.2314580079034245,
+          "p_t": 0.24935848314132897
+        }
+      },
+      "unpaired_left": [],
+      "unpaired_right": [],
+      "divergence": {
+        "checkable": false,
+        "rule": "any per-dataset 95% CI failing to overlap the pooled 95% CI. On divergence the PER-DATASET reading wins and the divergence is a finding, not a defect."
+      },
+      "tost": {
+        "n": 10,
+        "computable": true,
+        "delta": 0.02,
+        "alpha": 0.05,
+        "mean": -0.011750000000000005,
+        "sd": 0.030172983787111356,
+        "ci90_low": -0.02924071167711305,
+        "ci90_high": 0.0057407116771130366,
+        "ci90_half_width": 0.017490711677113042,
+        "p_lower": 0.20484471581636146,
+        "p_upper": 0.004416687438774387,
+        "pvalue": 0.20484471581636146,
+        "equivalent": false,
+        "half_width_exceeds_delta": false
+      },
+      "tost_power": 0.2752361359660802
+    },
+    "Delta_A'D_corr": {
+      "label": "Delta_A'D_corr",
+      "status": "EXPLORATORY",
+      "n": 10,
+      "blocked": {
+        "n": 10,
+        "mean": 0.03325,
+        "sd": 0.01601238910775879,
+        "min": 0.010000000000000009,
+        "max": 0.05666666666666664,
+        "n_positive": 10,
+        "n_negative": 0,
+        "n_zero": 0,
+        "se": 0.005063562036138911,
+        "ci95_low": 0.021795426870675302,
+        "ci95_high": 0.0447045731293247,
+        "ci95_half_width": 0.011454573129324701,
+        "ci90_low": 0.023967918946246617,
+        "ci90_high": 0.04253208105375339,
+        "ci90_half_width": 0.009282081053753385,
+        "sigma_ci95_low": 0.011013884972480698,
+        "sigma_ci95_high": 0.02923238060158996,
+        "mde_constant": 0.9947137350096735,
+        "mde": 0.015927743375806963,
+        "above_mde": true,
+        "ci95_excludes_zero": true,
+        "p_sign_exact": 0.001953125,
+        "sign_positive": 10,
+        "sign_negative": 0,
+        "p_wilcoxon_exact": 0.001953125,
+        "wilcoxon_statistic": 0.0,
+        "t_statistic": 6.566523676947767,
+        "p_t": 0.00010318150865887739,
+        "pooling": "blocked (generator seed = FIXED effect, SPEC 7.3)",
+        "blocked_computable": true,
+        "n_blocks": 1,
+        "block_means": {
+          "11": 0.03325
+        },
+        "df_residual": 9,
+        "sd_pooled_iid": 0.01601238910775879,
+        "between_block_spread": 0.0
+      },
+      "pooled_blocked": {
+        "computable": true,
+        "blocks": [
+          11
+        ],
+        "n": 10,
+        "n_blocks": 1,
+        "block_means": {
+          "11": 0.03325
+        },
+        "block_counts": {
+          "11": 10
+        },
+        "mean": 0.03325,
+        "df_residual": 9,
+        "model": "d_ij = mu + alpha_j (dataset = FIXED effect); estimate = unweighted mean of block means",
+        "not_a_variance_component": "three levels do not support a variance component (SPEC 7.6: the CI on sigma at n=3 spans a factor of 12). This is a blocking factor.",
+        "mse_within": 0.0002563966049382723,
+        "sigma_within": 0.01601238910775879,
+        "se": 0.005063562036138911,
+        "ci95_low": 0.021795426870675302,
+        "ci95_high": 0.0447045731293247,
+        "ci95_half_width": 0.011454573129324701,
+        "p_sign_exact": 0.001953125
+      },
+      "per_dataset": {
+        "ds11": {
+          "n": 10,
+          "mean": 0.03325,
+          "sd": 0.01601238910775879,
+          "min": 0.010000000000000009,
+          "max": 0.05666666666666664,
+          "n_positive": 10,
+          "n_negative": 0,
+          "n_zero": 0,
+          "se": 0.00506356203613891,
+          "ci95_low": 0.021795426870675302,
+          "ci95_high": 0.0447045731293247,
+          "ci95_half_width": 0.011454573129324698,
+          "ci90_low": 0.02396791894624662,
+          "ci90_high": 0.04253208105375338,
+          "ci90_half_width": 0.009282081053753383,
+          "sigma_ci95_low": 0.011013884972480698,
+          "sigma_ci95_high": 0.02923238060158996,
+          "mde_constant": 0.9947137350096735,
+          "mde": 0.01592774337580696,
+          "above_mde": true,
+          "ci95_excludes_zero": true,
+          "p_sign_exact": 0.001953125,
+          "sign_positive": 10,
+          "sign_negative": 0,
+          "p_wilcoxon_exact": 0.001953125,
+          "wilcoxon_statistic": 0.0,
+          "t_statistic": 6.566523676947767,
+          "p_t": 0.00010318150865887739
+        }
+      },
+      "unpaired_left": [],
+      "unpaired_right": [],
+      "divergence": {
+        "checkable": false,
+        "rule": "any per-dataset 95% CI failing to overlap the pooled 95% CI. On divergence the PER-DATASET reading wins and the divergence is a finding, not a defect."
+      },
+      "tost": {
+        "n": 10,
+        "computable": true,
+        "delta": 0.02,
+        "alpha": 0.05,
+        "mean": 0.03325,
+        "sd": 0.01601238910775879,
+        "ci90_low": 0.023967918946246617,
+        "ci90_high": 0.04253208105375339,
+        "ci90_half_width": 0.009282081053753385,
+        "p_lower": 1.174873539969328e-06,
+        "p_upper": 0.9860198822331809,
+        "pvalue": 0.9860198822331809,
+        "equivalent": false,
+        "half_width_exceeds_delta": false
+      },
+      "tost_power": 0.9529918121398752
+    }
+  },
+  "verdict": {
+    "rule": "Delta_A'B' <= MDE -> width, not freezing; >= Delta_AB - MDE -> no compensation; in between -> partial",
+    "declared": "before the run, docs/briefs/SONDA_KORELATORY.md section 1",
+    "delta_a_prime_b_prime": 0.045000000000000005,
+    "probe_mde": 0.019274435444178565,
+    "main_series_delta_ab": 0.0883,
+    "main_series_mde": 0.0241,
+    "condition_below_mde": false,
+    "condition_uncompensated": false,
+    "reading": "PARTIAL compensation",
+    "fraction_of_delta_ab": 0.5096262740656852,
+    "caveat": "The fraction compares two readout widths and therefore two head sizes, 16 parameters against 6. It is DESCRIPTIVE, as declared in decision 3 of the brief; the contrast INSIDE each width is not."
+  },
+  "mcnemar": {
+    "missing_prediction_files": 0,
+    "Delta_A'B'": {
+      "b_left_better": 938,
+      "c_right_better": 398,
+      "delta_reconstructed": 0.045,
+      "note": "(b - c) / (n_eval * pairs) must reproduce the blocked mean exactly"
+    },
+    "Delta_B'D_corr": {
+      "b_left_better": 660,
+      "c_right_better": 801,
+      "delta_reconstructed": -0.01175,
+      "note": "(b - c) / (n_eval * pairs) must reproduce the blocked mean exactly"
+    }
+  }
+}

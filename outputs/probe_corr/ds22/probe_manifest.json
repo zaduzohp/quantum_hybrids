@@ -1,0 +1,62 @@
+{
+  "what": "correlator-readout probe (exploratory, outside the confirmatory family)",
+  "probe_id": "probe_corr",
+  "readout_order": 2,
+  "readout_width": 15,
+  "head_params": 16,
+  "arms": [
+    "A_corr",
+    "B_corr",
+    "D_corr"
+  ],
+  "trained_arms": [
+    "A_corr"
+  ],
+  "dilution": "linear",
+  "ansatz_levels": [
+    "L1"
+  ],
+  "dataset_seeds": [
+    22
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "lr_selection_seeds": [
+    1,
+    2,
+    3
+  ],
+  "lr_selection_arms": [
+    "A_corr",
+    "B_corr"
+  ],
+  "lr_grid": [
+    0.001,
+    0.003,
+    0.01,
+    0.03
+  ],
+  "R": 2,
+  "jacobian_rank_per_ansatz": {
+    "L1": 35,
+    "D_corr": null
+  },
+  "batch_size": 64,
+  "max_epochs": 300,
+  "patience": 30,
+  "backend": "pennylane",
+  "run_id": "probe_corr-d0996bfa",
+  "git_commit": "15d02d6-dirty",
+  "env_hash": "8f5e61236010",
+  "timestamp_utc": "2026-08-29T08:12:10+00:00"
+}
