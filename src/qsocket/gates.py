@@ -634,7 +634,6 @@ def _arm_e_with_head(
     lr_grid: Sequence[float],
     seeds: Sequence[int],
     cfg=None,
-    ansatz: str = "L1",
 ) -> dict:
     """Arm E (identity socket + `dilution` head) through training.train_model.
 
@@ -665,9 +664,10 @@ def _arm_e_with_head(
     table = []
     for lr in lr_grid:
         for seed in seeds:
-            socket = make_socket(
-                "identity", R=None, ansatz=ansatz, trainable=False, seed=seed
-            )
+            # The identity socket takes no ansatz: it has no circuit. The argument used
+            # to be threaded through three functions to reach a parameter make_socket
+            # ignores.
+            socket = make_socket("identity", R=None, ansatz=None, trainable=False, seed=seed)
             head = make_head(dilution, seed=seed)
             config = (
                 TrainConfig(lr=lr)
@@ -725,7 +725,6 @@ def make_arm_e_linear_floor_model(
     lr_grid: Sequence[float] = G1_LR_GRID,
     seeds: Sequence[int] = (1,),
     cfg=None,
-    ansatz: str = "L1",
 ):
     """Floor model for G1: contract arm E — identity socket, linear head, real training loop.
 
@@ -744,7 +743,6 @@ def make_arm_e_linear_floor_model(
             lr_grid=tuple(lr_grid),
             seeds=tuple(seeds),
             cfg=cfg,
-            ansatz=ansatz,
         )
         # check_g1_headroom reads this flag to call its verdict binding. Attached here
         # rather than in the shared helper: only the linear head is the contract floor.
@@ -773,7 +771,6 @@ def make_mlp_strong_model(
     lr_grid: Sequence[float] = G1_LR_GRID,
     seeds: Sequence[int] = CEILING_SEEDS,
     cfg=None,
-    ansatz: str = "L1",
 ):
     """Classical MLP reading of the ceiling: best of `dilutions` on the same PCA features.
 
@@ -792,7 +789,6 @@ def make_mlp_strong_model(
                 lr_grid=tuple(lr_grid),
                 seeds=tuple(seeds),
                 cfg=cfg,
-                ansatz=ansatz,
             )
             for dilution in dilutions
         }

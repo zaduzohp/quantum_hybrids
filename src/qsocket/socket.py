@@ -79,15 +79,6 @@ def pauli_z_observables(n_qubits: int, *, order: int) -> list[SparsePauliOp]:
     return observables
 
 
-def z_observables(n_qubits: int) -> list[SparsePauliOp]:
-    """Z on qubit i, for i = 0..n_qubits-1 — the readout of the main series.
-
-    Kept as the order=1 case of pauli_z_observables so that every pre-probe call site
-    keeps meaning what it meant before.
-    """
-    return pauli_z_observables(n_qubits, order=DEFAULT_READOUT_ORDER)
-
-
 def initial_theta(*, ansatz: str, R: int, seed: int, n_params: int) -> np.ndarray:
     """theta ~ U[0, 2pi), keyed by derive(seed, ansatz, R).
 

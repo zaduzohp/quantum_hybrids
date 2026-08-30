@@ -13,7 +13,7 @@ differences would blur the singular-value spectrum the rank threshold reads.
 
 from __future__ import annotations
 
-from collections.abc import Callable, Sequence
+from collections.abc import Callable
 
 import numpy as np
 from qiskit import QuantumCircuit
@@ -150,50 +150,3 @@ def effective_dimension(
         jacobian_matrix(circuit, theta, X, n_qubits=n_qubits, readout_order=readout_order),
         tol=tol,
     )
-
-
-def singular_values(
-    circuit_builder: CircuitBuilder,
-    R: int,
-    *,
-    batch: int = DEFAULT_BATCH,
-    n_qubits: int = DEFAULT_N_QUBITS,
-    theta_seed: int = 20260812,
-    x_seed: int = 31337,
-) -> np.ndarray:
-    circuit = circuit_builder(n_qubits, R)
-    n_params = sum(1 for p in circuit.parameters if p.name.startswith("theta"))
-    theta = sample_theta(n_params, seed=theta_seed + R)
-    X = sample_inputs(batch, seed=x_seed, n_qubits=n_qubits)
-    return np.linalg.svd(jacobian_matrix(circuit, theta, X, n_qubits=n_qubits), compute_uv=False)
-
-
-def null_space_support(
-    circuit_builder: CircuitBuilder,
-    R: int,
-    *,
-    batch: int = DEFAULT_BATCH,
-    tol: float = DEFAULT_TOL,
-    support_tol: float = 1e-6,
-    n_qubits: int = DEFAULT_N_QUBITS,
-    theta_seed: int = 20260812,
-    x_seed: int = 31337,
-) -> list[list[int]]:
-    """Theta indices carried by each dead direction.
-
-    Each entry is the support of one null-space vector: parameters that trade off
-    against each other without moving any output.
-    """
-    circuit = circuit_builder(n_qubits, R)
-    n_params = sum(1 for p in circuit.parameters if p.name.startswith("theta"))
-    theta = sample_theta(n_params, seed=theta_seed + R)
-    X = sample_inputs(batch, seed=x_seed, n_qubits=n_qubits)
-    jac = jacobian_matrix(circuit, theta, X, n_qubits=n_qubits)
-    _, s, vt = np.linalg.svd(jac)
-    rank = int(np.sum(s > tol * s[0]))
-    return [sorted(np.flatnonzero(np.abs(v) > support_tol).tolist()) for v in vt[rank:]]
-
-
-def label_supports(supports: Sequence[Sequence[int]], labels: Sequence[str]) -> list[list[str]]:
-    """Translate theta indices into human-readable layer names."""
-    return [[labels[i] for i in support] for support in supports]

@@ -27,9 +27,9 @@ the first n columns of an order>=1 readout are the order=1 readout, unchanged. A
 the probe and a row of the main series can therefore be compared column by column.
 
 No function here takes a default order. The default belongs at the API boundary
-(socket.z_observables, socket.make_socket), where it exists to keep every pre-probe call
-site meaning what it meant before; below that boundary an implicit order=1 would be a
-silently truncated readout rather than a convenience.
+(socket.make_socket, socket.Socket), where it keeps every pre-probe call site meaning what
+it meant before; below that boundary an implicit order=1 would be a silently truncated
+readout rather than a convenience.
 """
 
 from __future__ import annotations

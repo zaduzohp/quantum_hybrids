@@ -8,6 +8,7 @@ Two rejections:
 
 from __future__ import annotations
 
+import csv
 from pathlib import Path
 
 import pandas as pd
@@ -106,19 +107,18 @@ def append_result_row(path, row: dict) -> None:
         )
 
     ordered = {column: row[column] for column in RESULT_COLUMNS}
-    frame = pd.DataFrame([ordered], columns=list(RESULT_COLUMNS))
 
     if not path.exists() or path.stat().st_size == 0:
         path.parent.mkdir(parents=True, exist_ok=True)
-        frame.to_csv(path, index=False)
+        pd.DataFrame([ordered], columns=list(RESULT_COLUMNS)).to_csv(path, index=False)
         return
 
-    existing = pd.read_csv(path, float_precision="round_trip", keep_default_na=False)
-    existing_columns = existing.columns.tolist()
+    # The header alone, so the schema check costs one line rather than the whole file.
+    existing_columns = pd.read_csv(path, nrows=0).columns.tolist()
     if existing_columns != list(RESULT_COLUMNS):
         raise ValueError(
             f"{path} has columns {existing_columns}, which do not match RESULT_COLUMNS. "
             "Appending would mix two schemas in one file."
         )
-    combined = pd.concat([existing, frame], ignore_index=True)
-    combined.to_csv(path, index=False)
+    with path.open("a", newline="", encoding="utf-8") as handle:
+        csv.DictWriter(handle, fieldnames=list(RESULT_COLUMNS)).writerow(ordered)
