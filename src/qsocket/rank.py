@@ -2,7 +2,7 @@
 
 Rank here is the numerical rank of d(socket outputs)/d(theta), i.e. the number of
 parameter directions that move the readout at all. Which outputs those are depends on
-readout_order (qsocket.observables); widening the readout adds rows to the Jacobian, so
+readout_order (qsocket.core); widening the readout adds rows to the Jacobian, so
 the rank is monotone in order. It is not the Fisher-information
 effective dimension of Abbas et al. (Nature Comp. Sci. 1, 403).
 
@@ -19,8 +19,7 @@ import numpy as np
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
 
-from qsocket.encoding import FEATURE_RANGE
-from qsocket.observables import DEFAULT_READOUT_ORDER, pauli_z_chains, readout_size
+from qsocket.core import DEFAULT_READOUT_ORDER, FEATURE_RANGE, pauli_z_chains, readout_size
 
 DEFAULT_N_QUBITS = 5
 DEFAULT_TOL = 1e-8
@@ -36,7 +35,7 @@ def z_sign_table(n_qubits: int, *, order: int = DEFAULT_READOUT_ORDER) -> np.nda
     probability vector: <O> = signs @ p. The eigenvalue of a chain is the product of the
     eigenvalues of its members, which is why one table covers every order.
 
-    Row order is the contract order of qsocket.observables, so row i of this table is
+    Row order is the contract order of qsocket.core, so row i of this table is
     column i of the socket output on both backends.
     """
     basis = np.arange(2**n_qubits)
@@ -44,16 +43,6 @@ def z_sign_table(n_qubits: int, *, order: int = DEFAULT_READOUT_ORDER) -> np.nda
     return np.array(
         [np.prod(single[list(chain)], axis=0) for chain in pauli_z_chains(n_qubits, order=order)]
     )
-
-
-def _binding_plan(circuit: QuantumCircuit) -> list[tuple[bool, int]]:
-    """Per circuit parameter, in circuit order: whether it is a theta (True) or an x
-    (False), and its index inside that vector."""
-    plan = []
-    for param in circuit.parameters:
-        vector, index = param.name.split("[")
-        plan.append((vector == "theta", int(index.rstrip("]"))))
-    return plan
 
 
 def z_expectation_batch(
@@ -69,7 +58,11 @@ def z_expectation_batch(
     readout_order=1 is the main-series readout and the default, so every pre-probe call
     site is unchanged.
     """
-    plan = _binding_plan(circuit)
+    # Per circuit parameter, in circuit order: is it a theta, and its index in that vector.
+    plan = [
+        (name.startswith("theta"), int(index.rstrip("]")))
+        for name, index in (p.name.split("[") for p in circuit.parameters)
+    ]
     signs = z_sign_table(n_qubits, order=readout_order)
     out = np.empty((len(X), readout_size(n_qubits, order=readout_order)))
     for row, x in enumerate(X):

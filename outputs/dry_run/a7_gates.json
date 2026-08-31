@@ -1,0 +1,213 @@
+{
+  "11": {
+    "dataset_seed": 11,
+    "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+    "arm_e_lr_used": 0.1,
+    "g1": {
+      "gate": "G1",
+      "binding": true,
+      "binding_note": "binding: the floor is contract arm E (identity socket + linear head)",
+      "min_headroom": 0.05,
+      "strong_accuracy_band": [
+        0.65,
+        0.9
+      ],
+      "strong": {
+        "accuracy": 0.86,
+        "label": "SVC(rbf) selected on val, evaluated on test",
+        "selected": {
+          "C": 10.0,
+          "gamma": "scale"
+        },
+        "selection_split": "val",
+        "selection_accuracy": 0.855,
+        "grid": {
+          "C": [
+            0.1,
+            1.0,
+            10.0
+          ],
+          "gamma": [
+            "scale",
+            0.1,
+            1.0
+          ]
+        },
+        "cells": [
+          {
+            "C": 0.1,
+            "gamma": "scale",
+            "selection_accuracy": 0.815,
+            "test_accuracy": 0.8141666666666667,
+            "train_accuracy": 0.8197619047619048,
+            "n_support": [
+              1093,
+              1096
+            ],
+            "fit_seconds": 0.10062654200010002
+          },
+          {
+            "C": 0.1,
+            "gamma": 0.1,
+            "selection_accuracy": 0.7433333333333333,
+            "test_accuracy": 0.7508333333333334,
+            "train_accuracy": 0.7454761904761905,
+            "n_support": [
+              1569,
+              1569
+            ],
+            "fit_seconds": 0.12190179199933482
+          },
+          {
+            "C": 0.1,
+            "gamma": 1.0,
+            "selection_accuracy": 0.765,
+            "test_accuracy": 0.7858333333333334,
+            "train_accuracy": 0.7847619047619048,
+            "n_support": [
+              1151,
+              1151
+            ],
+            "fit_seconds": 0.09743325000090408
+          },
+          {
+            "C": 1.0,
+            "gamma": "scale",
+            "selection_accuracy": 0.8333333333333334,
+            "test_accuracy": 0.8408333333333333,
+            "train_accuracy": 0.8554761904761905,
+            "n_support": [
+              868,
+              864
+            ],
+            "fit_seconds": 0.0747076659990853
+          },
+          {
+            "C": 1.0,
+            "gamma": 0.1,
+            "selection_accuracy": 0.74,
+            "test_accuracy": 0.7566666666666667,
+            "train_accuracy": 0.7504761904761905,
+            "n_support": [
+              1131,
+              1130
+            ],
+            "fit_seconds": 0.09849241600022651
+          },
+          {
+            "C": 1.0,
+            "gamma": 1.0,
+            "selection_accuracy": 0.8083333333333333,
+            "test_accuracy": 0.8116666666666666,
+            "train_accuracy": 0.8133333333333334,
+            "n_support": [
+              924,
+              923
+            ],
+            "fit_seconds": 0.0777134579984704
+          },
+          {
+            "C": 10.0,
+            "gamma": "scale",
+            "selection_accuracy": 0.855,
+            "test_accuracy": 0.86,
+            "train_accuracy": 0.8897619047619048,
+            "n_support": [
+              764,
+              749
+            ],
+            "fit_seconds": 0.09574029199939105
+          },
+          {
+            "C": 10.0,
+            "gamma": 0.1,
+            "selection_accuracy": 0.7616666666666667,
+            "test_accuracy": 0.7883333333333333,
+            "train_accuracy": 0.7878571428571428,
+            "n_support": [
+              996,
+              993
+            ],
+            "fit_seconds": 0.08970699999917997
+          },
+          {
+            "C": 10.0,
+            "gamma": 1.0,
+            "selection_accuracy": 0.8216666666666667,
+            "test_accuracy": 0.8241666666666667,
+            "train_accuracy": 0.8330952380952381,
+            "n_support": [
+              846,
+              845
+            ],
+            "fit_seconds": 0.0855520829991292
+          }
+        ],
+        "slowest_cell_seconds": 0.12190179199933482,
+        "total_fit_seconds": 0.8418744989958213
+      },
+      "floor": {
+        "accuracy": 0.7658333333333334,
+        "label": "arm E: identity socket + linear head, training.train_model",
+        "dilution": "linear",
+        "lr_selected": 0.1,
+        "lr_grid": [
+          0.1
+        ],
+        "lr_selection": "per cell, on the validation split; NOT the frozen select_lr",
+        "val_accuracy": 0.75,
+        "mean_val_accuracy_per_lr": {
+          "0.1": 0.75
+        },
+        "seeds": [
+          1
+        ],
+        "runs": [
+          {
+            "lr": 0.1,
+            "seed": 1,
+            "val_accuracy": 0.75,
+            "test_accuracy": 0.7658333333333334,
+            "train_accuracy": 0.760952353477478,
+            "best_epoch": 10,
+            "epochs_run": 40
+          }
+        ],
+        "wall_seconds": 1.0640632079994248,
+        "is_contract_arm_e": true
+      },
+      "headroom": 0.09416666666666662,
+      "g1_margin": 0.04416666666666662,
+      "strong_in_band": true,
+      "failures": [],
+      "passed": true
+    },
+    "g2": {
+      "gate": "G2",
+      "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+      "n_components": 5,
+      "max_share": 0.8,
+      "explained_variance_ratio_": [
+        0.758533458906081,
+        0.10285335860479522,
+        0.07087924743202306,
+        0.046187092168261924,
+        0.021546842888836952
+      ],
+      "share_of_retained": [
+        0.7585334589060825,
+        0.10285335860479541,
+        0.0708792474320232,
+        0.046187092168262014,
+        0.021546842888836994
+      ],
+      "top_component": 0,
+      "top_share": 0.7585334589060825,
+      "total_variance_explained": 0.9999999999999981,
+      "failures": [],
+      "passed": true
+    },
+    "g1_margin": 0.04416666666666662,
+    "passed": true
+  }
+}

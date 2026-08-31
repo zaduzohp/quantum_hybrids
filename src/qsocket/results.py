@@ -78,13 +78,6 @@ PLACEHOLDER_CALIBRATION_IDS = frozenset(
 )
 
 
-def _calibration_is_missing(value) -> bool:
-    if value is None:
-        return True
-    text = str(value).strip()
-    return text.lower() in PLACEHOLDER_CALIBRATION_IDS
-
-
 def append_result_row(path, row: dict) -> None:
     """Append one row to the results CSV, or raise and write nothing."""
     path = Path(path)
@@ -97,8 +90,9 @@ def append_result_row(path, row: dict) -> None:
     if missing:
         raise ValueError(f"missing required result column(s): {missing}")
 
-    if str(row.get("backend", "")).strip() == HARDWARE_BACKEND and _calibration_is_missing(
-        row.get("calibration_set_id")
+    calibration = row.get("calibration_set_id")
+    if str(row.get("backend", "")).strip() == HARDWARE_BACKEND and (
+        calibration is None or str(calibration).strip().lower() in PLACEHOLDER_CALIBRATION_IDS
     ):
         raise ValueError(
             "hardware row rejected: calibration_set_id is empty, None or a placeholder "

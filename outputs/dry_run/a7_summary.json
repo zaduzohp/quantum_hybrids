@@ -1,0 +1,1632 @@
+{
+  "per_arm": {
+    "ds11|linear|L1": {
+      "A": {
+        "test": {
+          "n": 2,
+          "mean": 0.83,
+          "sd": 0.0,
+          "min": 0.83,
+          "max": 0.83
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.8191666666666666,
+          "sd": 0.001178511301977528,
+          "min": 0.8183333333333334,
+          "max": 0.82
+        },
+        "lr_selected": 0.03,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.818404346704483,
+          "sd": 0.059220831870596784,
+          "min": 0.7765288949012756,
+          "max": 0.8602797985076904
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 81.0,
+          "sd": 8.48528137423857,
+          "min": 75.0,
+          "max": 87.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 51.0,
+          "sd": 8.48528137423857,
+          "min": 45.0,
+          "max": 57.0
+        }
+      },
+      "B": {
+        "test": {
+          "n": 2,
+          "mean": 0.71625,
+          "sd": 0.06540737725975558,
+          "min": 0.67,
+          "max": 0.7625
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7050000000000001,
+          "sd": 0.03535533905932733,
+          "min": 0.68,
+          "max": 0.73
+        },
+        "lr_selected": 0.03,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 86.0,
+          "sd": 1.4142135623730951,
+          "min": 85.0,
+          "max": 87.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 56.0,
+          "sd": 1.4142135623730951,
+          "min": 55.0,
+          "max": 57.0
+        }
+      },
+      "E": {
+        "test": {
+          "n": 2,
+          "mean": 0.7683333333333333,
+          "sd": 0.0035355339059327407,
+          "min": 0.7658333333333334,
+          "max": 0.7708333333333334
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7508333333333334,
+          "sd": 0.0011785113019776065,
+          "min": 0.75,
+          "max": 0.7516666666666667
+        },
+        "lr_selected": 0.1,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 40.0,
+          "sd": 0.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 10.0,
+          "sd": 0.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "F": {
+        "test": {
+          "n": 2,
+          "mean": 0.8162499999999999,
+          "sd": 0.0017677669529664096,
+          "min": 0.815,
+          "max": 0.8175
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.8016666666666667,
+          "sd": 0.004714045207910347,
+          "min": 0.7983333333333333,
+          "max": 0.805
+        },
+        "lr_selected": 0.03,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.8817333281040192,
+          "sd": 0.2820149736579742,
+          "min": 0.6823186278343201,
+          "max": 1.0811480283737183
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 52.0,
+          "sd": 11.313708498984761,
+          "min": 44.0,
+          "max": 60.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 22.0,
+          "sd": 11.313708498984761,
+          "min": 14.0,
+          "max": 30.0
+        }
+      },
+      "D_matched": {
+        "test": {
+          "n": 2,
+          "mean": 0.7262500000000001,
+          "sd": 0.0430156625221817,
+          "min": 0.6958333333333333,
+          "max": 0.7566666666666667
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7291666666666667,
+          "sd": 0.024748737341529183,
+          "min": 0.7116666666666667,
+          "max": 0.7466666666666667
+        },
+        "lr_selected": 0.03,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 70.5,
+          "sd": 9.192388155425117,
+          "min": 64.0,
+          "max": 77.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 40.5,
+          "sd": 9.192388155425117,
+          "min": 34.0,
+          "max": 47.0
+        }
+      }
+    },
+    "ds11|linear|L2": {
+      "A": {
+        "test": {
+          "n": 2,
+          "mean": 0.8229166666666667,
+          "sd": 0.00883883476483189,
+          "min": 0.8166666666666667,
+          "max": 0.8291666666666667
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.8116666666666668,
+          "sd": 0.0023570226039551345,
+          "min": 0.81,
+          "max": 0.8133333333333334
+        },
+        "lr_selected": 0.01,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.888321578502655,
+          "sd": 0.08929062738123966,
+          "min": 0.8251835703849792,
+          "max": 0.9514595866203308
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 90.0,
+          "sd": 24.041630560342615,
+          "min": 73.0,
+          "max": 107.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 60.0,
+          "sd": 24.041630560342615,
+          "min": 43.0,
+          "max": 77.0
+        }
+      },
+      "B": {
+        "test": {
+          "n": 2,
+          "mean": 0.6825,
+          "sd": 0.04596194077712555,
+          "min": 0.65,
+          "max": 0.715
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7224999999999999,
+          "sd": 0.03653385036130494,
+          "min": 0.6966666666666667,
+          "max": 0.7483333333333333
+        },
+        "lr_selected": 0.01,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 68.5,
+          "sd": 23.33452377915607,
+          "min": 52.0,
+          "max": 85.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 38.5,
+          "sd": 23.33452377915607,
+          "min": 22.0,
+          "max": 55.0
+        }
+      },
+      "E": {
+        "test": {
+          "n": 2,
+          "mean": 0.7683333333333333,
+          "sd": 0.0035355339059327407,
+          "min": 0.7658333333333334,
+          "max": 0.7708333333333334
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7508333333333334,
+          "sd": 0.0011785113019776065,
+          "min": 0.75,
+          "max": 0.7516666666666667
+        },
+        "lr_selected": 0.1,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 40.0,
+          "sd": 0.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 10.0,
+          "sd": 0.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "F": {
+        "test": {
+          "n": 2,
+          "mean": 0.8116666666666668,
+          "sd": 0.0023570226039551345,
+          "min": 0.81,
+          "max": 0.8133333333333334
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7966666666666666,
+          "sd": 0.004714045207910347,
+          "min": 0.7933333333333333,
+          "max": 0.8
+        },
+        "lr_selected": 0.01,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.7824985980987549,
+          "sd": 0.327053138123564,
+          "min": 0.5512371063232422,
+          "max": 1.0137600898742676
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 69.0,
+          "sd": 25.45584412271571,
+          "min": 51.0,
+          "max": 87.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 39.0,
+          "sd": 25.45584412271571,
+          "min": 21.0,
+          "max": 57.0
+        }
+      },
+      "D_matched": {
+        "test": {
+          "n": 2,
+          "mean": 0.72375,
+          "sd": 0.041837151220204004,
+          "min": 0.6941666666666667,
+          "max": 0.7533333333333333
+        },
+        "val": {
+          "n": 2,
+          "mean": 0.7275,
+          "sd": 0.024748737341529183,
+          "min": 0.71,
+          "max": 0.745
+        },
+        "lr_selected": 0.01,
+        "theta_displacement": {
+          "n": 2,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "epochs_run": {
+          "n": 2,
+          "mean": 78.5,
+          "sd": 60.10407640085654,
+          "min": 36.0,
+          "max": 121.0
+        },
+        "best_epoch": {
+          "n": 2,
+          "mean": 48.5,
+          "sd": 60.10407640085654,
+          "min": 6.0,
+          "max": 91.0
+        }
+      }
+    }
+  },
+  "estimands": {
+    "ds11|linear|L1": {
+      "delta_AB": {
+        "n": 2,
+        "mean": 0.11374999999999996,
+        "sd": 0.06540737725975558,
+        "min": 0.0675,
+        "max": 0.15999999999999992,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.06540737725975558,
+        "mde_from_this_series": 0.6513196328698707,
+        "differences": [
+          0.0675,
+          0.15999999999999992
+        ]
+      },
+      "delta_AE": {
+        "n": 2,
+        "mean": 0.06166666666666659,
+        "sd": 0.0035355339059327407,
+        "min": 0.05916666666666659,
+        "max": 0.0641666666666666,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.0035355339059327407,
+        "mde_from_this_series": 0.0352064666416147,
+        "differences": [
+          0.0641666666666666,
+          0.05916666666666659
+        ]
+      },
+      "delta_AF": {
+        "n": 2,
+        "mean": 0.013749999999999984,
+        "sd": 0.0017677669529664096,
+        "min": 0.012499999999999956,
+        "max": 0.015000000000000013,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.0017677669529664096,
+        "mde_from_this_series": 0.01760323332080774,
+        "differences": [
+          0.015000000000000013,
+          0.012499999999999956
+        ]
+      },
+      "delta_BD_matched": {
+        "n": 2,
+        "mean": -0.010000000000000009,
+        "sd": 0.10842303978193728,
+        "min": -0.08666666666666667,
+        "max": 0.06666666666666665,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.10842303978193728,
+        "mde_from_this_series": 1.0796649770095164,
+        "differences": [
+          0.06666666666666665,
+          -0.08666666666666667
+        ]
+      },
+      "decomposition_delta_AE": {
+        "delta_AB": 0.11374999999999996,
+        "acc_B_minus_acc_E": -0.05208333333333337,
+        "sum": 0.06166666666666659,
+        "delta_AE": 0.06166666666666659,
+        "residual": 0.0
+      }
+    },
+    "ds11|linear|L2": {
+      "delta_AB": {
+        "n": 2,
+        "mean": 0.1404166666666667,
+        "sd": 0.03712310601229366,
+        "min": 0.11416666666666675,
+        "max": 0.16666666666666663,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.03712310601229366,
+        "mde_from_this_series": 0.3696678997369532,
+        "differences": [
+          0.11416666666666675,
+          0.16666666666666663
+        ]
+      },
+      "delta_AE": {
+        "n": 2,
+        "mean": 0.05458333333333332,
+        "sd": 0.012374368670764632,
+        "min": 0.04583333333333328,
+        "max": 0.06333333333333335,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.012374368670764632,
+        "mde_from_this_series": 0.12322263324565183,
+        "differences": [
+          0.06333333333333335,
+          0.04583333333333328
+        ]
+      },
+      "delta_AF": {
+        "n": 2,
+        "mean": 0.011249999999999982,
+        "sd": 0.011195857368787025,
+        "min": 0.0033333333333332993,
+        "max": 0.019166666666666665,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.011195857368787025,
+        "mde_from_this_series": 0.11148714436511334,
+        "differences": [
+          0.019166666666666665,
+          0.0033333333333332993
+        ]
+      },
+      "delta_BD_matched": {
+        "n": 2,
+        "mean": -0.04125000000000001,
+        "sd": 0.08779909199732956,
+        "min": -0.10333333333333328,
+        "max": 0.02083333333333326,
+        "seeds": [
+          1,
+          2
+        ],
+        "unpaired_left": [],
+        "unpaired_right": [],
+        "sigma_delta": 0.08779909199732956,
+        "mde_from_this_series": 0.8742939216000967,
+        "differences": [
+          0.02083333333333326,
+          -0.10333333333333328
+        ]
+      },
+      "decomposition_delta_AE": {
+        "delta_AB": 0.1404166666666667,
+        "acc_B_minus_acc_E": -0.08583333333333337,
+        "sum": 0.05458333333333332,
+        "delta_AE": 0.05458333333333332,
+        "residual": 0.0
+      }
+    }
+  },
+  "d_best": {
+    "ds11": {
+      "per_width": {
+        "32": {
+          "test": {
+            "n": 2,
+            "mean": 0.8079166666666666,
+            "sd": 0.0017677669529664096,
+            "min": 0.8066666666666666,
+            "max": 0.8091666666666667
+          },
+          "val": {
+            "n": 2,
+            "mean": 0.8,
+            "sd": 0.0023570226039551345,
+            "min": 0.7983333333333333,
+            "max": 0.8016666666666666
+          },
+          "lr_selected": 0.03
+        },
+        "128": {
+          "test": {
+            "n": 2,
+            "mean": 0.8225,
+            "sd": 0.0011785113019776065,
+            "min": 0.8216666666666667,
+            "max": 0.8233333333333334
+          },
+          "val": {
+            "n": 2,
+            "mean": 0.8266666666666667,
+            "sd": 0.0,
+            "min": 0.8266666666666667,
+            "max": 0.8266666666666667
+          },
+          "lr_selected": 0.03
+        },
+        "512": {
+          "test": {
+            "n": 2,
+            "mean": 0.8233333333333333,
+            "sd": 0.004714045207910347,
+            "min": 0.82,
+            "max": 0.8266666666666667
+          },
+          "val": {
+            "n": 2,
+            "mean": 0.8266666666666667,
+            "sd": 0.01178511301977575,
+            "min": 0.8183333333333334,
+            "max": 0.835
+          },
+          "lr_selected": 0.01
+        }
+      },
+      "selected_width": 128,
+      "selection_rule": "highest mean validation accuracy over the 600 val rows, ties to the smaller M",
+      "delta_BD_best": {
+        "linear|L1": {
+          "n": 2,
+          "mean": -0.10625000000000001,
+          "sd": 0.0665858885617332,
+          "min": -0.15333333333333332,
+          "max": -0.0591666666666667,
+          "seeds": [
+            1,
+            2
+          ],
+          "unpaired_left": [],
+          "unpaired_right": [],
+          "sigma_delta": 0.0665858885617332,
+          "mde_from_this_series": 0.6630551217504093,
+          "differences": [
+            -0.0591666666666667,
+            -0.15333333333333332
+          ]
+        },
+        "linear|L2": {
+          "n": 2,
+          "mean": -0.14,
+          "sd": 0.04714045207910316,
+          "min": -0.17333333333333334,
+          "max": -0.10666666666666669,
+          "seeds": [
+            1,
+            2
+          ],
+          "unpaired_left": [],
+          "unpaired_right": [],
+          "sigma_delta": 0.04714045207910316,
+          "mde_from_this_series": 0.46941955522152884,
+          "differences": [
+            -0.10666666666666669,
+            -0.17333333333333334
+          ]
+        }
+      }
+    }
+  },
+  "epoch_budget": {
+    "A": {
+      "runs": 4,
+      "hit_budget": 0,
+      "fraction": 0.0
+    },
+    "B": {
+      "runs": 4,
+      "hit_budget": 0,
+      "fraction": 0.0
+    },
+    "E": {
+      "runs": 2,
+      "hit_budget": 0,
+      "fraction": 0.0
+    },
+    "F": {
+      "runs": 4,
+      "hit_budget": 0,
+      "fraction": 0.0
+    },
+    "D_matched": {
+      "runs": 4,
+      "hit_budget": 0,
+      "fraction": 0.0
+    },
+    "D_best": {
+      "runs": 6,
+      "hit_budget": 0,
+      "fraction": 0.0
+    },
+    "ALL": {
+      "runs": 24,
+      "hit_budget": 0,
+      "fraction": 0.0
+    }
+  },
+  "binomial_se_1200": 0.014433756729740645,
+  "gates": {
+    "ds11": {
+      "dataset_seed": 11,
+      "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+      "arm_e_lr_used": 0.1,
+      "g1": {
+        "gate": "G1",
+        "binding": true,
+        "binding_note": "binding: the floor is contract arm E (identity socket + linear head)",
+        "min_headroom": 0.05,
+        "strong_accuracy_band": [
+          0.65,
+          0.9
+        ],
+        "strong": {
+          "accuracy": 0.86,
+          "label": "SVC(rbf) selected on val, evaluated on test",
+          "selected": {
+            "C": 10.0,
+            "gamma": "scale"
+          },
+          "selection_split": "val",
+          "selection_accuracy": 0.855,
+          "grid": {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "gamma": [
+              "scale",
+              0.1,
+              1.0
+            ]
+          },
+          "cells": [
+            {
+              "C": 0.1,
+              "gamma": "scale",
+              "selection_accuracy": 0.815,
+              "test_accuracy": 0.8141666666666667,
+              "train_accuracy": 0.8197619047619048,
+              "n_support": [
+                1093,
+                1096
+              ],
+              "fit_seconds": 0.10062654200010002
+            },
+            {
+              "C": 0.1,
+              "gamma": 0.1,
+              "selection_accuracy": 0.7433333333333333,
+              "test_accuracy": 0.7508333333333334,
+              "train_accuracy": 0.7454761904761905,
+              "n_support": [
+                1569,
+                1569
+              ],
+              "fit_seconds": 0.12190179199933482
+            },
+            {
+              "C": 0.1,
+              "gamma": 1.0,
+              "selection_accuracy": 0.765,
+              "test_accuracy": 0.7858333333333334,
+              "train_accuracy": 0.7847619047619048,
+              "n_support": [
+                1151,
+                1151
+              ],
+              "fit_seconds": 0.09743325000090408
+            },
+            {
+              "C": 1.0,
+              "gamma": "scale",
+              "selection_accuracy": 0.8333333333333334,
+              "test_accuracy": 0.8408333333333333,
+              "train_accuracy": 0.8554761904761905,
+              "n_support": [
+                868,
+                864
+              ],
+              "fit_seconds": 0.0747076659990853
+            },
+            {
+              "C": 1.0,
+              "gamma": 0.1,
+              "selection_accuracy": 0.74,
+              "test_accuracy": 0.7566666666666667,
+              "train_accuracy": 0.7504761904761905,
+              "n_support": [
+                1131,
+                1130
+              ],
+              "fit_seconds": 0.09849241600022651
+            },
+            {
+              "C": 1.0,
+              "gamma": 1.0,
+              "selection_accuracy": 0.8083333333333333,
+              "test_accuracy": 0.8116666666666666,
+              "train_accuracy": 0.8133333333333334,
+              "n_support": [
+                924,
+                923
+              ],
+              "fit_seconds": 0.0777134579984704
+            },
+            {
+              "C": 10.0,
+              "gamma": "scale",
+              "selection_accuracy": 0.855,
+              "test_accuracy": 0.86,
+              "train_accuracy": 0.8897619047619048,
+              "n_support": [
+                764,
+                749
+              ],
+              "fit_seconds": 0.09574029199939105
+            },
+            {
+              "C": 10.0,
+              "gamma": 0.1,
+              "selection_accuracy": 0.7616666666666667,
+              "test_accuracy": 0.7883333333333333,
+              "train_accuracy": 0.7878571428571428,
+              "n_support": [
+                996,
+                993
+              ],
+              "fit_seconds": 0.08970699999917997
+            },
+            {
+              "C": 10.0,
+              "gamma": 1.0,
+              "selection_accuracy": 0.8216666666666667,
+              "test_accuracy": 0.8241666666666667,
+              "train_accuracy": 0.8330952380952381,
+              "n_support": [
+                846,
+                845
+              ],
+              "fit_seconds": 0.0855520829991292
+            }
+          ],
+          "slowest_cell_seconds": 0.12190179199933482,
+          "total_fit_seconds": 0.8418744989958213
+        },
+        "floor": {
+          "accuracy": 0.7658333333333334,
+          "label": "arm E: identity socket + linear head, training.train_model",
+          "dilution": "linear",
+          "lr_selected": 0.1,
+          "lr_grid": [
+            0.1
+          ],
+          "lr_selection": "per cell, on the validation split; NOT the frozen select_lr",
+          "val_accuracy": 0.75,
+          "mean_val_accuracy_per_lr": {
+            "0.1": 0.75
+          },
+          "seeds": [
+            1
+          ],
+          "runs": [
+            {
+              "lr": 0.1,
+              "seed": 1,
+              "val_accuracy": 0.75,
+              "test_accuracy": 0.7658333333333334,
+              "train_accuracy": 0.760952353477478,
+              "best_epoch": 10,
+              "epochs_run": 40
+            }
+          ],
+          "wall_seconds": 1.0640632079994248,
+          "is_contract_arm_e": true
+        },
+        "headroom": 0.09416666666666662,
+        "g1_margin": 0.04416666666666662,
+        "strong_in_band": true,
+        "failures": [],
+        "passed": true
+      },
+      "g2": {
+        "gate": "G2",
+        "dataset": "hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11",
+        "n_components": 5,
+        "max_share": 0.8,
+        "explained_variance_ratio_": [
+          0.758533458906081,
+          0.10285335860479522,
+          0.07087924743202306,
+          0.046187092168261924,
+          0.021546842888836952
+        ],
+        "share_of_retained": [
+          0.7585334589060825,
+          0.10285335860479541,
+          0.0708792474320232,
+          0.046187092168262014,
+          0.021546842888836994
+        ],
+        "top_component": 0,
+        "top_share": 0.7585334589060825,
+        "total_variance_explained": 0.9999999999999981,
+        "failures": [],
+        "passed": true
+      },
+      "g1_margin": 0.04416666666666662,
+      "passed": true
+    }
+  },
+  "ridge_control": {
+    "B": {
+      "n": 4,
+      "adam_head": {
+        "n": 4,
+        "mean": 0.699375,
+        "sd": 0.050098860599152646,
+        "min": 0.65,
+        "max": 0.7625
+      },
+      "ridge": {
+        "n": 4,
+        "mean": 0.698125,
+        "sd": 0.03683908326160624,
+        "min": 0.6566666666666666,
+        "max": 0.7375
+      },
+      "gap_adam_minus_ridge": {
+        "n": 4,
+        "mean": 0.0012500000000000011,
+        "sd": 0.015964370050556623,
+        "min": -0.009166666666666656,
+        "max": 0.02499999999999991
+      },
+      "alpha_selected_counts": {
+        "1e-06": 0,
+        "0.0001": 0,
+        "0.01": 0,
+        "1.0": 4
+      }
+    },
+    "E": {
+      "n": 2,
+      "adam_head": {
+        "n": 2,
+        "mean": 0.7683333333333333,
+        "sd": 0.0035355339059327407,
+        "min": 0.7658333333333334,
+        "max": 0.7708333333333334
+      },
+      "ridge": {
+        "n": 2,
+        "mean": 0.7516666666666667,
+        "sd": 0.0,
+        "min": 0.7516666666666667,
+        "max": 0.7516666666666667
+      },
+      "gap_adam_minus_ridge": {
+        "n": 2,
+        "mean": 0.016666666666666663,
+        "sd": 0.0035355339059327407,
+        "min": 0.01416666666666666,
+        "max": 0.019166666666666665
+      },
+      "alpha_selected_counts": {
+        "1e-06": 2,
+        "0.0001": 0,
+        "0.01": 0,
+        "1.0": 0
+      }
+    },
+    "D_matched": {
+      "n": 4,
+      "adam_head": {
+        "n": 4,
+        "mean": 0.7250000000000001,
+        "sd": 0.03467441152802474,
+        "min": 0.6941666666666667,
+        "max": 0.7566666666666667
+      },
+      "ridge": {
+        "n": 4,
+        "mean": 0.7266666666666666,
+        "sd": 0.03175426480542938,
+        "min": 0.6991666666666667,
+        "max": 0.7541666666666667
+      },
+      "gap_adam_minus_ridge": {
+        "n": 4,
+        "mean": -0.0016666666666666774,
+        "sd": 0.0032631500345752405,
+        "min": -0.0050000000000000044,
+        "max": 0.0025000000000000577
+      },
+      "alpha_selected_counts": {
+        "1e-06": 4,
+        "0.0001": 0,
+        "0.01": 0,
+        "1.0": 0
+      }
+    },
+    "D_best": {
+      "n": 6,
+      "adam_head": {
+        "n": 6,
+        "mean": 0.8179166666666667,
+        "sd": 0.008092348924206808,
+        "min": 0.8066666666666666,
+        "max": 0.8266666666666667
+      },
+      "ridge": {
+        "n": 6,
+        "mean": 0.8070833333333334,
+        "sd": 0.008672273827165119,
+        "min": 0.795,
+        "max": 0.8183333333333334
+      },
+      "gap_adam_minus_ridge": {
+        "n": 6,
+        "mean": 0.010833333333333325,
+        "sd": 0.006603870918719676,
+        "min": 0.0016666666666665941,
+        "max": 0.01750000000000007
+      },
+      "alpha_selected_counts": {
+        "1e-06": 4,
+        "0.0001": 1,
+        "0.01": 1,
+        "1.0": 0
+      }
+    }
+  },
+  "determinism_T_I": {
+    "overlapping_cells_compared": 4,
+    "mismatches": [],
+    "passed": true,
+    "note": "arms A and B at the selected lr and seeds 1-3 are measured twice: once in the lr stage and once in the main grid, in different processes. Bit-for-bit equality is test T-I at the pipeline level."
+  },
+  "discordant_pairs": {
+    "ds11|linear|L1": {
+      "delta_AB": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 108,
+            "c_right_left_only": 27,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 237,
+            "c_right_left_only": 45,
+            "n_test": 1200
+          }
+        },
+        "b_total": 345,
+        "c_total": 72,
+        "seeds": [
+          1,
+          2
+        ]
+      },
+      "delta_AE": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 90,
+            "c_right_left_only": 13,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 82,
+            "c_right_left_only": 11,
+            "n_test": 1200
+          }
+        },
+        "b_total": 172,
+        "c_total": 24,
+        "seeds": [
+          1,
+          2
+        ]
+      },
+      "delta_AF": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 28,
+            "c_right_left_only": 10,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 32,
+            "c_right_left_only": 17,
+            "n_test": 1200
+          }
+        },
+        "b_total": 60,
+        "c_total": 27,
+        "seeds": [
+          1,
+          2
+        ]
+      },
+      "delta_BD_matched": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 190,
+            "c_right_left_only": 110,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 109,
+            "c_right_left_only": 213,
+            "n_test": 1200
+          }
+        },
+        "b_total": 299,
+        "c_total": 323,
+        "seeds": [
+          1,
+          2
+        ]
+      }
+    },
+    "ds11|linear|L2": {
+      "delta_AB": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 234,
+            "c_right_left_only": 97,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 274,
+            "c_right_left_only": 74,
+            "n_test": 1200
+          }
+        },
+        "b_total": 508,
+        "c_total": 171,
+        "seeds": [
+          1,
+          2
+        ]
+      },
+      "delta_AE": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 87,
+            "c_right_left_only": 11,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 68,
+            "c_right_left_only": 13,
+            "n_test": 1200
+          }
+        },
+        "b_total": 155,
+        "c_total": 24,
+        "seeds": [
+          1,
+          2
+        ]
+      },
+      "delta_AF": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 36,
+            "c_right_left_only": 13,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 36,
+            "c_right_left_only": 32,
+            "n_test": 1200
+          }
+        },
+        "b_total": 72,
+        "c_total": 45,
+        "seeds": [
+          1,
+          2
+        ]
+      },
+      "delta_BD_matched": {
+        "per_seed": {
+          "1": {
+            "b_left_right_only": 184,
+            "c_right_left_only": 159,
+            "n_test": 1200
+          },
+          "2": {
+            "b_left_right_only": 81,
+            "c_right_left_only": 205,
+            "n_test": 1200
+          }
+        },
+        "b_total": 265,
+        "c_total": 364,
+        "seeds": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  "lr_selection": {
+    "rule": {
+      "cell": "mean validation accuracy over arms A and B, seeds 1-3, ties to the lower lr (D-6)",
+      "arm_E": "arm E alone, on the contract grid plus one point upwards (D-30)",
+      "arm_D_best": "arm D_best alone, on the contract grid \u2014 it has to be a STRONG baseline",
+      "contract_grid": [
+        0.001,
+        0.003,
+        0.01,
+        0.03
+      ],
+      "arm_E_grid": [
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1
+      ]
+    },
+    "cell": [
+      {
+        "cell": "ds11|linear|L1",
+        "lr_selected": 0.03,
+        "grid": [
+          0.001,
+          0.003,
+          0.01,
+          0.03
+        ],
+        "on_grid_edge": true,
+        "edge": "upper",
+        "selection_arms": [
+          "A",
+          "B"
+        ],
+        "seeds": [
+          1
+        ],
+        "mean_val_accuracy_per_lr": {
+          "0.001": 0.7275,
+          "0.003": 0.735,
+          "0.01": 0.7658333333333334,
+          "0.03": 0.7749999999999999
+        },
+        "mean_val_accuracy_per_lr_and_arm": {
+          "A": {
+            "0.001": 0.75,
+            "0.003": 0.765,
+            "0.01": 0.8033333333333333,
+            "0.03": 0.82
+          },
+          "B": {
+            "0.001": 0.705,
+            "0.003": 0.705,
+            "0.01": 0.7283333333333334,
+            "0.03": 0.73
+          }
+        },
+        "per_arm_handicap": {
+          "A": {
+            "own_best_lr": 0.03,
+            "own_best_val_accuracy": 0.82,
+            "val_accuracy_at_selected_lr": 0.82,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          },
+          "B": {
+            "own_best_lr": 0.03,
+            "own_best_val_accuracy": 0.73,
+            "val_accuracy_at_selected_lr": 0.73,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          }
+        },
+        "margin_over_runner_up": 0.009166666666666545
+      },
+      {
+        "cell": "ds11|linear|L2",
+        "lr_selected": 0.01,
+        "grid": [
+          0.001,
+          0.003,
+          0.01,
+          0.03
+        ],
+        "on_grid_edge": false,
+        "edge": null,
+        "selection_arms": [
+          "A",
+          "B"
+        ],
+        "seeds": [
+          1
+        ],
+        "mean_val_accuracy_per_lr": {
+          "0.001": 0.76,
+          "0.003": 0.7725,
+          "0.01": 0.7808333333333333,
+          "0.03": 0.7733333333333333
+        },
+        "mean_val_accuracy_per_lr_and_arm": {
+          "A": {
+            "0.001": 0.7883333333333333,
+            "0.003": 0.8,
+            "0.01": 0.8133333333333334,
+            "0.03": 0.8033333333333333
+          },
+          "B": {
+            "0.001": 0.7316666666666667,
+            "0.003": 0.745,
+            "0.01": 0.7483333333333333,
+            "0.03": 0.7433333333333333
+          }
+        },
+        "per_arm_handicap": {
+          "A": {
+            "own_best_lr": 0.01,
+            "own_best_val_accuracy": 0.8133333333333334,
+            "val_accuracy_at_selected_lr": 0.8133333333333334,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          },
+          "B": {
+            "own_best_lr": 0.01,
+            "own_best_val_accuracy": 0.7483333333333333,
+            "val_accuracy_at_selected_lr": 0.7483333333333333,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          }
+        },
+        "margin_over_runner_up": 0.007499999999999951
+      }
+    ],
+    "arm_E": [
+      {
+        "cell": "ds11|linear",
+        "lr_selected": 0.1,
+        "grid": [
+          0.001,
+          0.003,
+          0.01,
+          0.03,
+          0.1
+        ],
+        "on_grid_edge": true,
+        "edge": "upper",
+        "selection_arms": [
+          "E"
+        ],
+        "seeds": [
+          1
+        ],
+        "mean_val_accuracy_per_lr": {
+          "0.001": 0.7333333333333333,
+          "0.003": 0.74,
+          "0.01": 0.74,
+          "0.03": 0.7433333333333333,
+          "0.1": 0.75
+        },
+        "mean_val_accuracy_per_lr_and_arm": {
+          "E": {
+            "0.001": 0.7333333333333333,
+            "0.003": 0.74,
+            "0.01": 0.74,
+            "0.03": 0.7433333333333333,
+            "0.1": 0.75
+          }
+        },
+        "per_arm_handicap": {
+          "E": {
+            "own_best_lr": 0.1,
+            "own_best_val_accuracy": 0.75,
+            "val_accuracy_at_selected_lr": 0.75,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          }
+        },
+        "margin_over_runner_up": 0.00666666666666671
+      }
+    ],
+    "arm_D_best": [
+      {
+        "cell": "ds11|M32",
+        "lr_selected": 0.03,
+        "grid": [
+          0.001,
+          0.003,
+          0.01,
+          0.03
+        ],
+        "on_grid_edge": true,
+        "edge": "upper",
+        "selection_arms": [
+          "D_best"
+        ],
+        "seeds": [
+          1
+        ],
+        "mean_val_accuracy_per_lr": {
+          "0.001": 0.7833333333333333,
+          "0.003": 0.7816666666666666,
+          "0.01": 0.7933333333333333,
+          "0.03": 0.7983333333333333
+        },
+        "mean_val_accuracy_per_lr_and_arm": {
+          "D_best": {
+            "0.001": 0.7833333333333333,
+            "0.003": 0.7816666666666666,
+            "0.01": 0.7933333333333333,
+            "0.03": 0.7983333333333333
+          }
+        },
+        "per_arm_handicap": {
+          "D_best": {
+            "own_best_lr": 0.03,
+            "own_best_val_accuracy": 0.7983333333333333,
+            "val_accuracy_at_selected_lr": 0.7983333333333333,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          }
+        },
+        "margin_over_runner_up": 0.0050000000000000044
+      },
+      {
+        "cell": "ds11|M128",
+        "lr_selected": 0.03,
+        "grid": [
+          0.001,
+          0.003,
+          0.01,
+          0.03
+        ],
+        "on_grid_edge": true,
+        "edge": "upper",
+        "selection_arms": [
+          "D_best"
+        ],
+        "seeds": [
+          1
+        ],
+        "mean_val_accuracy_per_lr": {
+          "0.001": 0.7716666666666666,
+          "0.003": 0.8016666666666666,
+          "0.01": 0.8183333333333334,
+          "0.03": 0.8266666666666667
+        },
+        "mean_val_accuracy_per_lr_and_arm": {
+          "D_best": {
+            "0.001": 0.7716666666666666,
+            "0.003": 0.8016666666666666,
+            "0.01": 0.8183333333333334,
+            "0.03": 0.8266666666666667
+          }
+        },
+        "per_arm_handicap": {
+          "D_best": {
+            "own_best_lr": 0.03,
+            "own_best_val_accuracy": 0.8266666666666667,
+            "val_accuracy_at_selected_lr": 0.8266666666666667,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          }
+        },
+        "margin_over_runner_up": 0.008333333333333304
+      },
+      {
+        "cell": "ds11|M512",
+        "lr_selected": 0.01,
+        "grid": [
+          0.001,
+          0.003,
+          0.01,
+          0.03
+        ],
+        "on_grid_edge": false,
+        "edge": null,
+        "selection_arms": [
+          "D_best"
+        ],
+        "seeds": [
+          1
+        ],
+        "mean_val_accuracy_per_lr": {
+          "0.001": 0.8133333333333334,
+          "0.003": 0.825,
+          "0.01": 0.835,
+          "0.03": 0.8266666666666667
+        },
+        "mean_val_accuracy_per_lr_and_arm": {
+          "D_best": {
+            "0.001": 0.8133333333333334,
+            "0.003": 0.825,
+            "0.01": 0.835,
+            "0.03": 0.8266666666666667
+          }
+        },
+        "per_arm_handicap": {
+          "D_best": {
+            "own_best_lr": 0.01,
+            "own_best_val_accuracy": 0.835,
+            "val_accuracy_at_selected_lr": 0.835,
+            "handicap": 0.0,
+            "runs_at_its_own_optimum": true
+          }
+        },
+        "margin_over_runner_up": 0.008333333333333304
+      }
+    ],
+    "on_grid_edge": {
+      "cell": [
+        "ds11|linear|L1"
+      ],
+      "arm_E": [
+        "ds11|linear"
+      ],
+      "arm_D_best": [
+        "ds11|M32",
+        "ds11|M128"
+      ]
+    }
+  },
+  "selected_lr": {
+    "cell": {
+      "ds11|linear|L1": 0.03,
+      "ds11|linear|L2": 0.01
+    },
+    "arm_E": {
+      "ds11|linear": 0.1
+    },
+    "arm_D_best": {
+      "ds11|M32": 0.03,
+      "ds11|M128": 0.03,
+      "ds11|M512": 0.01
+    },
+    "contract_grid": [
+      0.001,
+      0.003,
+      0.01,
+      0.03
+    ],
+    "arm_E_grid": [
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1
+    ],
+    "rule": "mean validation accuracy over arms A and B at seeds 1-3, ties to the lower lr"
+  },
+  "configuration": {
+    "run_id": "a7_20260831T055216Z",
+    "git_commit": "31374bd-dirty",
+    "env_hash": "440d35196202",
+    "dataset_seeds": [
+      11
+    ],
+    "dilutions": [
+      "linear"
+    ],
+    "ansatz_levels": [
+      "L1",
+      "L2"
+    ],
+    "seeds": [
+      1,
+      2
+    ],
+    "d_best_widths": [
+      32,
+      128,
+      512
+    ],
+    "arm_F_dilutions": [
+      "linear"
+    ],
+    "R": 2,
+    "patience": 30,
+    "max_epochs": 300,
+    "batch_size": 64,
+    "backend": "pennylane",
+    "jacobian_rank": {
+      "L1": 35,
+      "L2": 35,
+      "product": 20
+    },
+    "ridge_alpha_grid": [
+      1e-06,
+      0.0001,
+      0.01,
+      1.0
+    ],
+    "workers": 10
+  },
+  "verdicts": [
+    {
+      "cell": "ds11|linear|L1",
+      "row": "|Delta| below the MDE of this series",
+      "verdict": "UNDECIDABLE at n=10",
+      "why": "report the CI; do NOT write 'there is no effect' (raport.tex 3.7)",
+      "numbers": {
+        "delta_AB": 0.11374999999999996,
+        "mde_this_series": 0.6513196328698707
+      }
+    },
+    {
+      "cell": "ds11|linear|L2",
+      "row": "acc(A) ~ acc(E) with acc(B) < acc(E)",
+      "verdict": "STOP",
+      "why": "'the socket adds nothing; training only undoes the damage of a random initialisation' (SPEC section 9) \u2014 a result about ARCHITECTURE, not about trainability.",
+      "numbers": {
+        "acc_A": 0.8229166666666667,
+        "acc_B": 0.6825,
+        "acc_E": 0.7683333333333333,
+        "mde_AE_this_series": 0.12322263324565183
+      }
+    },
+    {
+      "cell": "ds11|linear|L2",
+      "row": "|Delta| below the MDE of this series",
+      "verdict": "UNDECIDABLE at n=10",
+      "why": "report the CI; do NOT write 'there is no effect' (raport.tex 3.7)",
+      "numbers": {
+        "delta_AB": 0.1404166666666667,
+        "mde_this_series": 0.3696678997369532
+      }
+    }
+  ],
+  "wall_seconds": 2368.21579525
+}

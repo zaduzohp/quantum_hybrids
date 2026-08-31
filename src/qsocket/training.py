@@ -28,7 +28,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from qsocket.seeding import derive
+from qsocket.core import derive
 
 DEFAULT_SOCKET_CONVERGENCE_TOL = 1e-4
 
@@ -304,18 +304,15 @@ def select_lr(
 ):
     """One lr per (dataset x dilution x ansatz), never per seed and never per arm.
 
-    build_arms(seed) returns {arm_name: (socket, head)} — freshly built every call, so
-    each (lr, seed) starts from the contract initialisation rather than from wherever
-    the previous fit ended.
+    build_arms(seed) returns {arm_name: (socket, head)}, freshly built every call, so each
+    (lr, seed) starts from the contract initialisation rather than where the last fit ended.
 
-    Criterion: the best mean validation accuracy averaged over `selection_arms` at the
-    given seeds; ties go to the lower lr. Choosing per seed would make every delta
-    compare different hyperparameters. selection_arms defaults to every arm build_arms
-    returns.
+    Criterion: best mean validation accuracy averaged over `selection_arms` (default: all
+    of them), ties to the lower lr. Choosing per seed would make every delta compare
+    different hyperparameters.
 
-    Returns the lr; with return_table=True the pair (lr, {lr: mean accuracy}); with
-    return_detail=True the pair (lr, LrSelection), which also carries the per-arm and
-    per-(arm, seed) numbers. Requesting both raises, because the two payloads differ.
+    Returns the lr; return_table=True adds {lr: mean accuracy}, return_detail=True adds an
+    LrSelection with the per-arm and per-(arm, seed) numbers. Both at once raises.
     """
     if return_table and return_detail:
         raise ValueError("ask for return_table or return_detail, not both")

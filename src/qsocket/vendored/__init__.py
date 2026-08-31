@@ -10,7 +10,7 @@ anything added here:
      the way,
   4. a copy that stops having a caller is DELETED, not kept "in case". Rule 3 keeps a
      copy faithful to upstream; it does not make an unused one worth carrying. The
-     Wilcoxon/sign enumeration went that way once qsocket.exact_tests replaced it — its
+     Wilcoxon/sign enumeration went that way once qsocket.stats replaced it — its
      oracle now lives in tests/test_exact_tests_equivalence.py, written independently of
      the implementation it checks.
 
