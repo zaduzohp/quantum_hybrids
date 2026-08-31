@@ -98,17 +98,8 @@ def jacobian_rank(
 ) -> int:
     """Numerical rank of d(<Z_i> over the batch X)/d(theta).
 
-    Thin wrapper over the package implementation, which the ansatz-selection work lifted out of this
-    file so it can be used outside the tests.
+    Thin wrapper over the package implementation.
     """
     from qsocket.rank import jacobian_matrix, numerical_rank
 
     return numerical_rank(jacobian_matrix(circuit, theta, X, n_qubits=n_qubits), tol=tol)
-
-
-def pytest_configure(config):
-    """Register the `slow` marker used by test_training_sanity.py.
-    Deselect those tests with -m "not slow"; they are part of the acceptance
-    criteria and must be run before the work is called done.
-    """
-    config.addinivalue_line("markers", "slow: minutes-long simulator runs (quantum arms)")

@@ -22,7 +22,7 @@ from typing import Literal
 import torch
 import torch.nn as nn
 
-from qsocket.seeding import derive
+from qsocket.core import derive
 
 Dilution = Literal["linear", "h2", "h4", "h42", "mlp42", "mlp4285"]
 
@@ -105,8 +105,6 @@ def make_head(dilution: Dilution, *, seed: int) -> nn.Module:
 
 def make_linear_readout(in_features: int, *, seed: int) -> nn.Module:
     """Linear(in_features, 1) with bias — the readout of arm D_best."""
-    if in_features < 1:
-        raise ValueError(f"in_features must be >= 1, got {in_features}")
     generator = torch.Generator()
     generator.manual_seed(derive(seed, "linear_readout", int(in_features)) % (2**63))
     layer = nn.Linear(int(in_features), 1, bias=True)

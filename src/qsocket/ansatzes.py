@@ -22,11 +22,12 @@ parameters come from.
 from __future__ import annotations
 
 from collections.abc import Callable
+from functools import partial
 
 from qiskit import QuantumCircuit
 from qiskit.circuit import ParameterVector
 
-from qsocket.encoding import ry_feature_map
+from qsocket.core import ry_feature_map
 
 # Hub qubit of the star topology (QB2 on IQM Spark)
 STAR_HUB_QUBIT: int = 2
@@ -44,17 +45,11 @@ def socket_param_count(n_qubits: int, R: int) -> int:
     This count is both nominal and real: the L1/L2 pair has zero dead parameters, so
     the numerical rank of d<Z_i>/d(theta) equals it exactly at every R.
     """
-    if n_qubits < 1:
-        raise ValueError(f"n_qubits must be >= 1, got {n_qubits}")
-    if R < 1:
-        raise ValueError(f"R must be >= 1, got {R}")
     return n_qubits * R * 3 + n_qubits
 
 
 def spoke_qubits(n_qubits: int, hub: int = STAR_HUB_QUBIT) -> list[int]:
     """Spokes in ascending qubit order, hub excluded. For n=5, hub=2: [0, 1, 3, 4]."""
-    if not 0 <= hub < n_qubits:
-        raise ValueError(f"hub {hub} outside range for n_qubits={n_qubits}")
     return [q for q in range(n_qubits) if q != hub]
 
 
@@ -104,69 +99,37 @@ def _block_product(qc: QuantumCircuit, theta, p: int, n_qubits: int, hub: int) -
     return p
 
 
-def _final_layer(qc: QuantumCircuit, theta, p: int, n_qubits: int) -> int:
-    """Closing Rx(all): n_qubits parameters, no trailing Rz.
-
-    An Rz here would commute with the Z measurement and be dead on arrival, and a
-    second layer would exceed the two angles that survive after the last entangling
-    gate anyway.
-    """
-    return _rotation_layer(qc, "rx", theta, p, n_qubits)
-
-
-def ansatz_L1(n_qubits: int, R: int) -> QuantumCircuit:
-    """Parallel fan. Per block: Rz(all) Rx(all), CZ(hub, s) per spoke, then Rz(all).
-    Closing layer: Rx(all). Nominal count and Jacobian rank both 15R+5 = 20/35/50."""
-    hub = STAR_HUB_QUBIT
-    theta = ParameterVector(THETA_PARAM_NAME, socket_param_count(n_qubits, R))
-    qc = QuantumCircuit(n_qubits, name=f"L1_R{R}")
-    p = 0
-    for _ in range(R):
-        p = _block_L1(qc, theta, p, n_qubits, hub)
-    p = _final_layer(qc, theta, p, n_qubits)
-    assert p == len(theta)
-    return qc
-
-
-def ansatz_L2(n_qubits: int, R: int) -> QuantumCircuit:
-    """Sequential entangler through the hub. Per block: Rz(all) Ry(all), then
-    Rx(hub) CZ(hub,s0) Rx(hub) CZ(hub,s1) Rx(hub) CZ(hub,s2) Rx(hub) Ry(hub) CZ(hub,s_last).
-    Closing layer: Rx(all). Nominal count and Jacobian rank both 15R+5 = 20/35/50."""
-    hub = STAR_HUB_QUBIT
-    theta = ParameterVector(THETA_PARAM_NAME, socket_param_count(n_qubits, R))
-    qc = QuantumCircuit(n_qubits, name=f"L2_R{R}")
-    p = 0
-    for _ in range(R):
-        p = _block_L2(qc, theta, p, n_qubits, hub)
-    p = _final_layer(qc, theta, p, n_qubits)
-    assert p == len(theta)
-    return qc
-
-
-def ansatz_product(n_qubits: int, R: int) -> QuantumCircuit:
-    """The L1 skeleton with NO CZ gates. Same nominal count, 20/35/50."""
-    hub = STAR_HUB_QUBIT
-    theta = ParameterVector(THETA_PARAM_NAME, socket_param_count(n_qubits, R))
-    qc = QuantumCircuit(n_qubits, name=f"product_R{R}")
-    p = 0
-    for _ in range(R):
-        p = _block_product(qc, theta, p, n_qubits, hub)
-    p = _final_layer(qc, theta, p, n_qubits)
-    assert p == len(theta)
-    return qc
-
-
-ANSATZ_REGISTRY: dict[str, Callable[[int, int], QuantumCircuit]] = {
-    "L1": ansatz_L1,
-    "L2": ansatz_L2,
-    "product": ansatz_product,
-}
-
 _BLOCK_BUILDERS: dict[str, Callable[..., int]] = {
     "L1": _block_L1,
     "L2": _block_L2,
     "product": _block_product,
 }
+
+
+def build_ansatz(ansatz_name: str, n_qubits: int, R: int) -> QuantumCircuit:
+    """The bare ansatz, R blocks then the closing Rx(all), with no feature map.
+
+    The closing layer is Rx(all) ALONE -- n_qubits parameters, no trailing Rz. An Rz
+    there would commute with the Z measurement and be dead on arrival, which is where
+    15R+5 comes from rather than 15R+10. Nominal count and Jacobian rank are both
+    15R+5 = 20/35/50 at n=5.
+    """
+    theta = ParameterVector(THETA_PARAM_NAME, socket_param_count(n_qubits, R))
+    qc = QuantumCircuit(n_qubits, name=f"{ansatz_name}_R{R}")
+    p = 0
+    for _ in range(R):
+        p = _BLOCK_BUILDERS[ansatz_name](qc, theta, p, n_qubits, STAR_HUB_QUBIT)
+    p = _rotation_layer(qc, "rx", theta, p, n_qubits)
+    assert p == len(theta)
+    return qc
+
+
+ANSATZ_REGISTRY: dict[str, Callable[[int, int], QuantumCircuit]] = {
+    name: partial(build_ansatz, name) for name in _BLOCK_BUILDERS
+}
+ansatz_L1 = ANSATZ_REGISTRY["L1"]
+ansatz_L2 = ANSATZ_REGISTRY["L2"]
+ansatz_product = ANSATZ_REGISTRY["product"]
 
 
 def build_socket_circuit(
@@ -183,9 +146,7 @@ def build_socket_circuit(
     every injection shares one x vector, i.e. the identical Parameter objects, not
     copies.
 
-    The closing layer is Rx(all) ALONE -- five parameters, no trailing Rz. An Rz there
-    would commute with the Z measurement and be dead on arrival. That is where 15R+5
-    comes from rather than 15R+10.
+    The closing layer is Rx(all) ALONE, as in build_ansatz.
 
     annotate=True inserts labelled barriers marking each re-upload and the closing
     layer. They exist for drawing only and are emitted identically for every ansatz
@@ -212,7 +173,7 @@ def build_socket_circuit(
         p = build_block(qc, theta, p, n_qubits, hub)
     if annotate:
         qc.barrier(label="closing Rx")
-    p = _final_layer(qc, theta, p, n_qubits)
+    p = _rotation_layer(qc, "rx", theta, p, n_qubits)
 
     assert p == len(theta)
     return qc

@@ -1,24 +1,18 @@
 """Is the contract lr grid clipped too low for arm A? Measures one point above it.
 
-Phase 1 of the main series chose the top of the contract grid (lr = 0.03) in 12 of 24
-cells. An earlier six-point probe covered only one cell; this one measures the same
-extra point on the remaining twenty-three: every dilution, both ansatz levels, all
-three generator seeds.
+Phase 1 chose the top of the contract grid (lr = 0.03) in 12 of 24 cells. An earlier probe
+covered one cell; this one measures the extra point across every dilution, both ansatz
+levels and all three generator seeds — the 24 cells MIN_CELLS_AT_PROBE counts against.
 
-The probe point cannot become a contract lr here. The verdict
-is a recommendation under a rule fixed before the measurement, and no selected lr is
-written anywhere.
+The probe point cannot become a contract lr here: the verdict is a recommendation under a
+rule fixed before the measurement, and no selected lr is written anywhere.
 
-The rule:
+    WIDEN   if arm A's argmax sits at the probe point in at least half the cells AND the
+            median gain over 0.03 among those cells exceeds the validation noise of 0.020.
+    LEAVE   otherwise. An argmax that moves up by less than its own measurement noise is a
+            plateau, not an optimum.
 
-    WIDEN     if arm A's argmax is at the probe point in at least half the cells
-              AND the median gain over 0.03 among those cells exceeds the validation
-              noise of 0.020.
-    LEAVE     otherwise. An argmax that moves up by less than its own measurement noise
-              is a plateau, not an optimum.
-
-    caffeinate -dimsu .venv/bin/python scripts/probe_d21_lr_edge.py
-    caffeinate -dimsu .venv/bin/python scripts/probe_d21_lr_edge.py --probe-lr 0.1 0.3
+    caffeinate -dimsu .venv/bin/python scripts/probe_d21_lr_edge.py [--probe-lr 0.1 0.3]
 """
 
 from __future__ import annotations
@@ -27,13 +21,17 @@ import argparse
 import glob
 import json
 import multiprocessing as mp
-import os
 import time
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
-import torch
+# Before numpy and torch: the BLAS pools read these at import and never again.
+from qsocket.core import pin_blas_threads
+
+pin_blas_threads()
+
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
+import torch  # noqa: E402
 
 import run_main_series as a7  # noqa: E402  (same directory; the driver is the contract)
 

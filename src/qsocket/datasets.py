@@ -33,8 +33,7 @@ import sklearn
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 
-from qsocket.encoding import FEATURE_RANGE
-from qsocket.seeding import derive
+from qsocket.core import FEATURE_RANGE, derive
 from qsocket.vendored.hidden_manifold import generate_hidden_manifold_model
 from qsocket.vendored.hyperplanes import generate_hyperplanes_parity
 from qsocket.vendored.two_curves import generate_two_curves

@@ -1,25 +1,19 @@
 """Quality gates the pipeline must make checkable rather than bypass.
 
-  G1 dataset carrying capacity: a strong classical model on PCA-5 must beat the
-     identity arm by at least 0.05 and land in the 0.65-0.90 band,
-  G2 effective dimensionality: no single PCA component explains more than 80 %
-     of the retained variance,
-  G3 real entanglement: max connected correlation > 1e-3 for L1 and L2, < 1e-5
-     for the product circuit,
-  G4 ansatz-level matching: equal trainable parameter counts, zero SWAP gates
-     after transpilation (both hard failures), 4 CZ per block as a spec check,
-     depth and duration reported but not gated,
-  G5 clbit <-> qubit mapping: a circuit putting |1> on qubit i flips bit i.
+  G1 dataset carrying capacity: a strong classical model on PCA-5 beats the identity arm
+     by >= 0.05 and lands in the 0.65-0.90 band
+  G2 effective dimensionality: no single PCA component explains > 80 % of the variance
+  G3 real entanglement: max connected correlation > 1e-3 for L1/L2, < 1e-5 for product
+  G4 ansatz-level matching: equal parameter counts and zero SWAPs after transpilation
+     (hard failures), 4 CZ per block as a spec check; depth and duration not gated
+  G5 clbit <-> qubit mapping: a circuit putting |1> on qubit i flips bit i
 
-Two things here are load-bearing and easy to get wrong:
-
-  * G3 is computed from exact statevector probabilities, never from sampling. Shot
-    noise falls off as ~1/sqrt(shots) (1e-2 at 10 000 shots) while the negative control
-    must be resolved below 1e-5, so sampling would report "no entanglement" everywhere
-    — indistinguishable from a passing gate.
-  * G4 statistics come from a circuit this module transpiled itself at
-    optimization_level=1. The vendored get_circuit_stats transpiles at level 0 on its
-    own, so count_gate_types is called directly on our own transpiled circuit instead.
+Two things are load-bearing. G3 uses exact statevector probabilities, never sampling:
+shot noise falls off as ~1/sqrt(shots) (1e-2 at 10 000) while the negative control must
+resolve below 1e-5, so sampling would report "no entanglement" everywhere — which looks
+exactly like a passing gate. G4 statistics come from a circuit this module transpiled
+itself at optimization_level=1, so count_gate_types is called directly rather than through
+the vendored get_circuit_stats, which transpiles at level 0 on its own.
 """
 
 from __future__ import annotations
@@ -38,9 +32,8 @@ from qsocket.ansatzes import (
 
 # Reused rather than re-implemented: this is the code path a hardware run takes, and a
 # second copy could drift from it without any test noticing.
-from qsocket.hardware import transpile_for_backend
+from qsocket.hardware import connected_correlation, transpile_for_backend
 from qsocket.rank import DEFAULT_N_QUBITS, sample_inputs, sample_theta
-from qsocket.readout import connected_correlation
 from qsocket.vendored.circuit_stats import count_gate_types
 
 # --- frozen gate constants ---------------------------------------------------------
@@ -496,21 +489,9 @@ def _as_accuracy_record(value, *, role: str) -> dict:
 def check_g1_headroom(dataset, *, strong_model, floor_model) -> dict:
     """Gate G1: acc(strong classical) - acc(floor) >= 0.05, strong inside [0.65, 0.90].
 
-    Both models arrive as arguments — nothing about them is hardwired here, so the same
-    gate serves the binding reading and any reported-only variant. Each is a callable
-    taking `dataset` = {"train": (X, y), "val": (X, y), "test": (X, y)} and returning
-    either an accuracy or a dict with an "accuracy" key plus whatever provenance it
-    wants recorded.
-
-    Two properties of the binding reading:
-
-      * the floor is arm E with a linear head. With an MLP head arm E is itself a strong
-        nonlinear model on the same features, so the gate would be unsatisfiable;
-      * the gating version runs on PCA-5, which is the carrying capacity the gate exists
-        to measure. "Strong model on the full features" is reported, never gating.
-
-    A floor model declaring `is_contract_arm_e` makes the verdict binding; anything else
-    is recorded as orientational.
+    Both models arrive as arguments, so the same gate serves the binding reading and any
+    reported-only variant. Each is a callable taking {"train"/"val"/"test": (X, y)} and
+    returning an accuracy or a dict with an "accuracy" key plus provenance.
     """
     strong = _as_accuracy_record(strong_model(dataset), role="strong")
     # Ceiling and gate pull in opposite directions on the same number: a high accuracy
