@@ -33,14 +33,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import run_a8_analysis as a8  # noqa: E402
-from qsocket.ansatzes import build_socket_circuit, socket_param_count  # noqa: E402
-from qsocket.datasets import load_frozen  # noqa: E402
-from qsocket.head import _init_linear  # noqa: E402
-from qsocket.contract import MAX_EPOCHS, dataset_location  # noqa: E402
-from qsocket.core import derive  # noqa: E402
-from qsocket.rank import z_expectation_batch  # noqa: E402
-from qsocket.socket import initial_theta  # noqa: E402
+import run_a8_analysis as a8
+import run_main_series as a7
+
+from qsocket.ansatzes import build_socket_circuit, socket_param_count
+from qsocket.contract import MAX_EPOCHS, dataset_location
+from qsocket.core import derive
+from qsocket.datasets import load_frozen
+from qsocket.head import _init_linear
+from qsocket.rank import z_expectation_batch
+from qsocket.socket import initial_theta
 
 AXIS_ORDER = ("linear", "h2", "h3", "h4", "h42")
 TRAINED_ARMS = ("A", "F")
@@ -334,7 +336,7 @@ def head_init_rows(dataset_seed: int, *, draws: int = 2000, widths=(2, 3, 4)) ->
     share of draws in which every unit is.
     """
     import torch
-    import torch.nn as nn
+    from torch import nn
 
     name, out_dir = dataset_location(dataset_seed)
     X, _ = load_frozen(name, "train", out_dir=out_dir)

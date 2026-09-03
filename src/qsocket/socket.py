@@ -27,13 +27,13 @@ from typing import Literal, NamedTuple
 import numpy as np
 import pennylane as qml
 import torch
-import torch.nn as nn
 from qiskit import QuantumCircuit
 from qiskit.primitives import StatevectorEstimator
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_algorithms.gradients import ReverseEstimatorGradient
 from qiskit_machine_learning.connectors import TorchConnector
 from qiskit_machine_learning.neural_networks import EstimatorQNN
+from torch import nn
 
 from qsocket.ansatzes import build_socket_circuit
 from qsocket.core import DEFAULT_READOUT_ORDER, derive, pauli_z_chains, readout_size

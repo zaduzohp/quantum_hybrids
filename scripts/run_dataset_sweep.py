@@ -31,7 +31,7 @@ import csv
 import itertools
 import json
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Before numpy: stage 2 runs the real training loop, and a multi-threaded BLAS makes the
@@ -40,9 +40,8 @@ from qsocket.core import pin_blas_threads
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
 
-from qsocket.datasets import N_SAMPLES_TOTAL, generate_and_freeze, load_splits  # noqa: E402
+from qsocket.datasets import N_SAMPLES_TOTAL, generate_and_freeze, load_splits
 from qsocket.gates import (
     G1_LR_GRID,
     G1_STRONG_ACCURACY_BAND,
@@ -295,7 +294,7 @@ def main() -> None:
     freeze_dir = args.freeze_dir or (args.out_dir / "frozen")
     args.out_dir.mkdir(parents=True, exist_ok=True)
     freeze_dir.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
 
     jobs = [
         (dataset, kwargs, seed)
@@ -346,7 +345,7 @@ def main() -> None:
     json_path.write_text(
         json.dumps(
             {
-                "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "created_utc": datetime.now(UTC).isoformat(timespec="seconds"),
                 "dataset_seeds": list(args.dataset_seeds),
                 "k_values": list(K_VALUES),
                 "gating_k": K_GATING,

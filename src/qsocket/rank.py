@@ -19,7 +19,12 @@ import numpy as np
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
 
-from qsocket.core import DEFAULT_READOUT_ORDER, FEATURE_RANGE, pauli_z_chains, readout_size
+from qsocket.core import (
+    DEFAULT_READOUT_ORDER,
+    FEATURE_RANGE,
+    pauli_z_chains,
+    readout_size,
+)
 
 DEFAULT_N_QUBITS = 5
 DEFAULT_TOL = 1e-8

@@ -38,10 +38,11 @@ from qsocket.core import pin_blas_threads
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
-import torch  # noqa: E402
-from scipy.stats import t  # noqa: E402
+import numpy as np
+import torch
+from scipy.stats import t
 
+from qsocket import stats
 from qsocket.datasets import (
     DEFAULT_DATA_DIR,
     PRODUCTION_DATASET,
@@ -52,7 +53,6 @@ from qsocket.head import HEAD_PARAM_COUNTS, make_head
 from qsocket.socket import frozen_socket_features, make_socket
 from qsocket.training import TrainConfig, train_model
 from qsocket.vendored.metrics_cls import accuracy_from_z
-from qsocket import stats
 
 # --- fixed configuration -------------------------------------------------------------
 
@@ -926,7 +926,7 @@ def report(results: dict) -> None:
         b = results["curve_B"].get(lr, float("nan"))
         in_contract = lr in CONTRACT_LR_GRID
         mean = f"{results['contract_table'][lr]:.6f}" if in_contract else "  (probe)"
-        print(f"{lr:>8g} {a:>10.6f} {b:>10.6f} {mean:>10} {str(in_contract):>10}")
+        print(f"{lr:>8g} {a:>10.6f} {b:>10.6f} {mean:>10} {in_contract!s:>10}")
     print()
     print(f"  CONTRACT lr  = {results['contract_lr']:g}   "
           f"(best mean val accuracy over arms A AND B, from the four contract points only)")

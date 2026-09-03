@@ -19,7 +19,7 @@ from __future__ import annotations
 import hashlib
 import platform
 import subprocess
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -46,20 +46,11 @@ GENERATOR = "hyperplanes"
 # The production cell. n_features = 20, for continuity with the retired two_curves.
 GENERATOR_KWARGS: dict = {"n_features": 20, "n_hyperplanes": 3, "dim_hyperplanes": 5}
 
-# The gates pass on exactly these three generator seeds; the other two fail G2 and the
-# G1 headroom, so there is nothing to replace a failing seed with and stage 2 stops
-# rather than substituting.
 DATASET_SEEDS: tuple[int, ...] = (11, 22, 33)
 
-# Generator seed 11 is the frozen production dataset, read from data/ with its
-# registered hashes asserted. Seeds 22 and 33 have never been frozen into data/: they are
-# regenerated through the identical chain into the directory below and their hashes
-# asserted against the constants pinned here. Seed 11 is also reproduced through the same
-# code path, which is what makes the other two credible.
+
 A7_DATA_DIR = DEFAULT_DATA_DIR / "a7_generator_seeds"
 
-# (dataset_hash prefix, pca_hash prefix, file_sha256 prefix), measured through
-# datasets.generate_and_freeze. Seed 11 reproduces the registry byte for byte.
 GENERATED_HASH_PREFIXES: dict[int, tuple[str, str, str]] = {
     11: ("4360508611e0e896", "2bf856a6c49a9c38", "5e519b749c22b488"),
     22: ("daf152204bbd7292", "f087808ca635cff7", "3dc8d3e1e30004f1"),
@@ -186,7 +177,7 @@ def env_hash() -> str:
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return datetime.now(UTC).isoformat(timespec="seconds")
 
 
 # --- datasets ------------------------------------------------------------------------

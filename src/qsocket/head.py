@@ -20,7 +20,7 @@ import math
 from typing import Literal
 
 import torch
-import torch.nn as nn
+from torch import nn
 
 from qsocket.core import derive
 

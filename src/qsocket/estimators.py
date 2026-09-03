@@ -13,12 +13,10 @@ and McNemar on the discordant pairs.
 from __future__ import annotations
 
 import math
-import warnings
 from collections import namedtuple
 
 import numpy as np
 import pandas as pd
-import statsmodels.formula.api as smf
 from scipy.stats import t as student_t
 
 from qsocket import stats
@@ -546,7 +544,7 @@ def mixedlm_check(pairs_by_dilution: dict) -> dict:
         present = [d for d in CONTRACT_DILUTIONS if d in set(frame["dilution"])]
         frame["dilution"] = pd.Categorical(frame["dilution"], categories=present, ordered=True)
     out: dict = {
-        "n": int(len(frame)),
+        "n": len(frame),
         "reference_level": (
             str(frame["dilution"].cat.categories[0]) if not frame.empty else None
         ),

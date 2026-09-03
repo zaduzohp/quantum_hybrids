@@ -34,7 +34,7 @@ import multiprocessing as mp
 import os
 import time
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Before numpy and torch: the BLAS pools read these at import and never again. A
@@ -44,57 +44,23 @@ from qsocket.core import derive, pin_blas_threads
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
-import torch  # noqa: E402
-from sklearn.metrics import roc_auc_score  # noqa: E402
+import numpy as np
+import torch
+from sklearn.metrics import roc_auc_score
 
-from qsocket.ansatzes import build_socket_circuit, socket_param_count
-from qsocket.datasets import DEFAULT_DATA_DIR, load_manifest, load_splits  # noqa: F401
-from qsocket.gates import (
-    check_g1_headroom,
-    check_g2_effective_dim,
-    make_arm_e_linear_floor_model,
-    make_svc_strong_model,
-)
-from qsocket.head import (
-    DILUTION_AXIS,
-    HEAD_PARAM_COUNTS,
-    canonical_head_name,
-    make_head,
-    make_linear_readout,
-)
-from qsocket.rank import effective_dimension
-from qsocket.results import RESULT_COLUMNS, append_result_row
 from qsocket import stats
-from qsocket.socket import (
-    D_BEST_WIDTHS,
-    D_MATCHED_WIDTH,
-    DEFAULT_BACKEND,
-    DEFAULT_N_QUBITS,
-    frozen_socket_features,
-    make_socket,
-)
-from qsocket.training import (
-    CONTRACT_RIDGE_ALPHA_GRID,
-    TrainConfig,
-    lr_selection_from_measurements,
-    macro_f1,
-    ridge_control,
-    train_model,
-)
-from qsocket.vendored.metrics_cls import accuracy_from_z
+from qsocket.ansatzes import build_socket_circuit, socket_param_count
 
 # --- fixed configuration ------------------------------------------------------------
-
 # The contract lives in the package (qsocket.contract), not in this driver. Re-exported
 # here because the analysis and the probes address it as a7.X.
 from qsocket.contract import (  # noqa: F401
     A7_DATA_DIR,
     ANSATZ_FREE_ARMS,
     ANSATZ_LEVELS,
-    ARMS,
     ARM_E_LR_GRID,
     ARM_F_DILUTIONS,
+    ARMS,
     BATCH_SIZE,
     BUDGET_HIT_NOTE_FRACTION,
     CONTRACT_LR_GRID,
@@ -115,8 +81,8 @@ from qsocket.contract import (  # noqa: F401
     PATIENCE,
     PREDICTIONS_DIR,
     PRODUCT_ANSATZ,
-    RESULTS_CSV,
     R_CONTRACT,
+    RESULTS_CSV,
     SEEDS,
     SPLITS_REPORTED,
     SUMMARY_JSON,
@@ -131,6 +97,39 @@ from qsocket.contract import (  # noqa: F401
     optional_int,
     utc_now,
 )
+from qsocket.datasets import DEFAULT_DATA_DIR, load_manifest, load_splits  # noqa: F401
+from qsocket.gates import (
+    check_g1_headroom,
+    check_g2_effective_dim,
+    make_arm_e_linear_floor_model,
+    make_svc_strong_model,
+)
+from qsocket.head import (
+    DILUTION_AXIS,
+    HEAD_PARAM_COUNTS,
+    canonical_head_name,
+    make_head,
+    make_linear_readout,
+)
+from qsocket.rank import effective_dimension
+from qsocket.results import RESULT_COLUMNS, append_result_row
+from qsocket.socket import (
+    D_BEST_WIDTHS,
+    D_MATCHED_WIDTH,
+    DEFAULT_BACKEND,
+    DEFAULT_N_QUBITS,
+    frozen_socket_features,
+    make_socket,
+)
+from qsocket.training import (
+    CONTRACT_RIDGE_ALPHA_GRID,
+    TrainConfig,
+    lr_selection_from_measurements,
+    macro_f1,
+    ridge_control,
+    train_model,
+)
+from qsocket.vendored.metrics_cls import accuracy_from_z
 
 # --- datasets ------------------------------------------------------------------------
 
@@ -298,7 +297,7 @@ def _cell_row(
             "calibration_set_id": "",
             "repeat_index": 0,
             "eval_subset_id": f"{split}_full",
-            "n_eval": int(len(metrics["correct"])),
+            "n_eval": len(metrics["correct"]),
             "split": split,
             "accuracy": metrics["accuracy"],
             "auc": metrics["auc"],
@@ -1982,7 +1981,7 @@ def run(
     results_path = out_dir / RESULTS_CSV
     lr_path = out_dir / LR_TABLE_CSV
 
-    run_id = f"a7_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
+    run_id = f"a7_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}"
     commit, environment = git_commit(), env_hash()
     context = {"run_id": run_id, "commit": commit, "environment": environment}
 

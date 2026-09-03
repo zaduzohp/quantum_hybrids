@@ -25,7 +25,7 @@ from __future__ import annotations
 import hashlib
 import json
 import platform
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -283,7 +283,7 @@ def generate_and_freeze(
             "numpy": np.__version__,
             "scikit-learn": sklearn.__version__,
         },
-        "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "created_utc": datetime.now(UTC).isoformat(timespec="seconds"),
     }
 
     data_path, manifest_path = dataset_paths(frozen_name, out_dir=out_dir)

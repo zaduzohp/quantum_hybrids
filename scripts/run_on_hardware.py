@@ -22,7 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from qsocket.gates import check_g5_bit_mapping
@@ -82,7 +82,7 @@ def run_g5(
 
     verdict = check_g5_bit_mapping(expectations)
     row = {
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "timestamp_utc": datetime.now(UTC).isoformat(),
         "gate": "G5",
         "backend_name": meta.get("backend_name"),
         "is_iqm_backend": meta.get("is_iqm_backend"),

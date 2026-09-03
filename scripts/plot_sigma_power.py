@@ -33,9 +33,9 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import run_a8_analysis as a8  # noqa: E402
+import run_a8_analysis as a8
 
-from qsocket.head import DILUTION_AXIS  # noqa: E402
+from qsocket.head import DILUTION_AXIS
 
 # The same visual vocabulary as the A8 figures: colour is never the only carrier.
 MARKERS = a8.MARKERS
