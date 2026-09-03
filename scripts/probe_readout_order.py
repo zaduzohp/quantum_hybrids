@@ -48,21 +48,25 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 # Before numpy and torch: the BLAS pools read these at import and never again.
-from qsocket.core import FEATURE_RANGE, derive, pin_blas_threads, readout_size  # noqa: E402
+from qsocket.core import (
+    FEATURE_RANGE,
+    derive,
+    pin_blas_threads,
+    readout_size,
+)
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
-import torch  # noqa: E402
+import numpy as np
+import run_main_series as a7
+import torch
 
-import run_main_series as a7  # noqa: E402
-
-from qsocket.ansatzes import build_socket_circuit, socket_param_count  # noqa: E402
-from qsocket.head import make_linear_readout  # noqa: E402
-from qsocket.rank import effective_dimension  # noqa: E402
-from qsocket.results import RESULT_COLUMNS  # noqa: E402
-from qsocket.socket import DEFAULT_N_QUBITS, make_socket  # noqa: E402
-from qsocket.training import lr_selection_from_measurements  # noqa: E402
+from qsocket.ansatzes import build_socket_circuit, socket_param_count
+from qsocket.head import make_linear_readout
+from qsocket.rank import effective_dimension
+from qsocket.results import RESULT_COLUMNS
+from qsocket.socket import DEFAULT_N_QUBITS, make_socket
+from qsocket.training import lr_selection_from_measurements
 
 # --- contract ------------------------------------------------------------------------
 
@@ -108,7 +112,17 @@ MAIN_SERIES_RUN_MINUTES = 7.65
 # order=2 costs 1.24-1.28x at batch 32/64. Guessing 3x overstated the bill by 2.4x. This is
 # a per-step ratio, not a measured full run. An order with no entry falls back to the
 # linear guess, pessimistic and therefore safe.
-READOUT_SLOWDOWN: dict[int, float] = {1: 1.0, 2: 1.26}
+READOUT_SLOWDOWN: dict[int, float] = {1: 1.0, 2: 1.29, 5: 1.73}
+
+# Calibration from the per-step ratio to a full run. Measured at order=2: the per-step
+# benchmark said 1.29x while a real run cost 12.23/7.65 = 1.60x, so the step ratio
+# understates a run by 1.24x. It misses the evaluation passes and the contention of ten
+# workers on twelve cores. Applied to order=5 this turns the 1.73x step ratio into a
+# 2.14x run ratio, i.e. ~16.4 min -- against the 38.2 min the bare linear fallback
+# (float(order) = 5.00x) would have claimed. Scaling is strongly SUBLINEAR in the number
+# of observables (6.2x observables -> 2.1x time): the forward pass is shared and the
+# adjoint backward sweep amortises across observables.
+STEP_TO_RUN_CALIBRATION = 1.24
 
 # MEASURED wall time of one A_corr run (ds11 lr stage, 2026-08-29): 15 runs, 10 workers on
 # 12 cores, mean 12.23 min, max 26.53. Supersedes MAIN_SERIES_RUN_MINUTES x
@@ -116,6 +130,14 @@ READOUT_SLOWDOWN: dict[int, float] = {1: 1.0, 2: 1.26}
 # evaluation passes and the contention of 10-way parallelism.
 MEASURED_RUN_MINUTES: dict[int, float] = {2: 12.23}
 MEASURED_RUN_MAX_MINUTES: dict[int, float] = {2: 26.53}
+
+# Orders with a measured PER-STEP ratio but no full run yet: estimate through the
+# calibration above rather than through the linear fallback, and say so.
+CALIBRATED_RUN_MINUTES: dict[int, float] = {
+    order: MAIN_SERIES_RUN_MINUTES * ratio * STEP_TO_RUN_CALIBRATION
+    for order, ratio in READOUT_SLOWDOWN.items()
+    if order not in MEASURED_RUN_MINUTES
+}
 
 # --- the lr-grid extension rule, DECLARED BEFORE THE RUN --------------------------------
 #
@@ -973,7 +995,8 @@ def main(argv=None) -> int:
         print(f"stage 3 (main): {main_cells_expensive} trained cells + "
               f"{main_cells_cheap} frozen cells")
         measured = MEASURED_RUN_MINUTES.get(order)
-        per_run_minutes = measured or (
+        calibrated = CALIBRATED_RUN_MINUTES.get(order)
+        per_run_minutes = measured or calibrated or (
             MAIN_SERIES_RUN_MINUTES * READOUT_SLOWDOWN.get(order, float(order))
         )
         total = (expensive + main_cells_expensive) * per_run_minutes
@@ -981,6 +1004,11 @@ def main(argv=None) -> int:
             print(f"\ntrained-run cost: {per_run_minutes:.1f} min each, MEASURED on the "
                   f"ds11 lr stage (15 runs, 10 workers on 12 cores; median 10.9, "
                   f"max {MEASURED_RUN_MAX_MINUTES[order]:.1f})")
+        elif calibrated:
+            print(f"\ntrained-run CALIBRATED ESTIMATE: {per_run_minutes:.1f} min each "
+                  f"= {MAIN_SERIES_RUN_MINUTES} min x {READOUT_SLOWDOWN[order]:.2f} "
+                  f"(measured per-step at this order) x {STEP_TO_RUN_CALIBRATION} "
+                  f"(step->run, calibrated on order=2). No full run measured at this order.")
         else:
             print(f"\ntrained-run ESTIMATE: {per_run_minutes:.1f} min each "
                   f"= {MAIN_SERIES_RUN_MINUTES} min (main series at 5 observables) x "

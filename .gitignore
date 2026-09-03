@@ -2,12 +2,6 @@
 __pycache__/
 data/*
 !data/a7_generator_seeds/
-# outputs/* rather than outputs/: git does not descend into an excluded
-# directory, so the negation below only works against a wildcard.
-outputs/*
-# The a7 dry-run fixture is an INPUT to tests/test_analysis_pipeline.py and
-# travels with the repository.
-!outputs/dry_run/
 outputs_archive/
 *.pt
 *.egg-info/

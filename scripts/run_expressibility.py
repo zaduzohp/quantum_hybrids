@@ -28,11 +28,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT / "src"))
 
-from qsocket.ansatzes import build_socket_circuit  # noqa: E402
-from qsocket.core import FEATURE_RANGE  # noqa: E402
-from qsocket.rank import DEFAULT_N_QUBITS, sample_inputs, sample_theta  # noqa: E402
-from qsocket.vendored.entanglement import meyer_wallach_score  # noqa: E402
-from qsocket.vendored.expressibility import (  # noqa: E402
+from qsocket.ansatzes import build_socket_circuit
+from qsocket.core import FEATURE_RANGE
+from qsocket.rank import DEFAULT_N_QUBITS, sample_inputs
+from qsocket.vendored.entanglement import meyer_wallach_score
+from qsocket.vendored.expressibility import (
     binned_distributions,
     kl_divergence,
     sample_haar_fidelities,

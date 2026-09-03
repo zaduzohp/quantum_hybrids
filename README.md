@@ -1,14 +1,13 @@
-# quantum_hybrids — the `qsocket` package
+# Quantum Hybrids
 
 This project answers one question: does **training** a quantum circuit inside a
 hybrid model change anything, and against what noise scale should that be judged.
+
 The model is a single chain, identical across every arm — `data → PCA-5 → fixed
 scaling to [−π/4, π/4] → [SOCKET 5→5] → head → score` — and only the contents of
 the socket are swapped. Arm **A** is a trained quantum circuit, arm **B** is the
-*same* circuit frozen at the *same* initialisation, and the classical controls
-follow: a trained layer matched to A (**C**), a frozen random projection (**D**)
-and an identity pass-through (**E**). The main estimand is the paired difference
-Δ = acc(A) − acc(B). Training happens on the simulator only; on
+*same* circuit frozen at the *same* initialisation, a frozen random classical projection (**D**), an identity pass-through (**E**) and product ansatz without entanglement (**F**). The main estimand is the paired difference
+Δ = acc(A) − acc(B). Training happens on the simulator only. On
 hardware (IQM Spark / ODRA 5) we evaluate frozen weights and nothing else.
 
 Because we measure a difference between arms, correctness rests on things no unit
@@ -19,37 +18,12 @@ same feature range, the same batch order, the same transpilation parameters.
 
 Requires Python ≥ 3.11 (the reference environment was built on 3.12).
 
-```bash
-python3.12 -m venv .venv && .venv/bin/python -m pip install --upgrade pip
-```
-
-```bash
-.venv/bin/python -m pip install -e ".[dev]"
-```
-
-Verify:
-
-```bash
-.venv/bin/python -m pytest -q
-```
-
-```bash
-.venv/bin/python -c "import qsocket, qiskit, torch; print(qiskit.__version__, torch.__version__)"
-```
-
-The exact versions of the working environment are pinned in `requirements.lock`
-(`pip freeze`). For a bit-identical rebuild install from the lock instead of from
-the version ranges:
-
-```bash
-.venv/bin/python -m pip install -r requirements.lock && .venv/bin/python -m pip install -e . --no-deps
-```
+[REPRODUCE.md](REPRODUCE.md) - this file provides all the needed commands, code, etc.
 
 ## Dataset generators
 
 The `data` extra (`qml-benchmarks`) is **not installed**. The package does not
-exist on PyPI, and the GitHub version pulls `jax`/`jaxlib`/`flax`/`optax`/
-`pennylane`; on top of that `qml_benchmarks/data/__init__.py` imports `ising.py`,
+exist on PyPI, and the GitHub version pulls `jax`/`jaxlib`/`flax`/`optax`/; on top of that `qml_benchmarks/data/__init__.py` imports `ising.py`,
 which requires `jax` and `numpyro`, so the `two_curves` and `hidden_manifold`
 generators cannot be reached without that whole stack. Both generators are
 **vendored** into `src/qsocket/vendored/` instead (commit `95e5a07`, verbatim copy,

@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import numpy as np
 
+
 def single_qubit_reduced_density(
     state: np.ndarray, qubit: int, n_qubits: int
 ) -> np.ndarray:

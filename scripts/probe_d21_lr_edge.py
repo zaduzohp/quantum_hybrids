@@ -29,11 +29,10 @@ from qsocket.core import pin_blas_threads
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
-import pandas as pd  # noqa: E402
-import torch  # noqa: E402
-
-import run_main_series as a7  # noqa: E402  (same directory; the driver is the contract)
+import numpy as np
+import pandas as pd
+import run_main_series as a7
+import torch
 
 # The point(s) above the contract grid. Diagnostic only.
 PROBE_LR: tuple[float, ...] = (0.1,)

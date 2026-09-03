@@ -34,10 +34,12 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import run_main_series as a7  # noqa: E402
+import run_main_series as a7
 
-from qsocket.ansatzes import build_socket_circuit, socket_param_count  # noqa: E402
-from qsocket.datasets import (  # noqa: E402
+from qsocket import stats
+from qsocket.ansatzes import build_socket_circuit, socket_param_count
+from qsocket.core import derive
+from qsocket.datasets import (
     N_COMPONENTS,
     PCA_WHITEN,
     SPLIT_SIZES,
@@ -45,19 +47,7 @@ from qsocket.datasets import (  # noqa: E402
     load_manifest,
     load_splits,
 )
-from qsocket.gates import (  # noqa: E402
-    G1_LR_GRID,
-    G1_MIN_HEADROOM,
-    ceiling,
-    check_g1_headroom,
-    make_arm_e_linear_floor_model,
-    make_svc_strong_model,
-)
-from qsocket.head import DILUTION_AXIS, make_head  # noqa: E402
-from qsocket.rank import effective_dimension  # noqa: E402
-from qsocket.core import derive  # noqa: E402
-from qsocket import stats  # noqa: E402
-from qsocket.estimators import (  # noqa: E402,F401
+from qsocket.estimators import (  # noqa: F401
     MIXEDLM_EQUIVALENCE_TOL,
     POOLING_DIVERGENCE_RULE,
     TOST_ALPHA,
@@ -79,7 +69,16 @@ from qsocket.estimators import (  # noqa: E402,F401
     tost,
     tost_power,
 )
-
+from qsocket.gates import (
+    G1_LR_GRID,
+    G1_MIN_HEADROOM,
+    ceiling,
+    check_g1_headroom,
+    make_arm_e_linear_floor_model,
+    make_svc_strong_model,
+)
+from qsocket.head import DILUTION_AXIS, make_head
+from qsocket.rank import effective_dimension
 
 # --- declared before the analysis ----------------------------------------------------
 

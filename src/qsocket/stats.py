@@ -169,7 +169,7 @@ def wilcoxon_signed_rank_exact(differences: list[float]) -> dict[str, float | in
     pvalue = favourable / (2 ** len(ranks))
 
     return {
-        "n_nonzero": int(len(diffs)),
+        "n_nonzero": len(diffs),
         "statistic": statistic,
         "pvalue": float(pvalue),
         "rank_biserial": rank_biserial,

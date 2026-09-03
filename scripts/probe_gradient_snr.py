@@ -35,10 +35,10 @@ from qsocket.core import pin_blas_threads
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
-import torch  # noqa: E402
-import torch.nn as nn  # noqa: E402
-from scipy.stats import binom, t  # noqa: E402
+import numpy as np
+import torch
+from scipy.stats import binom, t
+from torch import nn
 
 from qsocket.ansatzes import socket_param_count
 from qsocket.datasets import (

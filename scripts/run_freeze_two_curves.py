@@ -26,7 +26,7 @@ import json
 import shutil
 import tempfile
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from qsocket.datasets import (
@@ -155,7 +155,7 @@ def _print_g1(verdict: dict) -> None:
     print(f"    floor   arm E lr={floor['lr_selected']:g} of {floor['lr_grid']}"
           f"  test {floor['accuracy']:.6f}  (val {floor['val_accuracy']:.6f})"
           f"  seeds {floor['seeds']}")
-    print(f"    mean val per lr: "
+    print("    mean val per lr: "
           + ", ".join(f"{lr}:{value:.6f}" for lr, value in floor["mean_val_accuracy_per_lr"].items()))
     print(f"    headroom {verdict['headroom']:+.6f}  (>= {verdict['min_headroom']:.2f}), "
           f"g1_margin {verdict['g1_margin']:+.6f}, strong_in_band {verdict['strong_in_band']}, "
@@ -175,7 +175,7 @@ def main() -> None:
                         default=Path("outputs/a5b/a5b_gates.json"))
     args = parser.parse_args()
 
-    print(f"# the two_curves freeze — freeze the production dataset and run the binding gates")
+    print("# the two_curves freeze — freeze the production dataset and run the binding gates")
     print(f"# cell: {DATASET} {PRODUCTION_GENERATOR_KWARGS}, dataset_seed="
           f"{PRODUCTION_DATASET_SEED}, PCA k={N_COMPONENTS}")
     print(f"# seed rule: \"{SEED_RULE}\" (the dataset sweep grid {list(SWEEP_DATASET_SEEDS)}); "
@@ -191,7 +191,7 @@ def main() -> None:
             out_dir=args.out_dir, a3_frozen_dir=args.a3_frozen_dir, staging=Path(staging)
         )
 
-    print(f"\n# manifest summary")
+    print("\n# manifest summary")
     print(f"  dataset_hash {manifest['dataset_hash']}")
     print(f"  pca_hash     {manifest['pca_hash']}")
     print(f"  file_sha256  {manifest['file_sha256']}")
@@ -205,7 +205,7 @@ def main() -> None:
     print(f"  max_overshoot_before_clipping {manifest['scaling']['max_overshoot_before_clipping']}")
 
     g2 = check_g2_effective_dim(manifest)
-    print(f"\n# G2 (binding)")
+    print("\n# G2 (binding)")
     print(f"  share_of_retained {[round(v, 6) for v in g2['share_of_retained']]}")
     print(f"  top component {g2['top_component']} share {g2['top_share']:.6f} "
           f"(limit {g2['max_share']:.2f}, margin {g2['max_share'] - g2['top_share']:+.6f})"
@@ -216,7 +216,7 @@ def main() -> None:
     splits = load_splits(PRODUCTION_FROZEN_NAME, out_dir=args.out_dir)
     raw_splits = load_splits(PRODUCTION_FROZEN_NAME, out_dir=args.out_dir, raw=True)
 
-    print(f"\n# G1")
+    print("\n# G1")
     contract = _g1(splits, lr_grid=G1_LR_GRID, label="CONTRACT VERDICT — lr from G1_LR_GRID")
     _print_g1(contract)
     sensitivity = _g1(
@@ -229,7 +229,7 @@ def main() -> None:
           f"{sensitivity['headroom'] - contract['headroom']:+.6f}")
 
     strong_full = make_svc_strong_model()(raw_splits)
-    print(f"\n# reported, never gating (SPEC section 6): strong model on the full 20 features")
+    print("\n# reported, never gating (SPEC section 6): strong model on the full 20 features")
     print(f"  acc {strong_full['accuracy']:.6f}  (C={strong_full['selected']['C']}, "
           f"gamma={strong_full['selected']['gamma']}), vs the same PCA-5 arm-E floor: "
           f"{strong_full['accuracy'] - contract['floor']['accuracy']:+.6f}")
@@ -240,7 +240,7 @@ def main() -> None:
             json.dumps(
                 {
                     "task": "the two_curves freeze",
-                    "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                    "created_utc": datetime.now(UTC).isoformat(timespec="seconds"),
                     "dataset": DATASET,
                     "generator_kwargs": PRODUCTION_GENERATOR_KWARGS,
                     "dataset_seed": PRODUCTION_DATASET_SEED,

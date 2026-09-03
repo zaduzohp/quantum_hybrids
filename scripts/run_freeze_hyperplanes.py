@@ -34,22 +34,22 @@ import shutil
 import sys
 import tempfile
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Has to happen before numpy/torch import their BLAS. One definition of the list, shared
 # with every other driver — a local copy is how one of them ends up missing a pool.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from qsocket.core import pin_blas_threads  # noqa: E402
+from qsocket.core import pin_blas_threads
 
 pin_blas_threads()
 
-import numpy as np  # noqa: E402
-import torch  # noqa: E402
+import numpy as np
+import torch
 
 torch.set_num_threads(1)
 
-from qsocket.datasets import (  # noqa: E402
+from qsocket.datasets import (
     DEFAULT_DATA_DIR,
     N_COMPONENTS,
     N_SAMPLES_TOTAL,
@@ -59,7 +59,7 @@ from qsocket.datasets import (  # noqa: E402
     load_manifest,
     load_splits,
 )
-from qsocket.gates import (  # noqa: E402
+from qsocket.gates import (
     G1_LR_GRID,
     G1_MIN_HEADROOM,
     G1_STRONG_ACCURACY_BAND,
@@ -70,10 +70,10 @@ from qsocket.gates import (  # noqa: E402
     make_arm_e_linear_floor_model,
     make_svc_strong_model,
 )
-from qsocket.head import HEAD_PARAM_COUNTS, make_head  # noqa: E402
-from qsocket.socket import make_socket  # noqa: E402
-from qsocket.training import TrainConfig, train_model  # noqa: E402
-from qsocket.vendored.metrics_cls import accuracy_from_z  # noqa: E402
+from qsocket.head import HEAD_PARAM_COUNTS, make_head
+from qsocket.socket import make_socket
+from qsocket.training import TrainConfig, train_model
+from qsocket.vendored.metrics_cls import accuracy_from_z
 
 # --- candidate configuration, declared before the measurement -----------------------
 
@@ -411,7 +411,7 @@ def freeze_and_verify(*, out_dir: Path, staging: Path, replay: Path) -> tuple[di
     # Reproduction: every argument comes from the written manifest, not the constants
     # above.
     print(f"\n# T2 — reproduce from the manifest into {replay}")
-    print(f"  recorded manifest is the source of every argument below")
+    print("  recorded manifest is the source of every argument below")
     print(f"    generator        {published['generator']}")
     print(f"    generator_kwargs {published['generator_kwargs']}")
     print(f"    n_samples        {published['n_samples']}")
@@ -513,7 +513,7 @@ def main(argv=None) -> int:
 
     outputs_dir = Path(args.outputs_dir)
     outputs_dir.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     rows: list[dict] = []
     details: list[dict] = []
 
@@ -554,7 +554,7 @@ def main(argv=None) -> int:
                 {
                     "task": "this freeze",
                     "rules_fixed": "cell rule and seed rule below were fixed before this scan ran",
-                    "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                    "created_utc": datetime.now(UTC).isoformat(timespec="seconds"),
                     "generator": DATASET,
                     "generator_kwargs": PRODUCTION_GENERATOR_KWARGS,
                     "cell_rule": CELL_RULE,
@@ -619,7 +619,7 @@ def main(argv=None) -> int:
         json.dumps(
             {
                 "task": "this freeze",
-                "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "created_utc": datetime.now(UTC).isoformat(timespec="seconds"),
                 "dataset": DATASET,
                 "generator_kwargs": PRODUCTION_GENERATOR_KWARGS,
                 "cell_rule": CELL_RULE,

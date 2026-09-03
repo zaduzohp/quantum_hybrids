@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import numpy as np
 
+
 def haar_pdf_fidelity(f: np.ndarray, dim: int) -> np.ndarray:
     return (dim - 1.0) * (1.0 - f) ** (dim - 2.0)
 

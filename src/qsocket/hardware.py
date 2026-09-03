@@ -7,7 +7,7 @@ hardware variance."""
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 import numpy as np
@@ -239,7 +239,7 @@ def expectations_on_backend(
     job_ids: list[str] = []
     calibration_ids: list[str] = []
     timelines: list[dict[str, str]] = []
-    submitted_at = datetime.now(timezone.utc).isoformat()
+    submitted_at = datetime.now(UTC).isoformat()
 
     for start in range(0, len(transpiled), max_circuits_per_job):
         batch = transpiled[start : start + max_circuits_per_job]
@@ -266,7 +266,7 @@ def expectations_on_backend(
             )
         all_counts.extend(_normalize_counts(c) for c in counts_list)
 
-    completed_at = datetime.now(timezone.utc).isoformat()
+    completed_at = datetime.now(UTC).isoformat()
     if len(all_counts) != len(transpiled):
         raise RuntimeError(
             f"expected {len(transpiled)} histograms in total, collected {len(all_counts)}"
