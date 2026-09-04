@@ -192,19 +192,21 @@ def frozen_name_for(seed: int) -> str:
 
 def dataset_location(seed: int) -> tuple[str, Path]:
     """(frozen name, directory) for one generator seed.
+
+    Seed 11 resolves to the registered production artefact in DEFAULT_DATA_DIR, which
+    this script never writes to; seeds 22 and 33 to A7_DATA_DIR, which it generates into.
+    The separation is a prohibition, not a layout preference — see
+    tests/test_main_series.py. Both directories travel with the repository: .gitignore
+    excludes data/* and then re-admits data/a7_generator_seeds/ together with the two
+    seed-11 files by name, so a fresh clone resolves either branch to bytes that are
+    actually there.
     """
     if seed == 11:
         assert frozen_name_for(11) == PRODUCTION_DATASET, (
             "the naming convention drifted from the registered production dataset: "
             f"{frozen_name_for(11)!r} != {PRODUCTION_DATASET!r}"
         )
-        for directory in (A7_DATA_DIR, DEFAULT_DATA_DIR):
-            data_path, manifest_path = dataset_paths(PRODUCTION_DATASET, out_dir=directory)
-            if data_path.exists() and manifest_path.exists():
-                return PRODUCTION_DATASET, directory
-        # Neither is on disk. Name the tracked location, so the error that follows
-        # points at the path a fresh clone is meant to have.
-        return PRODUCTION_DATASET, A7_DATA_DIR
+        return PRODUCTION_DATASET, DEFAULT_DATA_DIR
     return frozen_name_for(seed), A7_DATA_DIR
 
 
