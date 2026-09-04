@@ -48,3 +48,10 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+# REPRODUCE.md drives the suite with -m "not slow", so the marker has to be registered
+# or the first documented command answers with four PytestUnknownMarkWarnings.
+markers = [
+    "slow: minutes rather than seconds — a Monte Carlo or a Fourier-lattice sweep",
+]

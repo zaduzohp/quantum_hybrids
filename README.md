@@ -35,3 +35,10 @@ yields 16 arrays identical **bit-for-bit** (399,000 numbers, zero differences). 
 digests from that run are pinned in
 [tests/test_vendored_generators.py](tests/test_vendored_generators.py) — changing
 the copy, or the numerics beneath it, fails the test.
+
+The generators are Apache-2.0, and the licence travels with them in
+[src/qsocket/vendored/LICENSE-Apache-2.0.txt](src/qsocket/vendored/LICENSE-Apache-2.0.txt).
+[ATTRIBUTIONS.md](ATTRIBUTIONS.md) is the full inventory of copied code — upstream,
+commit, licence, changes and how to cite it. Two items there are still open: the QC1
+metrics have no upstream licence file, and this project has not declared a licence of
+its own.
