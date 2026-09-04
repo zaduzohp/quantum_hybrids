@@ -244,30 +244,28 @@ def test_tost_power_for_a_to_b_is_far_below_the_floor_at_the_pilot_sigma():
     assert power == pytest.approx(0.0171, abs=0.001)
 
 
-def test_the_three_scripts_share_one_implementation_of_each_statistic():
+def test_the_scripts_share_one_implementation_of_each_statistic():
     """MDE, the sigma CI, the binomial SE and the TOST power were written three times.
 
     The copies agreed to the last bit when it was checked, which is why an edit to one of
     them would not have surfaced: nothing compared them. They are now one function, and
     the scripts must hold the SAME object rather than an equal-looking one.
-    """
-    import run_pilot_sigma as pilot
 
+    The third copy lived in run_pilot_sigma.py, deleted in 594dbf7 once the main series
+    replaced the pilot, and the pilot leg of this test went with it. Two scripts remain
+    and the invariant is unchanged: neither may hold a copy of its own.
+    """
     from qsocket import stats
 
     assert a8.mde_constant is stats.mde_constant
     assert a8.sigma_confidence_interval is stats.sigma_confidence_interval
     assert a7.mde is stats.mde
     assert a7.binomial_se is stats.binomial_se
-    assert pilot.mde is stats.mde
-    assert pilot.sigma_ci is stats.sigma_confidence_interval
-    assert pilot.binomial_se is stats.binomial_se
-    # a8.tost_power and pilot.tost_power_at_zero are thin wrappers (a default delta, a
-    # positional order), so identity is the wrong check — equality of the numbers is not.
+    # a8.tost_power is a thin wrapper (it supplies a default delta), so identity is the
+    # wrong check — equality of the numbers is not.
     for sigma, n in ((0.05, 10), (0.02, 30), (0.1, 30)):
         expected = stats.tost_power(sigma=sigma, n=n, delta=a8.TOST_DELTA)
         assert a8.tost_power(sigma=sigma, n=n) == expected
-        assert pilot.tost_power_at_zero(a8.TOST_DELTA, sigma, n) == expected
 
 
 def test_the_power_is_computed_on_the_df_the_test_was_run_on():

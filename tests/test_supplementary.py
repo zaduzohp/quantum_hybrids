@@ -21,9 +21,16 @@ sys.path.insert(0, str(ROOT / "src"))
 import run_a8_analysis as a8
 import run_supplementary as sup
 
-MAIN_CSV = ROOT / "outputs" / "a8" / "main" / "a7_results_combined.csv"
+# The analysis output directory of the main series, as it is committed and as
+# REPRODUCE.md drives it. It used to be outputs/a8/; the rename to outputs/stats/ left
+# this guard behind, so every test below skipped on a complete checkout with a message
+# that read like missing data instead of a stale path.
+ANALYSIS_DIR = ROOT / "outputs" / "stats" / "main"
+MAIN_CSV = ANALYSIS_DIR / "a7_results_combined.csv"
+ESTIMANDS_CSV = ANALYSIS_DIR / "tables" / "estimands.csv"
 requires_series = pytest.mark.skipif(
-    not MAIN_CSV.exists(), reason="the main series CSV is not in this checkout")
+    not (MAIN_CSV.exists() and ESTIMANDS_CSV.exists()),
+    reason=f"the main series analysis is not in this checkout ({ANALYSIS_DIR})")
 
 
 # --- the degeneracy detector ---------------------------------------------------------
@@ -65,9 +72,7 @@ def test_the_adam_arm_of_the_ridge_contrast_reproduces_a8_exactly():
         for r in sup.ridge_contrast_rows(rows, dataset_seeds, seeds)
         if r["estimand"] == "delta_AB_B_readout_adam"
     }
-    reference = pd.read_csv(
-        ROOT / "outputs" / "a8" / "main" / "tables" / "estimands.csv",
-        float_precision="round_trip")
+    reference = pd.read_csv(ESTIMANDS_CSV, float_precision="round_trip")
     reference = reference[reference["estimand"] == "delta_AB"]
     assert ours, "no adam rows produced"
     for _, row in reference.iterrows():
@@ -84,8 +89,7 @@ def test_the_probe_emits_delta_BE_which_a8_never_does():
         rows, sorted({r["dataset_seed"] for r in rows}),
         sorted({r["seed_int"] for r in rows if r["seed_int"] is not None}), "linear")}
     assert "delta_BE" in emitted
-    a8_estimands = set(pd.read_csv(
-        ROOT / "outputs" / "a8" / "main" / "tables" / "estimands.csv")["estimand"])
+    a8_estimands = set(pd.read_csv(ESTIMANDS_CSV)["estimand"])
     assert "delta_BE" not in a8_estimands
 
 

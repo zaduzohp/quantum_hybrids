@@ -109,7 +109,10 @@ MAX_EPOCHS = a7.MAX_EPOCHS
 ARM_E_LR_GRID = a7.ARM_E_LR_GRID
 GATE_ARM_E_SEEDS: tuple[int, ...] = (1, 2, 3)
 
-DEFAULT_OUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "a8"
+# outputs/stats/ is where the committed analysis lives and what REPRODUCE.md passes
+# explicitly; the default used to be outputs/a8/, which silently wrote a second,
+# competing analysis directory whenever --out-dir was omitted.
+DEFAULT_OUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "stats"
 
 STATUS_PROVISIONAL = "PROVISIONAL — NOT A RESULT"
 STATUS_COMPLETE = "complete contract grid"

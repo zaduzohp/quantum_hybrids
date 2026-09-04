@@ -1,7 +1,17 @@
 .venv/
 __pycache__/
+# data/* rather than data/: git does not descend into an excluded directory, so the
+# negations below only work against a wildcard.
 data/*
 !data/a7_generator_seeds/
+# The registered production artefact. contract.dataset_location resolves generator seed
+# 11 here and nowhere else, so a clone without these two files cannot run the main
+# series, the analysis or the supplementary tables — the same artefact under
+# a7_generator_seeds/ is a duplicate the seed-11 branch never reads.
+!data/hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11.npz
+!data/hyperplanes_n_features20_n_hyperplanes3_dim_hyperplanes5_seed11.manifest.json
+# Private working notes, never part of the deliverable.
+my_files/
 outputs_archive/
 *.pt
 *.egg-info/
