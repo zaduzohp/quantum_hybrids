@@ -192,16 +192,19 @@ def frozen_name_for(seed: int) -> str:
 
 def dataset_location(seed: int) -> tuple[str, Path]:
     """(frozen name, directory) for one generator seed.
-
-    Seed 11 resolves to the registered production artefact in data/, which this script
-    never writes to.
     """
     if seed == 11:
         assert frozen_name_for(11) == PRODUCTION_DATASET, (
             "the naming convention drifted from the registered production dataset: "
             f"{frozen_name_for(11)!r} != {PRODUCTION_DATASET!r}"
         )
-        return PRODUCTION_DATASET, DEFAULT_DATA_DIR
+        for directory in (A7_DATA_DIR, DEFAULT_DATA_DIR):
+            data_path, manifest_path = dataset_paths(PRODUCTION_DATASET, out_dir=directory)
+            if data_path.exists() and manifest_path.exists():
+                return PRODUCTION_DATASET, directory
+        # Neither is on disk. Name the tracked location, so the error that follows
+        # points at the path a fresh clone is meant to have.
+        return PRODUCTION_DATASET, A7_DATA_DIR
     return frozen_name_for(seed), A7_DATA_DIR
 
 

@@ -186,13 +186,13 @@ An incomplete grid is refused as a result — tables are stamped `PROVISIONAL �
     --main outputs/stats/main/a7_results_combined.csv \
     --probe outputs/h3_probe/a7_results.csv \
     --lr-table outputs/main/ds11/a7_lr_table.csv \
-    --lr-table outputs/main/ds22/lr_table.csv \
+    --lr-table outputs/main/ds22/a7_lr_table.csv \
     --lr-table outputs/main/ds33/a7_lr_table.csv \
     --weights-dir outputs/h3_probe/weights \
     --out-dir outputs/supplementary
 ```
 
-**`--probe`, `--lr-table` and `--weights-dir` are `action="append"`.
+`--probe`, `--lr-table` and `--weights-dir` are `action="append"` — pass one flag per dataset seed.
 
 `--skip-slow` drops the Fourier spectrum and the head-init Monte Carlo.
 
@@ -257,13 +257,33 @@ Verdict: WIDEN if arm A's argmax sits at the probe point in ≥ half the cells *
 
 `SNR_i = |mean_b(g_ib)| / std_b(g_ib)` over 8 batches, at arm A's initialisation. No optimiser step is taken. Writes `outputs/p1_gradient_snr/`.
 
-Superseded by the main series. Writes `outputs/a4_pilot/`.
+Diagnostic only, and not committed: the main series supersedes it, because `grad_rms_start` and `grad_rms_end` are columns of `a7_results.csv` for every run rather than for one probe.
 
 ### 7e. Expressibility / entanglement of the ansatze
 
 ```bash
 .venv/bin/python scripts/run_expressibility.py
 ```
+
+KL divergence of the fidelity distribution from Haar, and the Meyer-Wallach entanglement
+score, over theta ~ U[0, 2pi) at three x settings — the ensemble the QELM convention
+actually draws its reservoir from. Defaults: 5000 fidelity pairs, 2000 Meyer-Wallach
+draws, 75 bins, seeds 1-3, cells `product R=2` and `L1 R=1,2,3` and `L2 R=2`.
+Writes `outputs/b11/b11_summary.json`, `b11_raw_rows.csv` and `raw/`; override with
+`--out-dir` (the committed run is in `outputs/expressibility/`).
+
+The KL floor and Q_haar are **measured**, not cited: the same pipeline is fed
+Haar-distributed fidelities, so the verdict compares against a finite-sample floor from
+the same estimator. Verdict bands, fixed before the run:
+
+| verdict | condition |
+|---|---|
+| MET (rich reservoir) | `Q/Q_haar >= 0.8` **and** `KL <= 3x` floor |
+| NOT MET (outside the mixing regime) | `Q/Q_haar < 0.4` **or** `KL > 10x` floor |
+| INTERMEDIATE REGIME | anything between |
+
+The verdict for arm B is printed separately, because arm B is the cell the QELM
+assumption is about (`L1`, `R=2`).
 
 ---
 
